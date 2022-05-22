@@ -1,0 +1,62 @@
+[
+{
+    "model": "orbit.orbit",
+    "pk": 1,
+    "fields": {
+        "username": "mohammadimam1210@gmail.com",
+        "password": "Failover3!",
+        "msisdn": "081384694404",
+        "imei": "864556045965759",
+        "quota_total": "25 GB",
+        "quota_current": "24.8 GB",
+        "quota_day": "23 Hari",
+        "created_at": "2022-05-21T10:52:26.783Z",
+        "updated_at": "2022-05-22T01:40:03.078Z"
+    }
+},
+{
+    "model": "orbit.orbit",
+    "pk": 2,
+    "fields": {
+        "username": "budi.yono@saltis.id",
+        "password": "Failover4!",
+        "msisdn": "081384694391",
+        "imei": "864556046145872",
+        "quota_total": "25 GB",
+        "quota_current": "24.5 GB",
+        "quota_day": "23 Hari",
+        "created_at": "2022-05-21T10:54:25.435Z",
+        "updated_at": "2022-05-22T01:40:14.029Z"
+    }
+},
+{
+    "model": "orbit.orbit",
+    "pk": 3,
+    "fields": {
+        "username": "jonahhill09293318@gmail.com",
+        "password": "Failover5!",
+        "msisdn": "081384694416",
+        "imei": "864556046145005",
+        "quota_total": "25 GB",
+        "quota_current": "23.7 GB",
+        "quota_day": "23 Hari",
+        "created_at": "2022-05-21T10:55:19.719Z",
+        "updated_at": "2022-05-22T01:40:26.935Z"
+    }
+},
+{
+    "model": "orbit.orbit",
+    "pk": 4,
+    "fields": {
+        "username": "budithegreat09@gmail.com",
+        "password": "Failover6!",
+        "msisdn": "081385213849",
+        "imei": "864556046142523",
+        "quota_total": "25 GB",
+        "quota_current": "24.3 GB",
+        "quota_day": "23 Hari",
+        "created_at": "2022-05-21T10:56:09.142Z",
+        "updated_at": "2022-05-22T01:40:36.985Z"
+    }
+}
+]
