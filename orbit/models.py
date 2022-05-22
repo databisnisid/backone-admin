@@ -18,4 +18,4 @@ class Orbit(models.Model):
         verbose_name_plural = 'orbits'
 
     def __str__(self):
-        return '%s(%s,%s)' % (self.imei, self.quota_current, self.quota_day)
+        return '%s(%s/%s,%s)' % (self.imei, self.quota_current, self.quota_total, self.quota_day)
