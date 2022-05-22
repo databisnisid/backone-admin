@@ -29,7 +29,7 @@ REMOTE_SELENIUM = str(os.getenv('REMOTE_SELENIUM'))
 PRODUCTION = str(os.getenv('PRODUCTION'))
 DEBUG = str(os.getenv('DEBUG'))
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [str(os.getenv('ALLOWED_HOSTS'))]
 
 
 # Application definition
