@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'orbit',
     'connector',
     'jazzmin',
+    'django_crontab',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
