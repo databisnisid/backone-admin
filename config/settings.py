@@ -93,10 +93,10 @@ DATABASES = {
     'default': {
         'ENGINE': str(os.getenv('ENGINE')),
         'NAME': str(os.getenv('NAME')),
-        'USER': str(os.getenv('USER')),
-        'PASSWORD': str(os.getenv('PASSWORD')),
-        'HOST': str(os.getenv('HOST')),
-        'PORT': str(os.getenv('PORT')),
+        'USER': str(os.getenv('DBUSER')),
+        'PASSWORD': str(os.getenv('DBPASSWORD')),
+        'HOST': str(os.getenv('DBHOST')),
+        'PORT': str(os.getenv('DBPORT')),
     }
 }
 
