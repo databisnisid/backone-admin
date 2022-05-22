@@ -9,7 +9,7 @@ class BackOne(models.Model):
     serial_number = models.CharField(max_length=30, default='000000000')
     username = models.CharField(max_length=20, default='root')
     password = models.CharField(max_length=20, default='K0l0r1j0')
-    location = models.CharField(max_length=50, blank=True)
+    location = models.CharField(max_length=50, blank=True, default='-6.202509554265462, 106.81914451645058')
     backone_network = models.CharField(max_length=50, blank=True)
     orbit = models.OneToOneField(
         Orbit,
