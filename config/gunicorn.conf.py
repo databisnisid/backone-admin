@@ -1,0 +1,8 @@
+bind = '192.168.192.31:8000'
+backlog = 2048
+
+workers = 3
+worker_class = 'sync'
+worker_connections = 1000
+timeout = 30
+keepalive = 2
