@@ -15,7 +15,7 @@ def get_quota(username='budithegreat09@gmail.com', password='Failover6!'):
         driver_options = webdriver.FirefoxOptions()
 
         driver = webdriver.Remote(
-            command_executor='http://192.168.192.8:4444',
+            command_executor=settings.SELENIUM_DOCKER,
             options=driver_options
         )
     else:

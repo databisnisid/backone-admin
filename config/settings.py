@@ -26,6 +26,7 @@ SECRET_KEY = 'django-insecure-j!1by$a)g9#e6nquc7=%m%oeq7+ch74#9eyt_rufq42gz+91&r
 
 # SECURITY WARNING: don't run with debug turned on in production!
 REMOTE_SELENIUM = str(os.getenv('REMOTE_SELENIUM'))
+SELENIUM_DOCKER = 'http://192.168.192.8:4444'
 PRODUCTION = str(os.getenv('PRODUCTION'))
 DEBUG = str(os.getenv('DEBUG'))
 
@@ -271,3 +272,8 @@ JAZZMIN_UI_TWEAKS = {
     "theme": "cosmo",
     #"dark_mode_theme": "lux",
 }
+
+# DJANGO-CRONTAB
+CRONJOBS = [
+    ('* */6 * * *', 'orbit.cron.CRON_get_all_quota_orbit')
+]
