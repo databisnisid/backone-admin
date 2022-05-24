@@ -1,18 +1,10 @@
 from django.shortcuts import render
 from backone.models import BackOne
+from django.conf import settings
 
 
 def index(request):
     backone = BackOne.objects.all()
-    data = []
-    for bo in backone:
-        loc = bo.location.split(',')
-        data.append({
-            'name': bo.name,
-            'lat': loc[0],
-            'lng': loc[1]
-        })
-
     #print(data)
 
-    return render(request, 'index.html', {'data': data})
+    return render(request, 'index.html', {'backone': backone, 'settings': settings})

@@ -24,8 +24,8 @@ function initMap() {
   //});
 
   var locations = [
-  {% for bo in data %}
-['{{ bo.name }}', {{ bo.lat }}, {{ bo.lng }}],
+  {% for bo in backone %}
+['{{ bo.name }}', {{ bo.geolocation }}],
   {% endfor %}
    ];
 
@@ -48,7 +48,7 @@ function initMap() {
 
 </script>
 <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=MyAPI&callback=initMap">
+    src="https://maps.googleapis.com/maps/api/js?key={{ settings.GOOGLE_MAPS_API_KEY }}&callback=initMap">
 </script>
 </body>
 </html>
