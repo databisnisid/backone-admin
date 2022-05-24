@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'connector',
     'jazzmin',
     'django_crontab',
+    'django_google_maps',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -277,3 +278,6 @@ JAZZMIN_UI_TWEAKS = {
 CRONJOBS = [
     ('* */6 * * *', 'orbit.cron.CRON_get_all_quota_orbit')
 ]
+
+# MAP
+GOOGLE_MAPS_API_KEY = str(os.getenv(('GOOGLE_MAPS_API_KEY')))

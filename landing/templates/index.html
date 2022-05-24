@@ -1,0 +1,54 @@
+<html>
+<head>
+    <title>Map</title>
+    <style>
+#map {
+  height: 100%;
+  width: 100%;
+  background-color: grey;
+}
+    </style>
+</head>
+<body>
+<div id="map"></div>
+<script type="text/javascript">
+function initMap() {
+  var center = {lat: -6.310781374277775, lng: 106.86281281146894};
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 11,
+    center: center
+  });
+  //var marker = new google.maps.Marker({
+  //  position: center,
+  //  map: map
+  //});
+
+  var locations = [
+  {% for bo in data %}
+['{{ bo.name }}', {{ bo.lat }}, {{ bo.lng }}],
+  {% endfor %}
+   ];
+
+  var infowindow =  new google.maps.InfoWindow({});
+  var marker, count;
+  for (count = 0; count < locations.length; count++) {
+    marker = new google.maps.Marker({
+      position: new google.maps.LatLng(locations[count][1], locations[count][2]),
+      map: map,
+      title: locations[count][0]
+    });
+  google.maps.event.addListener(marker, 'click', (function (marker, count) {
+      return function () {
+        infowindow.setContent(locations[count][0]);
+        infowindow.open(map, marker);
+      }
+    })(marker, count));
+  }
+}
+
+</script>
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkza55XW3bI7o4G8uNT6mN4q6aX-VYZdc&callback=initMap">
+</script>
+</body>
+</html>

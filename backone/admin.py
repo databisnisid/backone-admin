@@ -1,6 +1,9 @@
 from django.contrib import admin
 from .models import BackOne
 from django import forms
+from django_google_maps import widgets as map_widgets
+from django_google_maps import fields as map_fields
+import json
 
 
 class BackOneAdminForm(forms.ModelForm):
@@ -13,12 +16,16 @@ class BackOneAdminForm(forms.ModelForm):
 
 
 class BackOneAdmin(admin.ModelAdmin):
+    formfield_overrides = {
+        map_fields.AddressField: {
+          'widget': map_widgets.GoogleMapsAddressWidget(attrs={'data-map-type': 'roadmap'})},
+    }
     form = BackOneAdminForm
-    fields = ['name', 'ipaddress',
-              'location', 'backone_network', 'description', 'orbit',
+    fields = ['name', 'ipaddress', 'serial_number', 'address', 'geolocation',
+              'description', 'orbit',
               'created_at', 'updated_at']
     readonly_fields = ['created_at', 'updated_at']
-    list_display = ['name', 'ipaddress', 'location', 'orbit']
+    list_display = ['name', 'ipaddress', 'address', 'orbit']
     list_filter = ('name', 'ipaddress',)
 
 
