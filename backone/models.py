@@ -1,10 +1,12 @@
 from django.db import models
 from orbit.models import Orbit
 from django_google_maps import fields as map_fields
+#from django.db.models import UniqueConstraint
+#from django.db.models.functions import Lower
 
 
 class BackOne(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, unique=True)
     description = models.TextField(blank=True)
     ipaddress = models.GenericIPAddressField(default='0.0.0.0')
     serial_number = models.CharField(max_length=30, default='000000000')
