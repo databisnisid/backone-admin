@@ -26,7 +26,7 @@ class BackOneAdmin(admin.ModelAdmin):
               'description', 'orbit',
               'created_at', 'updated_at']
     readonly_fields = ['created_at', 'updated_at']
-    list_display = ['name', 'ipaddress', 'address', 'sid_number', 'orbit']
+    list_display = ['name', 'ipaddress', 'sid_number', 'address', 'orbit']
     list_filter = ('name', 'ipaddress',)
 
 
