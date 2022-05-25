@@ -2,6 +2,11 @@
 <head>
     <title>Map</title>
     <style>
+body {
+  margin: 0px;
+  padding: 0px;
+}
+
 #map {
   height: 100%;
   width: 100%;
@@ -26,7 +31,7 @@ function initMap() {
 
   var locations = [
   {% for bo in backone %}
-['{{ bo.name }}', {{ bo.geolocation }}],
+['{{ bo.name }}', {{ bo.geolocation }}, '{{ bo.is_active }}'],
   {% endfor %}
    ];
 
@@ -44,6 +49,12 @@ function initMap() {
         infowindow.open(map, marker);
       }
     })(marker, count));
+
+    if (locations[count][3] == 'True') {
+      marker.setIcon('https://maps.google.com/mapfiles/ms/icons/green-dot.png');
+    } else {
+      marker.setIcon('https://maps.google.com/mapfiles/ms/icons/red-dot.png');
+    }
   }
 }
 
