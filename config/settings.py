@@ -281,3 +281,4 @@ CRONJOBS = [
 
 # MAP
 GOOGLE_MAPS_API_KEY = str(os.getenv(('GOOGLE_MAPS_API_KEY')))
+MAPS_CENTER = str(os.getenv('MAPS_CENTER'))

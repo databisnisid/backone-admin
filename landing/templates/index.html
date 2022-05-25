@@ -13,9 +13,10 @@
 <div id="map"></div>
 <script type="text/javascript">
 function initMap() {
-  var center = {lat: -6.310781374277775, lng: 106.86281281146894};
+  //var center = {lat: -1.233982000061532, lng: 116.83728437200422};
+  var center = { {{ settings.MAPS_CENTER }} };
   var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 11,
+    zoom: 5.5,
     center: center
   });
   //var marker = new google.maps.Marker({
