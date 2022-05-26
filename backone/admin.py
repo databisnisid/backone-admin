@@ -21,7 +21,7 @@ class BackOneAdmin(admin.ModelAdmin):
           'widget': map_widgets.GoogleMapsAddressWidget(attrs={'data-map-type': 'roadmap'})},
     }
     form = BackOneAdminForm
-    fields = ['name', 'ipaddress', 'serial_number', 'sid', 'is_active', 'connection_type'
+    fields = ['name', 'ipaddress', 'serial_number', 'sid', 'is_active', 'connection_type',
               'address', 'geolocation',
               'description', 'orbit',
               'created_at', 'updated_at']
