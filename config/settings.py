@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'backone',
     'orbit',
     'connector',
+    'connection',
     'jazzmin',
     'django_crontab',
     'django_google_maps',

@@ -1,6 +1,7 @@
 from django.db import models
 from orbit.models import Orbit
 from django_google_maps import fields as map_fields
+from connection.models import ConnectionType
 #from django.db.models import UniqueConstraint
 #from django.db.models.functions import Lower
 
@@ -19,6 +20,12 @@ class BackOne(models.Model):
     backone_network = models.CharField(max_length=50, blank=True)
     orbit = models.OneToOneField(
         Orbit,
+        on_delete=models.DO_NOTHING,
+        null=True,
+        blank=True
+    )
+    connection_type = models.ForeignKey(
+        ConnectionType,
         on_delete=models.DO_NOTHING,
         null=True,
         blank=True
