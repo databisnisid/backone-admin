@@ -28,7 +28,7 @@ SECRET_KEY = str(os.getenv('SECRET_KEY'))
 REMOTE_SELENIUM = os.getenv('REMOTE_SELENIUM')
 SELENIUM_DOCKER = 'http://192.168.192.8:4444'
 PRODUCTION = os.getenv('PRODUCTION')
-DEBUG = os.getenv('DEBUG')
+DEBUG = False
 
 ALLOWED_HOSTS = [str(os.getenv('ALLOWED_HOSTS'))]
 
