@@ -37,7 +37,8 @@ class BackOne(models.Model):
     class Meta:
         managed = True
         db_table = 'backone'
-        verbose_name_plural = 'backones'
+        verbose_name = 'site'
+        verbose_name_plural = 'sites'
 
     def __str__(self):
         return '%s' % self.name
