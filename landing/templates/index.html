@@ -31,7 +31,7 @@ function initMap() {
 
   var locations = [
   {% for bo in backone %}
-['{{ bo.name }}', {{ bo.geolocation }}, '{{ bo.is_active }}'],
+['{{ bo.name }}', {{ bo.geolocation }}, '{{ bo.is_active }}', {{ bo.connection_type.id }}],
   {% endfor %}
    ];
 
@@ -51,7 +51,11 @@ function initMap() {
     })(marker, count));
 
     if (locations[count][3] == 'True') {
-      marker.setIcon('https://maps.google.com/mapfiles/ms/icons/green-dot.png');
+        if (locations[count][4] == 1) {
+            marker.setIcon('https://maps.google.com/mapfiles/ms/icons/green-dot.png');
+        } else {
+            marker.setIcon('https://maps.google.com/mapfiles/ms/icons/yellow-dot.png');
+        }
     } else {
       marker.setIcon('https://maps.google.com/mapfiles/ms/icons/red-dot.png');
     }
