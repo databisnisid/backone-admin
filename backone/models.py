@@ -35,3 +35,7 @@ class BackOne(models.Model):
     def __str__(self):
         return '%s' % self.name
 
+    def save(self, *args, **kwargs):
+        self.name = self.name.upper()
+        return super(BackOne, self).save(*args, **kwargs)
+
