@@ -31,7 +31,7 @@ function initMap() {
 
   var locations = [
   {% for bo in backone %}
-['{{ bo.name }}', {{ bo.geolocation }}, '{{ bo.is_active }}', {{ bo.connection_type.id }}],
+['{{ bo.name }}', {{ bo.geolocation }}, '{{ bo.connection_status }}', {{ bo.connection_type.id }}],
   {% endfor %}
    ];
 
@@ -50,7 +50,7 @@ function initMap() {
       }
     })(marker, count));
 
-    if (locations[count][3] == 'True') {
+    if (locations[count][3] == 'LIVE') {
         if (locations[count][4] == 1) {
             marker.setIcon('https://maps.google.com/mapfiles/ms/icons/green-dot.png');
         } else {
