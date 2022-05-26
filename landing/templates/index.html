@@ -12,10 +12,27 @@ body {
   width: 100%;
   background-color: grey;
 }
+#legend {
+  font-family: Arial, sans-serif;
+  background: #fff;
+  padding: 10px;
+  margin: 10px;
+  border: 3px solid #000;
+}
+
+#legend h3 {
+  margin-top: 0;
+}
+
+#legend img {
+  vertical-align: middle;
+}
     </style>
 </head>
 <body>
 <div id="map"></div>
+<div id="legend"><h3>Legend</h3></div>
+
 <script type="text/javascript">
 function initMap() {
   //var center = {lat: -1.233982000061532, lng: 116.83728437200422};
@@ -37,6 +54,22 @@ function initMap() {
 
   var infowindow =  new google.maps.InfoWindow({});
   var marker, count;
+  const iconBase = "https://maps.google.com/mapfiles/ms/icons/";
+  const icons = {
+    sdwan: {
+      name: "SDWAN",
+      icon: iconBase + "green-dot.png",
+    },
+    vpnip: {
+      name: "VPNIP",
+      icon: iconBase + "yellow-dot.png",
+    },
+    nolive: {
+      name: "NO LIVE",
+      icon: iconBase + "red-dot.png",
+    },
+  };
+
   for (count = 0; count < locations.length; count++) {
     marker = new google.maps.Marker({
       position: new google.maps.LatLng(locations[count][1], locations[count][2]),
@@ -52,14 +85,28 @@ function initMap() {
 
     if (locations[count][3] == 'LIVE') {
         if (locations[count][4] == 1) {
-            marker.setIcon('https://maps.google.com/mapfiles/ms/icons/green-dot.png');
+            marker.setIcon(icons['sdwan'].icon);
         } else {
-            marker.setIcon('https://maps.google.com/mapfiles/ms/icons/yellow-dot.png');
+            marker.setIcon(icons['vpnip'].icon);
         }
     } else {
-      marker.setIcon('https://maps.google.com/mapfiles/ms/icons/red-dot.png');
+      marker.setIcon(icons['nolive'].icon);
     }
   }
+    const legend = document.getElementById("legend");
+
+  for (const key in icons) {
+    const type = icons[key];
+    const name = type.name;
+    const icon = type.icon;
+    const div = document.createElement("div");
+
+    div.innerHTML = '<img src="' + icon + '"> ' + name;
+    legend.appendChild(div);
+  }
+
+  map.controls[google.maps.ControlPosition.RIGHT_TOP].push(legend);
+
 }
 
 </script>
