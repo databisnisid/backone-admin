@@ -27,7 +27,8 @@ class BackOneAdmin(admin.ModelAdmin):
               'created_at', 'updated_at']
     readonly_fields = ['created_at', 'updated_at']
     list_display = ['name', 'ipaddress', 'sid', 'address', 'connection_type', 'is_active']
-    list_filter = ('name', 'ipaddress',)
+    list_filter = ('name', 'ipaddress')
+    list_per_page = 25
 
 
 admin.site.register(BackOne, BackOneAdmin)
