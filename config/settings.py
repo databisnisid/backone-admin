@@ -25,10 +25,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = str(os.getenv('SECRET_KEY'))
 
 # SECURITY WARNING: don't run with debug turned on in production!
-REMOTE_SELENIUM = str(os.getenv('REMOTE_SELENIUM'))
+REMOTE_SELENIUM = os.getenv('REMOTE_SELENIUM')
 SELENIUM_DOCKER = 'http://192.168.192.8:4444'
-PRODUCTION = str(os.getenv('PRODUCTION'))
-DEBUG = str(os.getenv('DEBUG'))
+PRODUCTION = os.getenv('PRODUCTION')
+DEBUG = os.getenv('DEBUG')
 
 ALLOWED_HOSTS = [str(os.getenv('ALLOWED_HOSTS'))]
 
