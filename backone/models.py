@@ -72,3 +72,5 @@ class BackOne(models.Model):
         self.name = self.name.upper()
         return super(BackOne, self).save(*args, **kwargs)
 
+
+

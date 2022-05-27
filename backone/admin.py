@@ -50,11 +50,33 @@ class BackOneAdmin(ImportExportModelAdmin, admin.ModelAdmin):
               'description', 'orbit',
               'created_at', 'updated_at']
     readonly_fields = ['created_at', 'updated_at']
-    list_display = ['name', 'ipaddress', 'sid', 'address', 'connection_type', 'connection_status',
-                    'contact', 'service_type', 'service_vendor']
-    list_filter = ('name', 'ipaddress')
+    list_display = ['name', 'sid', 'address', 'connection_type', 'connection_status',
+                    'service_type', 'service_price',
+                    'service_vendor', 'cost_installation', 'cost_monthly']
+    list_filter = ('name', 'sid')
     list_per_page = 25
     resource_class = BackOneResource
+
+    @staticmethod
+    def service_price(obj):
+        if obj.service_type == None:
+            return None
+
+        return obj.service_type.price
+
+    @staticmethod
+    def cost_installation(obj):
+        if obj.service_vendor == None:
+            return None
+        return obj.service_vendor.cost_installation
+
+    @staticmethod
+    def cost_monthly(obj):
+        if obj.service_vendor == None:
+            return None
+        return obj.service_vendor.cost_monthly
+
+
 
 
 admin.site.register(BackOne, BackOneAdmin)
