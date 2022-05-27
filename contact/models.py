@@ -13,7 +13,7 @@ class Contact(models.Model):
         verbose_name_plural = 'contacts'
 
     def __str__(self):
-        return '%s' % self.name
+        return '%s(%s)' % (self.name, self.phone)
 
     def save(self, *args, **kwargs):
         self.name = self.name.upper()
