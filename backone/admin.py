@@ -15,7 +15,7 @@ class BackOneResource(resources.ModelResource):
             'address', 'geolocation', 'contact__name', 'contact__phone',
             'connection_status__name', 'connection_type__name',
             'service_type__name', 'service_type__price',
-            'service_type__cost_installation', 'service_type__cost_monthly',
+            'service_vendor__name', 'service_vendor__cost_installation', 'service_vendor__cost_monthly',
             'description'
         )
         export_order = (
@@ -23,7 +23,7 @@ class BackOneResource(resources.ModelResource):
             'address', 'geolocation', 'contact__name', 'contact__phone',
             'connection_status__name', 'connection_type__name',
             'service_type__name', 'service_type__price',
-            'service_type__cost_installation', 'service_type__cost_monthly',
+            'service_vendor__name', 'service_vendor__cost_installation', 'service_vendor__cost_monthly',
             'description'
         )
 
@@ -45,13 +45,13 @@ class BackOneAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     form = BackOneAdminForm
     fields = ['name', 'ipaddress', 'serial_number', 'sid',
               'connection_status', 'connection_type',
-              'service_type', 'contact',
+              #'service_type', 'service_vendor', 'contact',
               'address', 'geolocation',
               'description', 'orbit',
               'created_at', 'updated_at']
     readonly_fields = ['created_at', 'updated_at']
     list_display = ['name', 'ipaddress', 'sid', 'address', 'connection_type', 'connection_status',
-                    'contact', 'service_type']
+                    'contact', 'service_type', 'service_vendor']
     list_filter = ('name', 'ipaddress')
     list_per_page = 25
     resource_class = BackOneResource

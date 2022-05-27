@@ -3,7 +3,7 @@ from orbit.models import Orbit
 from contact.models import Contact
 from django_google_maps import fields as map_fields
 from connection.models import ConnectionType, ConnectionStatus
-from service.models import ServiceType
+from service.models import ServiceType, ServiceVendor
 #from django.db.models import UniqueConstraint
 #from django.db.models.functions import Lower
 
@@ -46,6 +46,12 @@ class BackOne(models.Model):
     )
     service_type = models.ForeignKey(
         ServiceType,
+        on_delete=models.DO_NOTHING,
+        null=True,
+        blank=True
+    )
+    service_vendor = models.ForeignKey(
+        ServiceVendor,
         on_delete=models.DO_NOTHING,
         null=True,
         blank=True
