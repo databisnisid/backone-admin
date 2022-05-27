@@ -2,6 +2,7 @@ from django.db import models
 from orbit.models import Orbit
 from django_google_maps import fields as map_fields
 from connection.models import ConnectionType, ConnectionStatus
+from service.models import ServiceType
 #from django.db.models import UniqueConstraint
 #from django.db.models.functions import Lower
 
@@ -32,6 +33,12 @@ class BackOne(models.Model):
     )
     connection_status = models.ForeignKey(
         ConnectionStatus,
+        on_delete=models.DO_NOTHING,
+        null=True,
+        blank=True
+    )
+    service_type = models.ForeignKey(
+        ServiceType,
         on_delete=models.DO_NOTHING,
         null=True,
         blank=True

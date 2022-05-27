@@ -1,6 +1,7 @@
 asgiref==3.5.2
 async-generator==1.10
 attrs==21.4.0
+Babel==2.10.1
 certifi==2022.5.18
 cffi==1.15.0
 cryptography==37.0.2
@@ -8,14 +9,17 @@ Django==4.0.4
 django-crontab==0.7.1
 django-google-maps==0.13.0
 django-jazzmin==2.5.0
+django-money==2.1.1
 gunicorn==20.1.0
 h11==0.13.0
 idna==3.3
 outcome==1.1.0
+py-moneyed==1.2
 pycparser==2.21
 pyOpenSSL==22.0.0
 PySocks==1.7.1
 python-dotenv==0.20.0
+pytz==2022.1
 selenium==4.1.5
 sniffio==1.2.0
 sortedcontainers==2.4.0
