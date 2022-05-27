@@ -45,7 +45,7 @@ class BackOneAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     form = BackOneAdminForm
     fields = ['name', 'ipaddress', 'serial_number', 'sid',
               'connection_status', 'connection_type',
-              #'service_type', 'service_vendor', 'contact',
+              'service_type', 'service_vendor', 'contact',
               'address', 'geolocation',
               'description', 'orbit',
               'created_at', 'updated_at']
