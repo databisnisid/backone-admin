@@ -9,15 +9,14 @@ from service.models import ServiceType
 
 class BackOne(models.Model):
     name = models.CharField(max_length=50, unique=True)
-    description = models.TextField(blank=True)
     ipaddress = models.GenericIPAddressField(default='0.0.0.0')
     serial_number = models.CharField(max_length=30, default='000000000')
     sid = models.CharField(max_length=20, default='000000000')
+    description = models.TextField(blank=True)
     address = map_fields.AddressField(max_length=200, blank=True)
     geolocation = map_fields.GeoLocationField(max_length=100, blank=True)
     username = models.CharField(max_length=20, default='root')
     password = models.CharField(max_length=20, default='K0l0r1j0')
-    location = models.CharField(max_length=50, blank=True, default='-6.202509554265462, 106.81914451645058')
     backone_network = models.CharField(max_length=50, blank=True)
     orbit = models.OneToOneField(
         Orbit,

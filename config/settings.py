@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'service',
     'jazzmin',
     'djmoney',
+    'import_export',
     'django_crontab',
     'django_google_maps',
     'django.contrib.admin',
