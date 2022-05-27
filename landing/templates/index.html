@@ -48,7 +48,7 @@ function initMap() {
 
   var locations = [
   {% for bo in backone %}
-['{{ bo.name }}', {{ bo.geolocation }}, '{{ bo.connection_status }}', {{ bo.connection_type.id }}],
+['{{bo.name}}',{{bo.geolocation}},'{{bo.connection_status}}',{{bo.connection_type.id}},'{{bo.ipaddress}}','{{bo.sid}}','{{bo.service_type}}','{{bo.address}}'],
   {% endfor %}
    ];
 
@@ -76,9 +76,25 @@ function initMap() {
       map: map,
       title: locations[count][0]
     });
-  google.maps.event.addListener(marker, 'click', (function (marker, count) {
+    let contentString =
+        '<div id="content">' +
+        '<div id="siteNotice"></div>' +
+        '<h2 id="firstHeading" class="firstHeading">' + locations[count][0] + '</h2>' +
+        '<div id="bodyContent">' +
+        '<p>' +
+        'STATUS: ' + locations[count][3] + '<br />' +
+        'IP: ' + locations[count][5] + '<br />' +
+        'SID: ' + locations[count][6] + '<br />' +
+        'STYPE: ' + locations[count][7] + '<br />' +
+        locations[count][8] + '<br />' +
+        '</p>' +
+        '</div>';
+
+
+    google.maps.event.addListener(marker, 'click', (function (marker, count) {
       return function () {
-        infowindow.setContent(locations[count][0]);
+        //infowindow.setContent(locations[count][0]);
+        infowindow.setContent(contentString);
         infowindow.open(map, marker);
       }
     })(marker, count));
