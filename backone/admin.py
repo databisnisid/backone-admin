@@ -11,14 +11,18 @@ class BackOneResource(resources.ModelResource):
     class Meta:
         model = BackOne
         fields = (
-            'id', 'name', 'ipaddress', ' serial_number', 'sid',
+            'id', 'name', 'ipaddress', 'serial_number', 'sid',
             'address', 'geolocation',
             'connection_status__name', 'connection_type__name',
-            'service_type__name',
+            'service_type__name', 'service_type__price',
             'description'
         )
         export_order = (
-            'id', 'name', 'ipaddress'
+            'id', 'name', 'ipaddress', 'serial_number', 'sid',
+            'address', 'geolocation',
+            'connection_status__name', 'connection_type__name',
+            'service_type__name', 'service_type__price',
+            'description'
         )
 
 
