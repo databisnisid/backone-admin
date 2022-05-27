@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'connector',
     'connection',
     'service',
+    'contact',
     'jazzmin',
     'djmoney',
     'import_export',

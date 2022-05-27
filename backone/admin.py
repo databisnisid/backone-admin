@@ -12,16 +12,18 @@ class BackOneResource(resources.ModelResource):
         model = BackOne
         fields = (
             'id', 'name', 'ipaddress', 'serial_number', 'sid',
-            'address', 'geolocation',
+            'address', 'geolocation', 'contact',
             'connection_status__name', 'connection_type__name',
             'service_type__name', 'service_type__price',
+            'service_type__cost_installation', 'service_type__cost_monthly',
             'description'
         )
         export_order = (
             'id', 'name', 'ipaddress', 'serial_number', 'sid',
-            'address', 'geolocation',
+            'address', 'geolocation', 'contact',
             'connection_status__name', 'connection_type__name',
             'service_type__name', 'service_type__price',
+            'service_type__cost_installation', 'service_type__cost_monthly',
             'description'
         )
 

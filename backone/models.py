@@ -1,5 +1,6 @@
 from django.db import models
 from orbit.models import Orbit
+from contact.models import Contact
 from django_google_maps import fields as map_fields
 from connection.models import ConnectionType, ConnectionStatus
 from service.models import ServiceType
@@ -18,8 +19,15 @@ class BackOne(models.Model):
     username = models.CharField(max_length=20, default='root')
     password = models.CharField(max_length=20, default='K0l0r1j0')
     backone_network = models.CharField(max_length=50, blank=True)
+
     orbit = models.OneToOneField(
         Orbit,
+        on_delete=models.DO_NOTHING,
+        null=True,
+        blank=True
+    )
+    contact = models.ForeignKey(
+        Contact,
         on_delete=models.DO_NOTHING,
         null=True,
         blank=True
