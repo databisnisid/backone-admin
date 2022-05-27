@@ -22,37 +22,37 @@ class BackOne(models.Model):
 
     orbit = models.OneToOneField(
         Orbit,
-        on_delete=models.DO_NOTHING,
+        on_delete=models.SET_NULL,
         null=True,
         blank=True
     )
     contact = models.ForeignKey(
         Contact,
-        on_delete=models.DO_NOTHING,
+        on_delete=models.SET_NULL,
         null=True,
         blank=True
     )
     connection_type = models.ForeignKey(
         ConnectionType,
-        on_delete=models.DO_NOTHING,
+        on_delete=models.SET_NULL,
         null=True,
         blank=True
     )
     connection_status = models.ForeignKey(
         ConnectionStatus,
-        on_delete=models.DO_NOTHING,
+        on_delete=models.SET_NULL,
         null=True,
         blank=True
     )
     service_type = models.ForeignKey(
         ServiceType,
-        on_delete=models.DO_NOTHING,
+        on_delete=models.SET_NULL,
         null=True,
         blank=True
     )
     service_vendor = models.ForeignKey(
         ServiceVendor,
-        on_delete=models.DO_NOTHING,
+        on_delete=models.SET_NULL,
         null=True,
         blank=True
     )
