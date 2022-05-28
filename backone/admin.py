@@ -29,24 +29,29 @@ class BackOneResource(resources.ModelResource):
 
 
 class BackOneAdminForm(forms.ModelForm):
+
+    geolocation = forms.CharField(disabled=True),
+
     class Meta:
         model = BackOne
         fields = '__all__'
         widgets = {
-            'password': forms.PasswordInput
+            'password': forms.PasswordInput,
         }
 
 
 class BackOneAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     formfield_overrides = {
         map_fields.AddressField: {
-          'widget': map_widgets.GoogleMapsAddressWidget(attrs={'data-map-type': 'roadmap'})},
+          'widget': map_widgets.GoogleMapsAddressWidget(attrs={'data-map-type': 'roadmap'})
+        },
+        map_fields.GeoLocationField: {'widget': forms.TextInput(attrs={'readonly': 'readonly'})},
     }
     form = BackOneAdminForm
     fields = ['name', 'ipaddress', 'serial_number', 'sid',
               'connection_status', 'connection_type',
               'service_type', 'service_vendor', 'contact',
-              'address', 'geolocation',
+              'geolocation', 'address',
               'description', 'orbit',
               'created_at', 'updated_at']
     readonly_fields = ['created_at', 'updated_at']
