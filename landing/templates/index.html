@@ -27,11 +27,25 @@ body {
 #legend img {
   vertical-align: middle;
 }
+
+#summary {
+  font-family: Arial, sans-serif;
+  background: #fff;
+  padding: 10px;
+  margin: 10px;
+  border: 3px solid #000;
+}
+
+#summary h3 {
+  margin-top: 0;
+}
     </style>
 </head>
 <body>
 <div id="map"></div>
 <div id="legend"><h3>Legend</h3></div>
+<div id="summary"><h3>Summary</h3></div>
+
 
 <script type="text/javascript">
 function initMap() {
@@ -70,12 +84,21 @@ function initMap() {
     },
   };
 
+  const summary_content = {
+    {% for cs in cstatus %}
+        '{{ cs.name }}' : { counter: 0, },
+    {% endfor %}
+  };
+
   for (count = 0; count < locations.length; count++) {
     marker = new google.maps.Marker({
       position: new google.maps.LatLng(locations[count][1], locations[count][2]),
       map: map,
       title: locations[count][0]
     });
+
+    summary_content[locations[count][3]].counter += 1;
+
     let contentString =
         '<div id="content">' +
         '<div id="siteNotice"></div>' +
@@ -109,7 +132,7 @@ function initMap() {
       marker.setIcon(icons['nolive'].icon);
     }
   }
-    const legend = document.getElementById("legend");
+  const legend = document.getElementById("legend");
 
   for (const key in icons) {
     const type = icons[key];
@@ -122,6 +145,19 @@ function initMap() {
   }
 
   map.controls[google.maps.ControlPosition.RIGHT_TOP].push(legend);
+
+  const summary = document.getElementById("summary");
+
+  for (const key in summary_content) {
+    const type = summary_content[key];
+    const counter = type.counter;
+    //const icon = type.icon;
+    const div = document.createElement("div");
+
+    div.innerHTML = '<h4>' + counter + ' => ' + key + '</h4>';
+    summary.appendChild(div);
+  }
+  map.controls[google.maps.ControlPosition.RIGHT_TOP].push(summary);
 
 }
 
