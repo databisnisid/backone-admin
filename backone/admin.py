@@ -45,7 +45,9 @@ class BackOneAdmin(ImportExportModelAdmin, admin.ModelAdmin):
         map_fields.AddressField: {
           'widget': map_widgets.GoogleMapsAddressWidget(attrs={'data-map-type': 'roadmap'})
         },
-        map_fields.GeoLocationField: {'widget': forms.TextInput(attrs={'readonly': 'readonly'})},
+        map_fields.GeoLocationField: {
+            'widget': forms.TextInput(attrs={'readonly': 'readonly'})
+        },
     }
     form = BackOneAdminForm
     fields = ['name', 'ipaddress', 'serial_number', 'sid',
