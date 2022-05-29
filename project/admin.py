@@ -3,6 +3,7 @@ from .models import Project, Po
 from django import forms
 from django.db import models
 from django.core.validators import RegexValidator
+from django.contrib.admin.widgets import AdminDateWidget
 
 
 class ProjectAdminForm(forms.ModelForm):
@@ -41,6 +42,11 @@ class PoAdminForm(forms.ModelForm):
         label='PO Number',
         widget=forms.TextInput(attrs={'placeholder': 'Nomor PO', 'size': 50})
     )
+    """
+    date = forms.DateField(
+        widget=forms.SelectDateWidget
+    )
+    """
 
     class Meta:
         model = Po

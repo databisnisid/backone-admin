@@ -154,7 +154,9 @@ class BackOneAdmin(ImportExportModelAdmin, admin.ModelAdmin):
                     'service_vendor', 'cost_installation', 'cost_monthly',
                     'project', 'po_number',
                     ]
-    list_filter = ('name', 'sid')
+    #list_filter = ('name', 'sid')
+    search_fields = ('name', 'ipaddress', 'sid', 'project__name', 'po_number__number',
+                     'address', 'connection_type__name', 'backone_id', 'backone_network')
     list_per_page = 25
     resource_class = BackOneResource
 
