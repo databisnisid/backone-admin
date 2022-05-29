@@ -37,7 +37,7 @@ class OrbitAdmin(admin.ModelAdmin):
     fields = ['username', 'password', 'msisdn', 'imei']
     readonly_fields = ['quota_total', 'quota_current', 'quota_day']
     list_display = ['imei', 'msisdn', 'quota_total', 'quota_current', 'quota_day']
-    list_filter = ('msisdn', 'imei')
+    search_fields = ('msisdn', 'imei')
 
 
 admin.site.register(Orbit, OrbitAdmin)
