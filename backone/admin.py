@@ -14,19 +14,21 @@ class BackOneResource(resources.ModelResource):
     class Meta:
         model = BackOne
         fields = (
-            'id', 'name', 'ipaddress', 'serial_number', 'sid',
+            'id', 'name', 'ipaddress', 'ipaddress_local', 'serial_number', 'sid',
             'address', 'geolocation', 'contact__name', 'contact__phone',
             'connection_status__name', 'connection_type__name',
             'service_type__name', 'service_type__price',
             'service_vendor__name', 'service_vendor__cost_installation', 'service_vendor__cost_monthly',
+            'project__name', 'po_number__number', 'baso__name',
             'description'
         )
         export_order = (
-            'id', 'name', 'ipaddress', 'serial_number', 'sid',
+            'id', 'name', 'ipaddress', 'ipaddress_local', 'serial_number', 'sid',
             'address', 'geolocation', 'contact__name', 'contact__phone',
             'connection_status__name', 'connection_type__name',
             'service_type__name', 'service_type__price',
             'service_vendor__name', 'service_vendor__cost_installation', 'service_vendor__cost_monthly',
+            'project__name', 'po_number__number', 'baso__name',
             'description'
         )
 
@@ -49,6 +51,16 @@ class BackOneAdminForm(forms.ModelForm):
             'serial_number': forms.TextInput(attrs={
                 'placeholder': 'Masukkan Serial Number',
                 'size': 30
+            }
+            ),
+            'backone_id': forms.TextInput(attrs={
+                'placeholder': 'Masukkan BackOne Id Device',
+                'size': 50
+            }
+            ),
+            'backone_network': forms.TextInput(attrs={
+                'placeholder': 'Masukkan BackOne Id Network',
+                'size': 50
             }
             ),
         }
@@ -99,7 +111,12 @@ class BackOneAdmin(ImportExportModelAdmin, admin.ModelAdmin):
         }),
         ('Technical', {
             'classes': ('collapse',),
-            'fields': ('ipaddress', 'sid', 'serial_number'),
+            'fields': ('ipaddress', 'ipaddress_local',
+                       'backone_id', 'backone_network'),
+        }),
+        ('SID & SN', {
+            'classes': ('collapse',),
+            'fields': ('sid', 'serial_number'),
         }),
         ('Connection', {
             'classes': ('collapse',),
@@ -108,6 +125,10 @@ class BackOneAdmin(ImportExportModelAdmin, admin.ModelAdmin):
         ('Service', {
             'classes': ('collapse',),
             'fields': ('service_type', 'service_vendor'),
+        }),
+        ('Baso', {
+            'classes': ('collapse',),
+            'fields': ('baso',),
         }),
         ('Additional', {
             'classes': ('collapse',),
@@ -126,7 +147,7 @@ class BackOneAdmin(ImportExportModelAdmin, admin.ModelAdmin):
               'created_at', 'updated_at',
               ]
     """
-    exclude = ['username', 'password', 'backone_network']
+    exclude = ['username', 'password',]
     readonly_fields = ['created_at', 'updated_at']
     list_display = ['name', 'sid', 'address', 'connection_type', 'connection_status',
                     'service_type', 'service_price',

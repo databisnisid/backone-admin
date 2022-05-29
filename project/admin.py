@@ -1,6 +1,7 @@
 from django.contrib import admin
 from .models import Project, Po
 from django import forms
+from django.db import models
 from django.core.validators import RegexValidator
 
 
@@ -13,10 +14,12 @@ class ProjectAdminForm(forms.ModelForm):
     )
     contact_name = forms.CharField(
         label='Contact Name',
+        required=False,
         widget=forms.TextInput(attrs={'placeholder': 'Nama Kontak Project', 'size': 50})
     )
     contact_email = forms.CharField(
         label='Contact Email',
+        required=False,
         widget=forms.TextInput(attrs={'placeholder': 'Email Kontak Project', 'size': 50})
     )
 
@@ -49,10 +52,26 @@ class ProjectAdmin(admin.ModelAdmin):
     list_display = ['name', 'contact_name', 'contact_email', 'contact_phone']
     exclude = ['created_at', 'updated_at']
 
+"""
+class FileInNewWindowWidget(admin.widgets.AdminFileWidget):
+    # AdminFileWidget inherits from django.forms.ClearableFileInput
+    # The original url_markup_template in django.forms.ClearableFileInput is:
+    # url_markup_template = '{1}'
+    url_markup_template = '{1}'
+
+
+class AttachmentInline(admin.TabularInline):
+    formfield_overrides = {
+       models.FileField: {'widget': FileInNewWindowWidget},
+    }
+"""
+
 
 class PoAdmin(admin.ModelAdmin):
     form = PoAdminForm
-    list_display = ['po_number', 'po_date', 'project']
+    #inlines = [AttachmentInline, ]
+    list_display = ['number', 'date', 'upload_file']
+    exclude = ['created_at', 'updated_at']
 
     class Meta:
         model = Po

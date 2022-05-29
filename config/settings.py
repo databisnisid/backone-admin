@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'service',
     'contact',
     'project',
+    'baso',
     'jazzmin',
     'djmoney',
     'import_export',
@@ -236,7 +237,7 @@ JAZZMIN_SETTINGS = {
     #"order_with_respect_to": ["auth", "dashboard", "dashboard.chart", "data", "data.anggota", "data.keluarga", "data.wilayah"],
     "order_with_respect_to": ["auth", "backone", "project",
                               "contact", "connection", "service",
-                              "orbit",
+                              "baso", "orbit",
                               ],
     # Custom links to append to app groups, keyed on app name
     #"custom_links": {
@@ -301,3 +302,7 @@ CRONJOBS = [
 # MAP
 GOOGLE_MAPS_API_KEY = str(os.getenv(('GOOGLE_MAPS_API_KEY')))
 MAPS_CENTER = 'lat: -1.233982000061532, lng: 116.83728437200422'
+
+# Upload File
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

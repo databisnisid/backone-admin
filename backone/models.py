@@ -3,19 +3,17 @@ from django.core.exceptions import ValidationError, ObjectDoesNotExist
 from django.utils.translation import gettext as _
 from orbit.models import Orbit
 from contact.models import Contact
+from baso.models import Baso
 from django_google_maps import fields as map_fields
 from connection.models import ConnectionType, ConnectionStatus
 from service.models import ServiceType, ServiceVendor
 from project.models import Project, Po
 
 
-def validate_project(value):
-    pass
-
-
 class BackOne(models.Model):
     name = models.CharField(max_length=50, unique=True)
     ipaddress = models.GenericIPAddressField(default='0.0.0.0')
+    ipaddress_local = models.GenericIPAddressField(default='0.0.0.0')
     serial_number = models.CharField(max_length=30, default='000000000')
     sid = models.CharField(max_length=20, default='000000000')
     description = models.TextField(blank=True)
@@ -23,53 +21,60 @@ class BackOne(models.Model):
     geolocation = map_fields.GeoLocationField(max_length=100, blank=True)
     username = models.CharField(max_length=20, default='root')
     password = models.CharField(max_length=20, default='K0l0r1j0')
+    backone_id = models.CharField(max_length=50, blank=True)
     backone_network = models.CharField(max_length=50, blank=True)
 
     orbit = models.OneToOneField(
         Orbit,
-        on_delete=models.SET_NULL,
+        on_delete=models.RESTRICT,
         null=True,
         blank=True
     )
     contact = models.ForeignKey(
         Contact,
-        on_delete=models.SET_NULL,
+        on_delete=models.RESTRICT,
         null=True,
         blank=True
     )
     connection_type = models.ForeignKey(
         ConnectionType,
-        on_delete=models.SET_NULL,
+        on_delete=models.RESTRICT,
         null=True,
         blank=True
     )
     connection_status = models.ForeignKey(
         ConnectionStatus,
-        on_delete=models.SET_NULL,
+        on_delete=models.RESTRICT,
         null=True,
         blank=True
     )
     service_type = models.ForeignKey(
         ServiceType,
-        on_delete=models.SET_NULL,
+        on_delete=models.RESTRICT,
         null=True,
         blank=True
     )
     service_vendor = models.ForeignKey(
         ServiceVendor,
-        on_delete=models.SET_NULL,
+        on_delete=models.RESTRICT,
         null=True,
         blank=True
     )
     po_number = models.ForeignKey(
         Po,
-        on_delete=models.SET_NULL,
+        on_delete=models.RESTRICT,
         null=True,
         blank=True
     )
     project = models.ForeignKey(
         Project,
-        on_delete=models.SET_NULL,
+        on_delete=models.RESTRICT,
+        null=True,
+        blank=True
+    )
+    baso = models.ForeignKey(
+        Baso,
+        on_delete=models.RESTRICT,
         null=True,
         blank=True
     )

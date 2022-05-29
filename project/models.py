@@ -29,8 +29,9 @@ class Po(models.Model):
         Project,
         on_delete=models.RESTRICT,
     )
-    po_number = models.CharField(max_length=50, unique=True)
-    po_date = models.DateField(default=timezone.now)
+    number = models.CharField(max_length=50, unique=True)
+    date = models.DateField(default=timezone.now)
+    upload_file = models.FileField(upload_to='po', blank=True)
     created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True, auto_now_add=False)
 
@@ -41,8 +42,8 @@ class Po(models.Model):
         verbose_name_plural = 'purchase orders'
 
     def __str__(self):
-        return '%s (%s)' % (self.po_number, self.project)
+        return '%s (%s)' % (self.number, self.project)
 
     def save(self, *args, **kwargs):
-        self.po_number = self.po_number.upper()
+        self.number = self.number.upper()
         return super(Po, self).save(*args, **kwargs)
