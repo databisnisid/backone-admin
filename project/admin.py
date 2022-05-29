@@ -41,9 +41,6 @@ class PoAdminForm(forms.ModelForm):
         label='PO Number',
         widget=forms.TextInput(attrs={'placeholder': 'Nomor PO', 'size': 50})
     )
-    upload_file = forms.FileField(
-        widget=forms.FileInput
-    )
 
     class Meta:
         model = Po
