@@ -306,3 +306,4 @@ MAPS_CENTER = 'lat: -1.233982000061532, lng: 116.83728437200422'
 # Upload File
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
