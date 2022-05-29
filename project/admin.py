@@ -37,7 +37,7 @@ class ProjectAdminForm(forms.ModelForm):
 
 
 class PoAdminForm(forms.ModelForm):
-    po_number = forms.CharField(
+    number = forms.CharField(
         label='PO Number',
         widget=forms.TextInput(attrs={'placeholder': 'Nomor PO', 'size': 50})
     )
