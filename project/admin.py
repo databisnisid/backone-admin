@@ -70,7 +70,7 @@ class AttachmentInline(admin.TabularInline):
 class PoAdmin(admin.ModelAdmin):
     form = PoAdminForm
     #inlines = [AttachmentInline, ]
-    list_display = ['number', 'date', 'upload_file']
+    list_display = ['number', 'date', 'upload_file', 'project']
     exclude = ['created_at', 'updated_at']
 
     class Meta:
