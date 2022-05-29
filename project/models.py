@@ -47,3 +47,7 @@ class Po(models.Model):
     def save(self, *args, **kwargs):
         self.number = self.number.upper()
         return super(Po, self).save(*args, **kwargs)
+
+    def delete(self, *args, **kwargs):
+        self.upload_file.delete()
+        return super(Po, self).delete(*args, **kwargs)

@@ -93,10 +93,3 @@ class BackOne(models.Model):
     def save(self, *args, **kwargs):
         self.name = self.name.upper()
         return super(BackOne, self).save(*args, **kwargs)
-
-
-
-
-
-
-

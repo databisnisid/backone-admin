@@ -21,3 +21,6 @@ class Baso(models.Model):
         self.name = self.name.upper()
         return super(Baso, self).save(*args, **kwargs)
 
+    def delete(self, *args, **kwargs):
+        self.upload_file.delete()
+        return super(Baso, self).delete(*args, **kwargs)
