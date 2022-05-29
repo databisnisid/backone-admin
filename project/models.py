@@ -13,7 +13,7 @@ class Project(models.Model):
     class Meta:
         managed = True
         db_table = 'project'
-        verbose_name_plural = 'projects'
+        verbose_name_plural = 'Project Lists'
 
     def __str__(self):
         return '%s' % self.name
@@ -38,8 +38,8 @@ class Po(models.Model):
     class Meta:
         managed = True
         db_table = 'po'
-        verbose_name = 'purchase order'
-        verbose_name_plural = 'purchase orders'
+        verbose_name = 'Purchase Order'
+        verbose_name_plural = 'Purchase Orders'
 
     def __str__(self):
         return '%s (%s)' % (self.number, self.project)

@@ -10,7 +10,7 @@ class Contact(models.Model):
     class Meta:
         managed = True
         db_table = 'contact'
-        verbose_name_plural = 'contacts'
+        verbose_name_plural = 'Contact Lists'
 
     def __str__(self):
         return '%s(%s)' % (self.name, self.phone)

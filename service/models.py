@@ -11,7 +11,7 @@ class ServiceType(models.Model):
     class Meta:
         managed = True
         db_table = 'service_type'
-        verbose_name_plural = 'service type'
+        verbose_name_plural = 'Service Types'
 
     def __str__(self):
         return '%s' % self.name
@@ -31,7 +31,7 @@ class ServiceVendor(models.Model):
     class Meta:
         managed = True
         db_table = 'service_vendor'
-        verbose_name_plural = 'service vendor'
+        verbose_name_plural = 'Service Vendors'
 
     def __str__(self):
         return '%s' % self.name

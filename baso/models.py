@@ -12,7 +12,7 @@ class Baso(models.Model):
     class Meta:
         managed = True
         db_table = 'baso'
-        verbose_name_plural = 'baso'
+        verbose_name_plural = 'Baso Lists'
 
     def __str__(self):
         return '%s' % self.name
