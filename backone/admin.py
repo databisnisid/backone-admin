@@ -152,11 +152,12 @@ class BackOneAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     list_display = ['name', 'sid', 'address', 'connection_type', 'connection_status',
                     'service_type', 'service_price',
                     'service_vendor', 'cost_installation', 'cost_monthly',
-                    'project', 'po_number',
+                    'project', 'po_number', 'baso'
                     ]
     #list_filter = ('name', 'sid')
     search_fields = ('name', 'ipaddress', 'sid', 'project__name', 'po_number__number',
-                     'address', 'connection_type__name', 'backone_id', 'backone_network')
+                     'address', 'connection_type__name', 'backone_id', 'backone_network',
+                     'service_vendor__name', 'service_type__name', 'baso__name')
     list_per_page = 25
     resource_class = BackOneResource
 
