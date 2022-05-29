@@ -234,7 +234,10 @@ JAZZMIN_SETTINGS = {
 
     # List of apps (and/or models) to base side menu ordering off of (does not need to contain all apps/models)
     #"order_with_respect_to": ["auth", "dashboard", "dashboard.chart", "data", "data.anggota", "data.keluarga", "data.wilayah"],
-    "order_with_respect_to": ["auth", "backone", "orbit", "connection"],
+    "order_with_respect_to": ["auth", "backone", "project",
+                              "contact", "connection", "service",
+                              "orbit",
+                              ],
     # Custom links to append to app groups, keyed on app name
     #"custom_links": {
     #    "backone": [{
