@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'connection',
     'service',
     'contact',
+    'project',
     'jazzmin',
     'djmoney',
     'import_export',
@@ -279,7 +280,7 @@ JAZZMIN_SETTINGS = {
     # - vertical_tabs
     # - collapsible
     # - carousel
-    "changeform_format": "vertical_tabs",
+    "changeform_format": "horizontal_tabs",
     # override change forms on a per modeladmin basis
     "changeform_format_overrides": {"auth.user": "collapsible", "auth.group": "vertical_tabs"},
 }

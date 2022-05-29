@@ -1,11 +1,16 @@
 from django.db import models
+from django.core.exceptions import ValidationError, ObjectDoesNotExist
+from django.utils.translation import gettext as _
 from orbit.models import Orbit
 from contact.models import Contact
 from django_google_maps import fields as map_fields
 from connection.models import ConnectionType, ConnectionStatus
 from service.models import ServiceType, ServiceVendor
-#from django.db.models import UniqueConstraint
-#from django.db.models.functions import Lower
+from project.models import Project, Po
+
+
+def validate_project(value):
+    pass
 
 
 class BackOne(models.Model):
@@ -56,6 +61,18 @@ class BackOne(models.Model):
         null=True,
         blank=True
     )
+    po_number = models.ForeignKey(
+        Po,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True
+    )
+    project = models.ForeignKey(
+        Project,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True
+    )
     created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True, auto_now_add=False)
 
@@ -71,6 +88,10 @@ class BackOne(models.Model):
     def save(self, *args, **kwargs):
         self.name = self.name.upper()
         return super(BackOne, self).save(*args, **kwargs)
+
+
+
+
 
 
 
