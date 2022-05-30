@@ -1,3 +1,9 @@
 #!/bin/bash
+source .env
 
-gunicorn -c config/gunicorn.conf.py config.wsgi
+if [ ${GUNICORN_SSL} -eq 0 ]
+then
+  gunicorn -c config/gunicorn.conf.py config.wsgi
+else
+  gunicorn -c config/gunicorn-ssl.conf.py config.wsgi
+fi
