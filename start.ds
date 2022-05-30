@@ -5,5 +5,9 @@ if [ ${GUNICORN_SSL} -eq 0 ]
 then
   gunicorn -c config/gunicorn.conf.py config.wsgi
 else
+  rm -fr server.crt
+  rm -fr server.key
+  ln -s ${SSL_CERT} server.crt
+  ln -s ${SSL_KEY} server.key
   gunicorn -c config/gunicorn-ssl.conf.py config.wsgi
 fi
