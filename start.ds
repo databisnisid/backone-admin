@@ -9,5 +9,5 @@ else
   rm -fr server.key
   ln -s ${SSL_CERT} server.crt
   ln -s ${SSL_KEY} server.key
-  gunicorn -c config/gunicorn-ssl.conf.py config.wsgi
+  gunicorn -c config/gunicorn.conf.py --certfile=server.crt --keyfile=server.key config.wsgi
 fi
