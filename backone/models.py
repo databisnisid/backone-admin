@@ -11,72 +11,81 @@ from project.models import Project, Po
 
 
 class BackOne(models.Model):
-    name = models.CharField(max_length=50, unique=True)
-    ipaddress = models.GenericIPAddressField(default='0.0.0.0')
-    ipaddress_local = models.GenericIPAddressField(default='0.0.0.0')
-    serial_number = models.CharField(max_length=30, default='000000000')
-    sid = models.CharField(max_length=20, default='000000000')
-    description = models.TextField(blank=True)
-    address = map_fields.AddressField(max_length=200, blank=True)
+    name = models.CharField(max_length=50, unique=True, verbose_name='Nama Site')
+    ipaddress = models.GenericIPAddressField(default='0.0.0.0', verbose_name='IP Address')
+    ipaddress_local = models.GenericIPAddressField(default='0.0.0.0', verbose_name='IP Address Lokal')
+    serial_number = models.CharField(max_length=30, default='000000000', verbose_name='Serial Number')
+    sid = models.CharField(max_length=20, default='000000000', verbose_name='SID')
+    description = models.TextField(blank=True, verbose_name='Catatan')
+    address = map_fields.AddressField(max_length=200, blank=True, verbose_name='Alamat')
     geolocation = map_fields.GeoLocationField(max_length=100, blank=True)
     username = models.CharField(max_length=20, default='root')
     password = models.CharField(max_length=20, default='K0l0r1j0')
-    backone_id = models.CharField(max_length=50, blank=True)
-    backone_network = models.CharField(max_length=50, blank=True)
+    backone_id = models.CharField(max_length=50, blank=True, verbose_name='SDWAN ID Site')
+    backone_network = models.CharField(max_length=50, blank=True, verbose_name='SDWAN ID Network')
 
     orbit = models.OneToOneField(
         Orbit,
         on_delete=models.RESTRICT,
         null=True,
-        blank=True
+        blank=True,
+        verbose_name='Koneksi Orbit'
     )
     contact = models.ForeignKey(
         Contact,
         on_delete=models.RESTRICT,
         null=True,
-        blank=True
+        blank=True,
+        verbose_name='Kontak di Site'
     )
     connection_type = models.ForeignKey(
         ConnectionType,
         on_delete=models.RESTRICT,
         null=True,
-        blank=True
+        blank=True,
+        verbose_name='Jenis Koneksi'
     )
     connection_status = models.ForeignKey(
         ConnectionStatus,
         on_delete=models.RESTRICT,
         null=True,
-        blank=True
+        blank=True,
+        verbose_name='Status Koneksi'
     )
     service_type = models.ForeignKey(
         ServiceType,
         on_delete=models.RESTRICT,
         null=True,
-        blank=True
+        blank=True,
+        verbose_name='Tipe Layanan Yang Dijual'
     )
     service_vendor = models.ForeignKey(
         ServiceVendor,
         on_delete=models.RESTRICT,
         null=True,
-        blank=True
+        blank=True,
+        verbose_name='Layanan Yang dibeli dari Vendor'
     )
     po_number = models.ForeignKey(
         Po,
         on_delete=models.RESTRICT,
         null=True,
-        blank=True
+        blank=True,
+        verbose_name='Nomor PO dari Pelanggan'
     )
     project = models.ForeignKey(
         Project,
         on_delete=models.RESTRICT,
         null=True,
-        blank=True
+        blank=True,
+        verbose_name='Nama Project'
     )
     baso = models.ForeignKey(
         Baso,
         on_delete=models.RESTRICT,
         null=True,
-        blank=True
+        blank=True,
+        verbose_name='Nomor BASO'
     )
     created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True, auto_now_add=False)

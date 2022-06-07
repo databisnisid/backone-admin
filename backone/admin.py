@@ -99,7 +99,7 @@ class BackOneAdmin(ImportExportModelAdmin, admin.ModelAdmin):
         },
     }
 
-    form = BackOneAdminForm
+    #form = BackOneAdminForm
 
     fieldsets = (
         (None, {

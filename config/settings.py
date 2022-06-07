@@ -13,7 +13,10 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 
+#dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
+#load_dotenv(dotenv_path)
 load_dotenv()
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -56,7 +59,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'dbbackup',
 ]
+
+DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
+DBBACKUP_STORAGE_OPTIONS = {'location': BASE_DIR / 'backup'}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -313,7 +320,8 @@ JAZZMIN_UI_TWEAKS = {
 
 # DJANGO-CRONTAB
 CRONJOBS = [
-    ('* */6 * * *', 'orbit.cron.CRON_get_all_quota_orbit')
+    ('* */6 * * *', 'orbit.cron.CRON_get_all_quota_orbit'),
+    ('0 0 * * *', 'config.cron.dbbackup_job'),
 ]
 
 # MAP

@@ -9,6 +9,7 @@ defusedxml==0.7.1
 diff-match-patch==20200713
 Django==4.0.4
 django-crontab==0.7.1
+django-dbbackup==4.0.0b0
 django-google-maps==0.13.0
 django-import-export==2.8.0
 django-jazzmin==2.5.0
