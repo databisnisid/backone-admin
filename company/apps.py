@@ -1,7 +1,7 @@
 from django.apps import AppConfig
 
 
-class ProjectConfig(AppConfig):
+class CompanyConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'project'
-    verbose_name = 'Project dan PO'
+    name = 'company'
+    verbose_name = 'Perusahaan'

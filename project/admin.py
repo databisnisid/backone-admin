@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Project, Po
+from .models import Project, Po, PoVendor
 from django import forms
 from django.db import models
 from django.core.validators import RegexValidator
@@ -74,7 +74,7 @@ class AttachmentInline(admin.TabularInline):
 
 
 class PoAdmin(admin.ModelAdmin):
-    form = PoAdminForm
+    #form = PoAdminForm
     #inlines = [AttachmentInline, ]
     list_display = ['number', 'date', 'upload_file', 'project']
     exclude = ['created_at', 'updated_at']
@@ -83,5 +83,16 @@ class PoAdmin(admin.ModelAdmin):
         model = Po
 
 
+class PoVendorAdmin(admin.ModelAdmin):
+    #form = PoAdminForm
+    #inlines = [AttachmentInline, ]
+    list_display = ['number', 'date', 'upload_file', 'po_base']
+    exclude = ['created_at', 'updated_at']
+
+    class Meta:
+        model = PoVendor
+
+
 admin.site.register(Project, ProjectAdmin)
 admin.site.register(Po, PoAdmin)
+admin.site.register(PoVendor, PoVendorAdmin)

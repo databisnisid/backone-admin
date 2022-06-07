@@ -15,7 +15,7 @@ class Orbit(models.Model):
     class Meta:
         managed = True
         db_table = 'orbit'
-        verbose_name_plural = 'Orbit Lists'
+        verbose_name_plural = 'Daftar Orbit'
 
     def __str__(self):
         return '%s(%s/%s-%s)' % (self.imei, self.quota_current, self.quota_total, self.quota_day)

@@ -7,7 +7,7 @@ from baso.models import Baso
 from django_google_maps import fields as map_fields
 from connection.models import ConnectionType, ConnectionStatus
 from service.models import ServiceType, ServiceVendor
-from project.models import Project, Po
+from project.models import Project, Po, PoVendor
 
 
 class BackOne(models.Model):
@@ -57,21 +57,28 @@ class BackOne(models.Model):
         on_delete=models.RESTRICT,
         null=True,
         blank=True,
-        verbose_name='Tipe Layanan Yang Dijual'
+        verbose_name='Layanan Yang Dijual'
     )
     service_vendor = models.ForeignKey(
         ServiceVendor,
         on_delete=models.RESTRICT,
         null=True,
         blank=True,
-        verbose_name='Layanan Yang dibeli dari Vendor'
+        verbose_name='Layanan Yang Dibeli'
     )
     po_number = models.ForeignKey(
         Po,
         on_delete=models.RESTRICT,
         null=True,
         blank=True,
-        verbose_name='Nomor PO dari Pelanggan'
+        verbose_name='PO dari Pelanggan'
+    )
+    po_number_vendor = models.ForeignKey(
+        PoVendor,
+        on_delete=models.RESTRICT,
+        null=True,
+        blank=True,
+        verbose_name='PO ke Vendor'
     )
     project = models.ForeignKey(
         Project,
@@ -94,7 +101,7 @@ class BackOne(models.Model):
         managed = True
         db_table = 'backone'
         verbose_name = 'site'
-        verbose_name_plural = 'sites'
+        verbose_name_plural = 'Daftar Sites'
 
     def __str__(self):
         return '%s' % self.name

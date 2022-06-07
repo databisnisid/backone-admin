@@ -107,7 +107,7 @@ class BackOneAdmin(ImportExportModelAdmin, admin.ModelAdmin):
         }),
         ('Project', {
             'classes': ('collapse',),
-            'fields': ('project', 'po_number'),
+            'fields': ('project', 'po_number', 'po_number_vendor'),
         }),
         ('Technical', {
             'classes': ('collapse',),

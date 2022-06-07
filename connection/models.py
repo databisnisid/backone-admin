@@ -9,7 +9,7 @@ class ConnectionType(models.Model):
     class Meta:
         managed = True
         db_table = 'connection_type'
-        verbose_name_plural = 'Connection Types'
+        verbose_name_plural = 'Tipe Koneksi'
 
     def __str__(self):
         return '%s' % self.name
@@ -27,7 +27,7 @@ class ConnectionStatus(models.Model):
     class Meta:
         managed = True
         db_table = 'connection_status'
-        verbose_name_plural = 'Connection Status'
+        verbose_name_plural = 'Status Koneksi'
 
     def __str__(self):
         return '%s' % self.name
