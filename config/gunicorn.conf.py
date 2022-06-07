@@ -6,5 +6,5 @@ worker_class = 'sync'
 worker_connections = 1000
 timeout = 30
 keepalive = 2
-#certfile = server.crt
-#keyfile = server.key
+error-logfile = 'error.log'
+access-logfile = 'access.log'
