@@ -1,6 +1,6 @@
 from django.db import models
-from django.core.exceptions import ValidationError, ObjectDoesNotExist
-from django.utils.translation import gettext as _
+#from django.core.exceptions import ValidationError, ObjectDoesNotExist
+#from django.utils.translation import gettext as _
 from orbit.models import Orbit
 from contact.models import Contact
 from baso.models import Baso
