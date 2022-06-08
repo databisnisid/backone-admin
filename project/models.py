@@ -97,7 +97,7 @@ class PoVendor(models.Model):
         verbose_name_plural = 'Daftar PO ke Vendor'
 
     def __str__(self):
-        return '%s (%s)' % (self.number, self.project)
+        return '%s' % self.number
 
     def save(self, *args, **kwargs):
         self.number = self.number.upper()

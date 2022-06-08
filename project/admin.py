@@ -86,7 +86,7 @@ class PoAdmin(admin.ModelAdmin):
 class PoVendorAdmin(admin.ModelAdmin):
     #form = PoAdminForm
     #inlines = [AttachmentInline, ]
-    list_display = ['number', 'date', 'upload_file', 'po_base']
+    list_display = ['number', 'date', 'upload_file', 'po_base', 'my_company', 'other_company']
     exclude = ['created_at', 'updated_at']
 
     class Meta:
