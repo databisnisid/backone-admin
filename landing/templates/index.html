@@ -62,7 +62,7 @@ function initMap() {
 
   var locations = [
   {% for bo in backone %}
-['{{bo.name}}',{{bo.geolocation}},'{{bo.connection_status}}',{{bo.connection_type.id}},'{{bo.ipaddress}}','{{bo.sid}}','{{bo.service_type}}','{{bo.address}}'],
+['{{bo.name}}',{{bo.geolocation}},'{{bo.connection_status}}',{{bo.connection_type.id}},'{{bo.ipaddress}}','{{bo.sid}}','{{bo.service_type}}','{{bo.description}}','{{bo.is_priority}}'],
   {% endfor %}
    ];
 
@@ -81,6 +81,10 @@ function initMap() {
     nolive: {
       name: "NOLIVE",
       icon: iconBase + "red-dot.png",
+    },
+    priority: {
+      name: "PRIORITY",
+      icon: iconBase + "purple-dot.png",
     },
   };
 
@@ -130,6 +134,10 @@ function initMap() {
         }
     } else {
       marker.setIcon(icons['nolive'].icon);
+    }
+
+    if (locations[count][9] == 'True') {
+        marker.setIcon(icons['priority'].icon);
     }
   }
   const legend = document.getElementById("legend");
