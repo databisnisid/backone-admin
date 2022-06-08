@@ -111,6 +111,7 @@ class BackOne(models.Model):
         self.name = self.name.upper()
         if self.po_number is not None:
             po = Po.objects.get(id=self.po_number.id)
+            self.project = po.project
             self.is_priority = po.is_priority
             po.save()
         return super(BackOne, self).save(*args, **kwargs)

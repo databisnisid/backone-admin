@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'project',
     'baso',
     'company',
+    'notification',
     'jazzmin',
     'djmoney',
     'import_export',
@@ -339,3 +340,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Only Django 4.0
 CSRF_TRUSTED_ORIGINS = ['https://*.backone.cloud', 'https://*.127.0.0.1']
+
+#Telegram Bot settings
+TELEGRAM = {
+    'bot_token': str(os.getenv('TELEGRAM_TOKEN')),
+    'channel_name': 'BackOneData',
+    'chat_id': '-1001760861229',
+}

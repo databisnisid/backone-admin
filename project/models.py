@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from company.models import MyCompany, OtherCompany
+from notification.telegram import post_event_on_telegram
 
 
 class Project(models.Model):
@@ -61,6 +62,20 @@ class Po(models.Model):
 
     def save(self, *args, **kwargs):
         self.number = self.number.upper()
+        if self.is_priority:
+            description = '%s (\u203C) - %s' % (self.number, self.my_company)
+        else:
+            description = '%s - %s' % (self.number, self.my_company)
+
+        """ Telegram Start """
+        event = {
+            'title': 'PO Baru Dari Customer',
+            'description': description,
+            'start_date': timezone.now,
+        }
+        post_event_on_telegram(event)
+        """ Telegram End """
+
         return super(Po, self).save(*args, **kwargs)
 
     def delete(self, *args, **kwargs):
