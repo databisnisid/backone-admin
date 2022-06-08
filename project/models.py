@@ -41,6 +41,9 @@ class Po(models.Model):
     number = models.CharField(max_length=50, unique=True, verbose_name='Nomor PO')
     date = models.DateField(default=timezone.now, verbose_name='Tanggal PO')
     upload_file = models.FileField(upload_to='po', blank=True, verbose_name='Document PO Upload')
+    is_priority = models.BooleanField(default=False, verbose_name='Prioritas')
+    is_new = models.BooleanField(default=True, verbose_name='PO Baru')
+
     created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True, auto_now_add=False)
 
@@ -51,7 +54,10 @@ class Po(models.Model):
         verbose_name_plural = 'Daftar PO dari Pelanggan'
 
     def __str__(self):
-        return '%s (%s)' % (self.number, self.project)
+        if self.is_new:
+            return '%s (%s)' % (self.number, 'BARU')
+        else:
+            return '%s' % self.number
 
     def save(self, *args, **kwargs):
         self.number = self.number.upper()
@@ -84,6 +90,7 @@ class PoVendor(models.Model):
         null=True,
         blank=True
     )
+
     number = models.CharField(max_length=50, unique=True, verbose_name='Nomor PO')
     date = models.DateField(default=timezone.now, verbose_name='Tanggal PO')
     upload_file = models.FileField(upload_to='po_vendor', blank=True, verbose_name='Document PO Upload')
@@ -101,6 +108,10 @@ class PoVendor(models.Model):
 
     def save(self, *args, **kwargs):
         self.number = self.number.upper()
+        if self.po_base is not None:
+            po = Po.objects.get(id=self.po_base.id)
+            po.is_new = False
+            po.save()
         return super(PoVendor, self).save(*args, **kwargs)
 
     def delete(self, *args, **kwargs):

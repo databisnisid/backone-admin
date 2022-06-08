@@ -1,6 +1,4 @@
 from django.db import models
-#from django.core.exceptions import ValidationError, ObjectDoesNotExist
-#from django.utils.translation import gettext as _
 from orbit.models import Orbit
 from contact.models import Contact
 from baso.models import Baso
@@ -94,6 +92,9 @@ class BackOne(models.Model):
         blank=True,
         verbose_name='Nomor BASO'
     )
+
+    is_priority = models.BooleanField(default=False, verbose_name='Priority Site')
+
     created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True, auto_now_add=False)
 
@@ -108,4 +109,8 @@ class BackOne(models.Model):
 
     def save(self, *args, **kwargs):
         self.name = self.name.upper()
+        if self.po_number is not None:
+            po = Po.objects.get(id=self.po_number.id)
+            self.is_priority = po.is_priority
+            po.save()
         return super(BackOne, self).save(*args, **kwargs)

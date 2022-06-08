@@ -103,7 +103,7 @@ class BackOneAdmin(ImportExportModelAdmin, admin.ModelAdmin):
 
     fieldsets = (
         (None, {
-            'fields': ('name', 'contact', 'geolocation', 'address', 'description')
+            'fields': ('is_priority', 'name', 'contact', 'geolocation', 'address', 'description')
         }),
         ('Project', {
             'classes': ('collapse',),
@@ -148,13 +148,14 @@ class BackOneAdmin(ImportExportModelAdmin, admin.ModelAdmin):
               ]
     """
     exclude = ['username', 'password',]
-    readonly_fields = ['created_at', 'updated_at']
-    list_display = ['name', 'sid', 'address', 'connection_type', 'connection_status',
-                    'service_type', 'service_price',
-                    'service_vendor', 'cost_installation', 'cost_monthly',
-                    'project', 'po_number', 'baso'
+    readonly_fields = ['created_at', 'updated_at', 'is_priority']
+    list_display = ['is_priority', 'name', 'sid', 'address',
+                    'po_number', 'po_number_vendor',
+                    'connection_type', 'connection_status',
+                    'service_type', 'service_vendor',
+                    'baso', 'description'
                     ]
-    #list_filter = ('name', 'sid')
+    list_filter = ('is_priority',)
     search_fields = ('name', 'ipaddress', 'sid', 'project__name', 'po_number__number',
                      'address', 'connection_type__name', 'connection_status__name',
                      'backone_id', 'backone_network',
@@ -180,6 +181,7 @@ class BackOneAdmin(ImportExportModelAdmin, admin.ModelAdmin):
         if obj.service_vendor is None:
             return None
         return obj.service_vendor.cost_monthly
+    #cost_monthly.short_description = 'Biaya Bulanan'
 
 
 admin.site.register(BackOne, BackOneAdmin)
