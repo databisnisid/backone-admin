@@ -109,7 +109,7 @@ class BackOneAdmin(ImportExportModelAdmin, admin.ModelAdmin):
             'classes': ('collapse',),
             'fields': ('project', 'po_number', 'po_number_vendor'),
         }),
-        ('Technical', {
+        ('Data Teknis', {
             'classes': ('collapse',),
             'fields': ('ipaddress', 'ipaddress_local',
                        'backone_id', 'backone_network'),
@@ -118,11 +118,11 @@ class BackOneAdmin(ImportExportModelAdmin, admin.ModelAdmin):
             'classes': ('collapse',),
             'fields': ('sid', 'serial_number'),
         }),
-        ('Connection', {
+        ('Koneksi', {
             'classes': ('collapse',),
             'fields': ('connection_type', 'connection_status'),
         }),
-        ('Service', {
+        ('Layanan', {
             'classes': ('collapse',),
             'fields': ('service_type', 'service_vendor'),
         }),
@@ -149,11 +149,11 @@ class BackOneAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     """
     exclude = ['username', 'password',]
     readonly_fields = ['created_at', 'updated_at', 'is_priority']
-    list_display = ['is_priority', 'name', 'sid', 'address',
+    list_display = ['name', 'sid', 'address',
                     'po_number', 'po_number_vendor',
                     'connection_type', 'connection_status',
                     'service_type', 'service_vendor',
-                    'baso', 'description'
+                    'baso', 'description', 'is_priority'
                     ]
     list_filter = ('is_priority',)
     search_fields = ('name', 'ipaddress', 'sid', 'project__name', 'po_number__number',
