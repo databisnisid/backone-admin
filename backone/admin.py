@@ -8,6 +8,7 @@ from django_google_maps import widgets as map_widgets
 from django_google_maps import fields as map_fields
 from import_export.admin import ImportExportModelAdmin
 from import_export import resources
+#from import_export.admin import ImportExportActionModelAdmin
 
 
 class BackOneResource(resources.ModelResource):
@@ -19,7 +20,7 @@ class BackOneResource(resources.ModelResource):
             'connection_status__name', 'connection_type__name',
             'service_type__name', 'service_type__price',
             'service_vendor__name', 'service_vendor__cost_installation', 'service_vendor__cost_monthly',
-            'project__name', 'po_number__number', 'baso__name',
+            'project__name', 'po_number__number', 'baso__name', 'baso_date',
             'description'
         )
         export_order = (
@@ -28,7 +29,7 @@ class BackOneResource(resources.ModelResource):
             'connection_status__name', 'connection_type__name',
             'service_type__name', 'service_type__price',
             'service_vendor__name', 'service_vendor__cost_installation', 'service_vendor__cost_monthly',
-            'project__name', 'po_number__number', 'baso__name',
+            'project__name', 'po_number__number', 'baso__name', 'baso_date',
             'description'
         )
 
