@@ -92,7 +92,7 @@ class BackOne(models.Model):
         blank=True,
         verbose_name='Nomor BASO'
     )
-    baso_date = models.DateField(blank=True, null=True)
+    baso_date = models.DateField('Tanggal BASO', blank=True, null=True)
 
     is_priority = models.BooleanField(default=False, verbose_name='Priority Site')
 
@@ -118,5 +118,5 @@ class BackOne(models.Model):
         if self.baso is not None:
             self.baso_date = self.baso.date
             cs = ConnectionStatus.objects.get(name='LIVE')
-            self.connection_status = cs.id
+            self.connection_status = cs
         return super(BackOne, self).save(*args, **kwargs)
