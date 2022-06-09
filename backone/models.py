@@ -117,4 +117,6 @@ class BackOne(models.Model):
             po.save()
         if self.baso is not None:
             self.baso_date = self.baso.date
+            cs = ConnectionStatus.objects.get(name='LIVE')
+            self.connection_status = cs.id
         return super(BackOne, self).save(*args, **kwargs)
