@@ -41,7 +41,21 @@ def check_quota(modeladmin, request, queryset):
 
 class OrbitAdmin(admin.ModelAdmin):
     form = OrbitAdminForm
-    fields = ['username', 'password', 'msisdn', 'imei']
+    #fields = ['username', 'password', 'msisdn', 'imei',
+    #          'quota_total', 'quota_current', 'quota_day',]
+    #          #'created_at', 'updated_at']
+    fieldsets = (
+        ('Orbit Login', {
+            'classes': ('collapse',),
+            'fields': ('username', 'password',
+                       ('quota_current', 'quota_total', 'quota_day'),
+                       )
+        }),
+        ('IMEI dan MSISDN', {
+            'classes': ('collapse',),
+            'fields': ('imei', 'msisdn',)
+        }),
+    )
     readonly_fields = ['quota_total', 'quota_current', 'quota_day']
     list_display = ['imei', 'msisdn', 'quota_total', 'quota_current', 'quota_day']
     search_fields = ('msisdn', 'imei')
