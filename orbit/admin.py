@@ -2,6 +2,7 @@ from django.contrib import admin
 from django import forms
 from .models import Orbit
 from django.core.validators import RegexValidator
+from .utils import get_quota_orbit
 
 
 class OrbitAdminForm(forms.ModelForm):
@@ -32,12 +33,19 @@ class OrbitAdminForm(forms.ModelForm):
         #}
 
 
+@admin.action(description='Check Quota Orbit ke myorbit.id')
+def check_quota(modeladmin, request, queryset):
+    for obj in queryset:
+        get_quota_orbit(obj.msisdn)
+
+
 class OrbitAdmin(admin.ModelAdmin):
     form = OrbitAdminForm
     fields = ['username', 'password', 'msisdn', 'imei']
     readonly_fields = ['quota_total', 'quota_current', 'quota_day']
     list_display = ['imei', 'msisdn', 'quota_total', 'quota_current', 'quota_day']
     search_fields = ('msisdn', 'imei')
+    actions = [check_quota]
 
 
 admin.site.register(Orbit, OrbitAdmin)
