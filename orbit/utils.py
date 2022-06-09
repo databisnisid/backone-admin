@@ -26,6 +26,7 @@ def get_all_quota_orbit():
     orbits = Orbit.objects.filter().order_by('updated_at')
 
     for o in orbits:
+        print(o.username, o.password)
         if o.username != 'nopass@backone.cloud' or o.password != 'nopassword':
             q_current, q_total, q_day = orbit.get_quota(o.username, o.password)
             o.quota_current = q_current if len(q_current) != 0 else o.quota_current
