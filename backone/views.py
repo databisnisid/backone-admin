@@ -1,8 +1,40 @@
+from slick_reporting.views import SlickReportView
+from slick_reporting.fields import SlickReportField
+from django.contrib.auth.mixins import LoginRequiredMixin
+from .models import BackOne
 from django.shortcuts import render
 from orbit.models import Orbit
-from .models import BackOne
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse
+
+
+class SiteReport(LoginRequiredMixin, SlickReportView):
+    # The model where you have the data
+    report_model = BackOne
+
+    # the main date field used for the model.
+    date_field = 'created_at' # or 'order__date_placed'
+    # this support traversing, like so
+    # date_field = 'order__date_placed'
+
+    # A foreign key to group calculation on
+    #group_by = 'project'
+
+    # The columns you want to display
+    columns = ['name', 'connection_status__name', 'service_type__name', 'baso__date'
+                #SlickReportField.create(method=Sum, field='value_sum', name='value__sum', verbose_name=_('Total sold $'))
+                ]
+
+    # Charts
+    """
+    charts_settings = [
+     {
+        'type': 'bar',
+        'data_source': 'value__sum',
+        'title_source': 'name',
+     },
+    ]
+    """
 
 
 def get_quota_current(request, ipaddress=None):
