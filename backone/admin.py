@@ -20,7 +20,7 @@ class BackOneResource(resources.ModelResource):
             'connection_status__name', 'connection_type__name',
             'service_type__name', 'service_type__price',
             'service_vendor__name', 'service_vendor__cost_installation', 'service_vendor__cost_monthly',
-            'project__name', 'po_number__number', 'baso__name', 'baso_date',
+            'project__name', 'po_number__number', 'baso__name', 'baso__date',
             'description'
         )
         export_order = (
@@ -29,7 +29,7 @@ class BackOneResource(resources.ModelResource):
             'connection_status__name', 'connection_type__name',
             'service_type__name', 'service_type__price',
             'service_vendor__name', 'service_vendor__cost_installation', 'service_vendor__cost_monthly',
-            'project__name', 'po_number__number', 'baso__name', 'baso_date',
+            'project__name', 'po_number__number', 'baso__name', 'baso__date',
             'description'
         )
 
