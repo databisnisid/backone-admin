@@ -154,7 +154,7 @@ class BackOneAdmin(ImportExportModelAdmin, admin.ModelAdmin):
                     'po_number', 'po_number_vendor', 'project',
                     'connection_type', 'connection_status',
                     'service_type', 'service_vendor',
-                    'baso', 'baso__date', 'description', 'is_priority'
+                    'baso', 'baso.date', 'description', 'is_priority'
                     ]
     list_filter = ('is_priority',)
     search_fields = ('name', 'ipaddress', 'sid', 'project__name', 'po_number__number',
