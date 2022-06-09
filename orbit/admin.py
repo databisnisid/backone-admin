@@ -22,14 +22,14 @@ class OrbitAdminForm(forms.ModelForm):
     class Meta:
         model = Orbit
         fields = '__all__'
-        widgets = {
-            'username': forms.EmailInput(attrs={
-                'size': 50,
-            }),
-            'password': forms.PasswordInput(attrs={
-                'size': 50,
-            }),
-        }
+        #widgets = {
+        #    'username': forms.EmailInput(attrs={
+        #        'size': 50,
+        #    }),
+        #    'password': forms.PasswordInput(attrs={
+        #        'size': 50,
+        #    }),
+        #}
 
 
 class OrbitAdmin(admin.ModelAdmin):
