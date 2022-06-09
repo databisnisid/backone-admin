@@ -48,8 +48,7 @@ class OrbitAdmin(admin.ModelAdmin):
         ('Orbit Login', {
             'classes': ('collapse',),
             'fields': ('username', 'password',
-                       ('quota_current', 'quota_total', 'quota_day'),
-                       ('created_at', 'updated_at'),
+                       ('quota_current', 'quota_total', 'quota_day', 'updated_at'),
                        )
         }),
         ('IMEI dan MSISDN', {
