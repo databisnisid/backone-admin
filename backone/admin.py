@@ -129,7 +129,7 @@ class BackOneAdmin(ImportExportModelAdmin, admin.ModelAdmin):
         }),
         ('Baso', {
             'classes': ('collapse',),
-            'fields': ('baso',),
+            'fields': ('baso', 'baso_date'),
         }),
         ('Additional', {
             'classes': ('collapse',),
@@ -149,7 +149,7 @@ class BackOneAdmin(ImportExportModelAdmin, admin.ModelAdmin):
               ]
     """
     exclude = ['username', 'password',]
-    readonly_fields = ['created_at', 'updated_at', 'is_priority']
+    readonly_fields = ['created_at', 'updated_at', 'is_priority', 'baso_date']
     list_display = ['name', 'sid', 'address',
                     'po_number', 'po_number_vendor', 'project',
                     'connection_type', 'connection_status',
