@@ -23,7 +23,7 @@ def get_quota_orbit(msisdn):
 
 
 def get_all_quota_orbit():
-    orbits = Orbit.objects.filter().order_by('updated_at')
+    orbits = Orbit.objects.filter().order_by('-updated_at')
 
     for o in orbits:
         print(o.username, o.password)
