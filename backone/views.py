@@ -1,11 +1,13 @@
 from slick_reporting.views import SlickReportView
 from slick_reporting.fields import SlickReportField
+from slick_reporting.decorators import report_field_register
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import BackOne
 from django.shortcuts import render
 from orbit.models import Orbit
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse
+from django.db.models import Count
 
 
 class SiteReport(LoginRequiredMixin, SlickReportView):
@@ -20,6 +22,7 @@ class SiteReport(LoginRequiredMixin, SlickReportView):
     # A foreign key to group calculation on
     #group_by = 'project'
 
+    limit_records = 25
     # The columns you want to display
     columns = ['name', 'connection_status__name', 'service_type__name', 'baso__date'
                 #SlickReportField.create(method=Sum, field='value_sum', name='value__sum', verbose_name=_('Total sold $'))
