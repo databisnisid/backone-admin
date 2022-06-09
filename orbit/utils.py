@@ -23,7 +23,7 @@ def get_quota_orbit(msisdn):
 
 
 def get_all_quota_orbit():
-    orbits = Orbit.objects.all()
+    orbits = Orbit.objects.filter().order_by('updated_at')
 
     for o in orbits:
         if o.username != 'nopass@backone.cloud' or o.password != 'nopassword':

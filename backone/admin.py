@@ -83,13 +83,6 @@ class BackOneAdminForm(forms.ModelForm):
                 )
 
 
-@admin.action(description='Generate Per Project')
-def generate_report_per_project(modeladmin, request, queryset):
-    pass
-    #for obj in queryset:
-    #    get_quota_orbit(obj.msisdn)
-
-
 class BackOneAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     formfield_overrides = {
         map_fields.AddressField: {

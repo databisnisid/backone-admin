@@ -331,7 +331,7 @@ JAZZMIN_UI_TWEAKS = {
 
 # DJANGO-CRONTAB
 CRONJOBS = [
-    ('* */6 * * *', 'orbit.cron.CRON_get_all_quota_orbit'),
+    ('* */1 * * *', 'orbit.cron.CRON_get_all_quota_orbit'),
     ('0 0 * * *', 'config.cron.dbbackup_job'),
 ]
 
@@ -355,3 +355,4 @@ TELEGRAM = {
 
 # CRISPY
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+#SLICK_REPORTING_DEFAULT_START_DATE = '01/01/2020'

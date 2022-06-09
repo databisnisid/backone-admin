@@ -24,16 +24,15 @@ class SiteReport(LoginRequiredMixin, SlickReportView):
 
     #limit_records = 25
     # The columns you want to display
-    columns = ['name', 'connection_status__name', 'service_type__name', 'baso__date'
-                #SlickReportField.create(method=Sum, field='value_sum', name='value__sum', verbose_name=_('Total sold $'))
-                ]
-
+    columns = ['name', 'connection_status__name', 'service_type__name', 'baso__date',
+            #SlickReportField.create(method=Count, field='project', name='project', verbose_name='Total Project')
+            ]
     # Charts
     """
     charts_settings = [
      {
         'type': 'bar',
-        'data_source': 'value__sum',
+        'data_source': 'project',
         'title_source': 'name',
      },
     ]
