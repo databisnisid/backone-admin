@@ -92,6 +92,7 @@ class BackOne(models.Model):
         blank=True,
         verbose_name='Nomor BASO'
     )
+    baso_date = models.DateField(blank=True)
 
     is_priority = models.BooleanField(default=False, verbose_name='Priority Site')
 
@@ -114,4 +115,6 @@ class BackOne(models.Model):
             self.project = po.project
             self.is_priority = po.is_priority
             po.save()
+        if self.baso is not None:
+            self.baso_date = self.baso.date
         return super(BackOne, self).save(*args, **kwargs)
