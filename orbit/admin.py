@@ -49,6 +49,7 @@ class OrbitAdmin(admin.ModelAdmin):
             'classes': ('collapse',),
             'fields': ('username', 'password',
                        ('quota_current', 'quota_total', 'quota_day'),
+                       ('created_at', 'updated_at'),
                        )
         }),
         ('IMEI dan MSISDN', {
@@ -56,8 +57,9 @@ class OrbitAdmin(admin.ModelAdmin):
             'fields': ('imei', 'msisdn',)
         }),
     )
-    readonly_fields = ['quota_total', 'quota_current', 'quota_day']
-    list_display = ['imei', 'msisdn', 'quota_total', 'quota_current', 'quota_day']
+    readonly_fields = ['quota_total', 'quota_current', 'quota_day',
+                       'created_at', 'updated_at']
+    list_display = ['imei', 'msisdn', 'quota_total', 'quota_current', 'quota_day', 'updated_at']
     search_fields = ('msisdn', 'imei')
     actions = [check_quota]
 
