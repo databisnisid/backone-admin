@@ -92,7 +92,7 @@ class BackOne(models.Model):
         blank=True,
         verbose_name='Nomor BASO'
     )
-    baso_date = models.DateField(blank=True)
+    baso_date = models.DateField(blank=True, null=True)
 
     is_priority = models.BooleanField(default=False, verbose_name='Priority Site')
 
