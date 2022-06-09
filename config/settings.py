@@ -331,7 +331,7 @@ JAZZMIN_UI_TWEAKS = {
 
 # DJANGO-CRONTAB
 CRONJOBS = [
-    ('* */6 * * *', 'orbit.cron.CRON_get_all_quota_orbit'),
+    ('* */3 * * *', 'orbit.cron.CRON_get_all_quota_orbit'),
     ('0 0 * * *', 'config.cron.dbbackup_job'),
 ]
 
