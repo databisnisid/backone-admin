@@ -22,7 +22,7 @@ class SiteReport(LoginRequiredMixin, SlickReportView):
     # A foreign key to group calculation on
     #group_by = 'project'
 
-    limit_records = 25
+    #limit_records = 25
     # The columns you want to display
     columns = ['name', 'connection_status__name', 'service_type__name', 'baso__date'
                 #SlickReportField.create(method=Sum, field='value_sum', name='value__sum', verbose_name=_('Total sold $'))
