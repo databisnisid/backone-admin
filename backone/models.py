@@ -112,9 +112,10 @@ class BackOne(models.Model):
         self.name = self.name.upper()
         if self.po_number is not None:
             po = Po.objects.get(id=self.po_number.id)
-            self.project = po.project
-            self.is_priority = po.is_priority
-            po.save()
+            if self.project is not po.project and self.is_priority is not po.is_priority:
+                self.project = po.project
+                self.is_priority = po.is_priority
+                po.save()
         if self.baso is not None:
             self.baso_date = self.baso.date
             cs = ConnectionStatus.objects.get(name='LIVE')
