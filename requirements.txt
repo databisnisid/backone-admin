@@ -3,6 +3,7 @@ asgiref==3.5.2
 async-generator==1.10
 attrs==21.4.0
 Babel==2.10.1
+bcrypt==3.2.2
 cachetools==4.2.2
 certifi==2022.5.18
 cffi==1.15.0
@@ -27,8 +28,10 @@ MarkupPy==1.14
 odfpy==1.4.1
 openpyxl==3.0.10
 outcome==1.1.0
+paramiko==2.11.0
 py-moneyed==1.2
 pycparser==2.21
+PyNaCl==1.5.0
 pyOpenSSL==22.0.0
 PySocks==1.7.1
 python-dateutil==2.8.2
