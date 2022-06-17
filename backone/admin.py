@@ -8,6 +8,8 @@ from django_google_maps import widgets as map_widgets
 from django_google_maps import fields as map_fields
 from import_export.admin import ImportExportModelAdmin
 from import_export import resources
+from connector.utils import run_command
+from django.shortcuts import render
 #from import_export.admin import ImportExportActionModelAdmin
 
 
@@ -162,6 +164,8 @@ class BackOneAdmin(ImportExportModelAdmin, admin.ModelAdmin):
                      'backone_id', 'backone_network',
                      'service_vendor__name', 'service_type__name', 'baso__name')
     list_per_page = 25
+    actions = ['check_ifconfig', 'check_firewall', 'check_dns', 'check_routing',
+               'check_backone_peers', 'check_backone_networks']
     resource_class = BackOneResource
 
     @staticmethod
@@ -182,7 +186,55 @@ class BackOneAdmin(ImportExportModelAdmin, admin.ModelAdmin):
         if obj.service_vendor is None:
             return None
         return obj.service_vendor.cost_monthly
-    #cost_monthly.short_description = 'Biaya Bulanan'
+
+    def check_ifconfig(self, request, queryset):
+        for obj in queryset:
+            results = run_command(obj.ipaddress, 'ifconfig')
+            return render(request,
+                          'admin/command_result.html',
+                          context={'results': results})
+    check_ifconfig.short_description = 'Check Interfaces'
+
+    def check_firewall(self, request, queryset):
+        for obj in queryset:
+            results = run_command(obj.ipaddress, 'iptables -L -n')
+            return render(request,
+                          'admin/command_result.html',
+                          context={'results': results})
+    check_firewall.short_description = 'Check Firewall'
+
+    def check_dns(self, request, queryset):
+        for obj in queryset:
+            results = run_command(obj.ipaddress, 'cat /etc/resolv.conf')
+            return render(request,
+                          'admin/command_result.html',
+                          context={'results': results})
+    check_dns.short_description = 'Check DNS'
+
+
+    def check_routing(self, request, queryset):
+        for obj in queryset:
+            results = run_command(obj.ipaddress, 'netstat -nr')
+            return render(request,
+                          'admin/command_result.html',
+                          context={'results': results})
+    check_routing.short_description = 'Check Routing'
+
+    def check_backone_peers(self, request, queryset):
+        for obj in queryset:
+            results = run_command(obj.ipaddress, 'backone peers')
+            return render(request,
+                          'admin/command_result.html',
+                          context={'results': results})
+    check_backone_peers.short_description = 'Check BackOne Peers'
+
+    def check_backone_networks(self, request, queryset):
+        for obj in queryset:
+            results = run_command(obj.ipaddress, 'backone listnetworks')
+            return render(request,
+                          'admin/command_result.html',
+                          context={'results': results})
+    check_backone_networks.short_description = 'Check BackOne Networks'
 
 
 admin.site.register(BackOne, BackOneAdmin)
