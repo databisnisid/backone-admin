@@ -2,6 +2,6 @@
 <body style="background-color: black;">
 <plaintext style="color: white;">
 {% for result in results %}
-    {% for item in result %}{{ item }}{% endfor %}
+    {% for item in result %}{{ item | safe }}{% endfor %}
 {% endfor %}
 
