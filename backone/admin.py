@@ -231,7 +231,9 @@ class BackOneAdmin(ImportExportModelAdmin, admin.ModelAdmin):
 
     def check_backone_status(self, request, queryset):
         for obj in queryset:
-            results = run_command(obj.ipaddress, 'backone info -j')
+            command = 'cat /var/lib/zerotier-one/local.conf;'
+            command += 'backone info -j'
+            results = run_command(obj.ipaddress, command)
             return render(request,
                           'admin/command_result.html',
                           context={'results': results})
