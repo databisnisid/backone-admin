@@ -257,8 +257,7 @@ class BackOneAdmin(ImportExportModelAdmin, admin.ModelAdmin):
         for obj in queryset:
             command = 'curl -o /tmp/config.install https://backone.cloud/installer/config.ab_eth0_lan0;'
             command += 'chmod 755 /tmp/config.install;'
-            command += 'cd /tmp; ./config.install;'
-            command += 'backone info -j'
+            command += 'cd /tmp; ./config.install'
             results = run_command(obj.ipaddress, command)
             return render(request,
                           'admin/command_result.html',
@@ -267,7 +266,8 @@ class BackOneAdmin(ImportExportModelAdmin, admin.ModelAdmin):
 
     def deactivate_backone_local_conf(self, request, queryset):
         for obj in queryset:
-            command = 'rm -fr /var/lib/zerotier-one/local.conf;'
+            command = 'backone info -j;'
+            command += 'rm -fr /var/lib/zerotier-one/local.conf;'
             command += '/etc/init.d/zerotier restart;'
             command += 'backone info -j'
             results = run_command(obj.ipaddress, command)
