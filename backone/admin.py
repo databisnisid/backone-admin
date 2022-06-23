@@ -152,7 +152,7 @@ class BackOneAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     """
     exclude = ['username', 'password',]
     readonly_fields = ['created_at', 'updated_at', 'is_priority', 'baso_date']
-    list_display = ['name', 'sid', 'address',
+    list_display = ['name', 'sid', 'ipaddress', 'address',
                     'po_number', 'po_number_vendor', 'project',
                     'connection_type', 'connection_status',
                     'service_type', 'service_vendor',
