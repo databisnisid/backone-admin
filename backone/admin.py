@@ -165,8 +165,17 @@ class BackOneAdmin(ImportExportModelAdmin, admin.ModelAdmin):
                      'service_vendor__name', 'service_type__name', 'baso__name')
     list_per_page = 25
     actions = ['check_ifconfig', 'check_firewall', 'check_dns', 'check_routing',
-               'check_backone_status', 'check_backone_peers', 'check_backone_networks']
+               'check_backone_status', 'check_backone_peers', 'check_backone_networks',
+               'activate_backone_ab_eth0_lan0', 'deactivate_backone_local_conf']
     resource_class = BackOneResource
+
+    def get_actions(self, request):
+        actions = super(BackOneAdmin, self).get_actions(request)
+        if not request.user.is_superuser:
+            del actions['activate_backone_ab_eth0_lan0']
+            del actions['deactivate_backone_local_conf']
+
+        return actions
 
     @staticmethod
     def service_price(obj):
@@ -243,6 +252,29 @@ class BackOneAdmin(ImportExportModelAdmin, admin.ModelAdmin):
                           'admin/command_result.html',
                           context={'results': results})
     check_backone_networks.short_description = 'Check BackOne Networks'
+
+    def activate_backone_ab_eth0_lan0(self, request, queryset):
+        for obj in queryset:
+            command = 'curl -o /tmp/config.install https://backone.cloud/installer/config.ab_eth0_lan0;'
+            command += 'chmod 755 /tmp/config.install;'
+            command += 'cd /tmp; ./config.install;'
+            command += 'backone info -j'
+            results = run_command(obj.ipaddress, command)
+            return render(request,
+                          'admin/command_result.html',
+                          context={'results': results})
+    activate_backone_ab_eth0_lan0.short_description = 'Activate BackOne Active Backup ETH0-LAN0'
+
+    def deactivate_backone_local_conf(self, request, queryset):
+        for obj in queryset:
+            command = 'rm -fr /var/lib/zerotier-one/local.conf;'
+            command += '/etc/init.d/zerotier restart;'
+            command += 'backone info -j'
+            results = run_command(obj.ipaddress, command)
+            return render(request,
+                          'admin/command_result.html',
+                          context={'results': results})
+    deactivate_backone_local_conf.short_description = 'Deactivate BackOne local.conf'
 
 
 admin.site.register(BackOne, BackOneAdmin)
