@@ -165,7 +165,7 @@ class BackOneAdmin(ImportExportModelAdmin, admin.ModelAdmin):
                      'service_vendor__name', 'service_type__name', 'baso__name')
     list_per_page = 25
     actions = ['check_ifconfig', 'check_firewall', 'check_dns', 'check_routing',
-               'check_backone_peers', 'check_backone_networks']
+               'check_backone_status', 'check_backone_peers', 'check_backone_networks']
     resource_class = BackOneResource
 
     @staticmethod
@@ -219,6 +219,14 @@ class BackOneAdmin(ImportExportModelAdmin, admin.ModelAdmin):
                           'admin/command_result.html',
                           context={'results': results})
     check_routing.short_description = 'Check Routing'
+
+    def check_backone_status(self, request, queryset):
+        for obj in queryset:
+            results = run_command(obj.ipaddress, 'backone info -j')
+            return render(request,
+                          'admin/command_result.html',
+                          context={'results': results})
+    check_backone_status.short_description = 'Check BackOne Status'
 
     def check_backone_peers(self, request, queryset):
         for obj in queryset:
