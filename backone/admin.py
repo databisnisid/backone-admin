@@ -232,7 +232,9 @@ class BackOneAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     def check_backone_status(self, request, queryset):
         for obj in queryset:
             command = 'cat /var/lib/zerotier-one/local.conf;'
-            command += 'backone info -j'
+            command += 'backone info -j;'
+            command += 'backone peers;'
+            command += 'backone listnetworks;'
             results = run_command(obj.ipaddress, command)
             return render(request,
                           'admin/command_result.html',
