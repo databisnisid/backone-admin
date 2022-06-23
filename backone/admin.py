@@ -165,7 +165,7 @@ class BackOneAdmin(ImportExportModelAdmin, admin.ModelAdmin):
                      'service_vendor__name', 'service_type__name', 'baso__name')
     list_per_page = 25
     actions = ['check_ifconfig', 'check_firewall', 'check_dns', 'check_routing',
-               'check_backone_status', 'check_backone_peers', 'check_backone_networks',
+               'check_backone_status',
                'activate_backone_ab_eth0_lan0', 'deactivate_backone_local_conf']
     resource_class = BackOneResource
 
@@ -220,7 +220,6 @@ class BackOneAdmin(ImportExportModelAdmin, admin.ModelAdmin):
                           context={'results': results})
     check_dns.short_description = 'Check DNS'
 
-
     def check_routing(self, request, queryset):
         for obj in queryset:
             results = run_command(obj.ipaddress, 'netstat -nr')
@@ -231,10 +230,10 @@ class BackOneAdmin(ImportExportModelAdmin, admin.ModelAdmin):
 
     def check_backone_status(self, request, queryset):
         for obj in queryset:
-            command = 'cat /var/lib/zerotier-one/local.conf;'
-            command += 'backone info -j;'
-            command += 'backone peers;'
-            command += 'backone listnetworks;'
+            command = 'cat /var/lib/zerotier-one/local.conf; echo;'
+            command += 'backone info -j; echo;'
+            command += 'backone peers; echo;'
+            command += 'backone listnetworks; echo'
             results = run_command(obj.ipaddress, command)
             return render(request,
                           'admin/command_result.html',
