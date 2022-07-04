@@ -36,9 +36,15 @@ def get_quota(username, password):
 
         """ Sending Username """
         try:
+#            elem = WebDriverWait(driver, delay).until(
+#                EC.presence_of_element_located((By.XPATH, "//input[contains(@label,'Alamat Email/No. HP')]"))
+#            )
             elem = WebDriverWait(driver, delay).until(
-                EC.presence_of_element_located((By.XPATH, "//input[contains(@label,'Alamat Email/No. HP')]"))
+                EC.presence_of_element_located((By.XPATH, "//input[@value='']"))
             )
+#            elem = WebDriverWait(driver, delay).until(
+#                EC.presence_of_element_located((By.CSS_SELECTOR, ".css-1cwyjr8"))
+#            )
             elem.send_keys(username)
             elem.send_keys(Keys.RETURN)
         except (NoSuchElementException, TimeoutException):
@@ -46,8 +52,11 @@ def get_quota(username, password):
 
         """ Sending Password """
         try:
+#            elem = WebDriverWait(driver, delay).until(
+#                EC.presence_of_element_located((By.XPATH, "//input[contains(@label,'Password')]"))
+#            )
             elem = WebDriverWait(driver, delay).until(
-                EC.presence_of_element_located((By.XPATH, "//input[contains(@label,'Password')]"))
+                EC.presence_of_element_located((By.XPATH, "//input[@value='']"))
             )
             elem.send_keys(password)
             elem.send_keys(Keys.RETURN)
