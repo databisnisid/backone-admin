@@ -333,6 +333,7 @@ JAZZMIN_UI_TWEAKS = {
 CRONJOBS = [
     ('* */3 * * *', 'orbit.cron.CRON_get_all_quota_orbit'),
     ('0 0 * * *', 'config.cron.dbbackup_job'),
+    ('5 * * * *', 'backone.utils.update_sites_ping_status'),
 ]
 
 # MAP
