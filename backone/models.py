@@ -96,6 +96,8 @@ class BackOne(models.Model):
 
     is_priority = models.BooleanField(default=False, verbose_name='Priority Site')
 
+    ping_status = models.BooleanField(default=False, verbose_name='Ping Status')
+
     created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True, auto_now_add=False)
 

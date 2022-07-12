@@ -1,4 +1,4 @@
-from .drivers import ssh
+from .drivers import ssh, ping
 
 
 def run_command(ipaddress, command):
