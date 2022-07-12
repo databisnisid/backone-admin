@@ -115,7 +115,8 @@ class BackOneAdmin(ImportExportModelAdmin, admin.ModelAdmin):
         ('Data Teknis', {
             'classes': ('collapse',),
             'fields': ('ipaddress', 'ipaddress_local',
-                       'backone_id', 'backone_network'),
+                       'backone_id', 'backone_network',
+                       'ping_status',),
         }),
         ('SID & SN', {
             'classes': ('collapse',),
