@@ -32,7 +32,7 @@ SECRET_KEY = str(os.getenv('SECRET_KEY'))
 
 # SECURITY WARNING: don't run with debug turned on in production!
 REMOTE_SELENIUM = os.getenv('REMOTE_SELENIUM', 'False').lower() in ('true', '1', 't')
-SELENIUM_DOCKER = 'http://192.168.192.8:4444'
+SELENIUM_DOCKER = str(os.getenv('SELENIUM_DOCKER'))
 PRODUCTION = os.getenv('PRODUCTION', 'False').lower() in ('true', '1', 't')
 DEBUG = os.getenv('DEBUG', 'False').lower() in ('true', '1', 't')
 
