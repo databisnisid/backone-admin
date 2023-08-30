@@ -182,3 +182,12 @@ def check_selenium_working():
         description = 'Pengecheckan Orbit Aman'
     send_notification_telegram('Pengecheckan Orbit', description)
 
+    orbit = OrbitMulti.objects.order_by('updated_at').last()
+    current_time = timezone.now()
+    delta_time = current_time - orbit.updated_at
+
+    if delta_time.days > 1:
+        description = 'Pengecheckan Orbit Multi terlambat lebih dari 1 hari! Segera check BackOne Data!'
+    else:
+        description = 'Pengecheckan Orbit Multi Aman'
+    send_notification_telegram('Pengecheckan Orbit', description)
