@@ -1,0 +1,13 @@
+#!/bin/bash
+source .env
+
+if [ ${GUNICORN_SSL} -eq 0 ]
+then
+  gunicorn -c config/gunicorn.conf.py --error-logfile error.log --access-logfile access.log config.wsgi
+else
+  rm -fr server.crt
+  rm -fr server.key
+  ln -s ${SSL_CERT} server.crt
+  ln -s ${SSL_KEY} server.key
+  gunicorn -c config/gunicorn.conf.py --certfile=server.crt --keyfile=server.key config.wsgi
+fi

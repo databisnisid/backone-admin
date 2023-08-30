@@ -1,0 +1,296 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_urls static admin_list jazzmin %}
+
+
+{% block content %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.2.1/dist/chart.min.js" integrity="sha256-uVEHWRIr846/vAdLJeybWxjPNStREzOlqLMXjW/Saeo=" crossorigin="anonymous"></script>
+<script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/hierarchy.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+
+<div class="col">
+
+<div class="row">
+    <div class="col">
+        <div class="card card-primary card-outline">
+            <div class="card-header">
+                <h4 class="card-title">Total Sites</h4>
+            </div>
+            <div class="card-body">
+                <h1 class="text-center">{{ total_sites}}</h1>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card card-primary card-outline">
+            <div class="card-header">
+                <h4 class="card-title">Total Project</h4>
+            </div>
+            <div class="card-body">
+                <h1 class="text-center">{{ total_projects }}</h1>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card card-primary card-outline">
+            <div class="card-header">
+                <h4 class="card-title">Total Orbits</h4>
+            </div>
+            <div class="card-body">
+                <h1 class="text-center">{{ total_orbits }}</h1>
+            </div>
+        </div>
+    </div>
+        <div class="col">
+        <div class="card card-primary card-outline">
+            <div class="card-header">
+                <h4 class="card-title">Total BASO</h4>
+            </div>
+            <div class="card-body">
+                <h1 class="text-center">{{ total_basos }}</h1>
+            </div>
+        </div>
+    </div>
+</div> <!-- rows -->
+
+
+<div class="row">
+<!-- Row for Sites per Project -->
+    <div class="col">
+        <div class="card card-primary card-outline">
+            <div class="card-header">
+            <h4 class="card-title">Sites Per Project</h4>
+        </div>
+        <div id="sites_per_status" style="width: 100%; height: 300px;"></div>
+        </div>
+    </div>
+
+<!-- Row for Profesi -->
+    <div class="col">
+        <div class="card card-primary card-outline">
+            <div class="card-header">
+            <h4 class="card-title">Sites BASO vs NO BASO</h4>
+        </div>
+        <div id="sites_vs_baso" style="width: 100%; height: 300px;"></div>
+        </div>
+    </div>
+
+<!-- Row for Etnik -->
+    <div class="col">
+        <div class="card card-primary card-outline">
+            <div class="card-header">
+            <h4 class="card-title">Status per Sites</h4>
+        </div>
+        <div id="sites_per_project" style="width: 100%; height: 300px;"></div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+am5.ready(function() {
+
+// Create root element
+// https://www.amcharts.com/docs/v5/getting-started/#Root_element
+var root = am5.Root.new("sites_per_project");
+
+// Set themes
+// https://www.amcharts.com/docs/v5/concepts/themes/
+root.setThemes([
+  am5themes_Animated.new(root)
+]);
+
+// Create chart
+// https://www.amcharts.com/docs/v5/charts/percent-charts/pie-chart/
+var chart = root.container.children.push(
+  am5percent.PieChart.new(root, {
+    startAngle: 160, endAngle: 380
+  })
+);
+
+// Create series
+// https://www.amcharts.com/docs/v5/charts/percent-charts/pie-chart/#Series
+
+var series0 = chart.series.push(
+  am5percent.PieSeries.new(root, {
+    valueField: "sites",
+    categoryField: "project",
+    startAngle: 160,
+    endAngle: 380,
+    radius: am5.percent(70),
+    innerRadius: am5.percent(65)
+  })
+);
+
+var colorSet = am5.ColorSet.new(root, {
+  colors: [series0.get("colors").getIndex(0)],
+  passOptions: {
+    lightness: -0.05,
+    hue: 0
+  }
+});
+
+series0.set("colors", colorSet);
+
+series0.ticks.template.set("forceHidden", true);
+series0.labels.template.set("forceHidden", true);
+
+var series1 = chart.series.push(
+  am5percent.PieSeries.new(root, {
+    startAngle: 160,
+    endAngle: 380,
+    valueField: "sites",
+    innerRadius: am5.percent(80),
+    categoryField: "project"
+  })
+);
+
+series1.ticks.template.set("forceHidden", true);
+series1.labels.template.set("forceHidden", true);
+
+var label = chart.seriesContainer.children.push(
+  am5.Label.new(root, {
+    textAlign: "center",
+    centerY: am5.p100,
+    centerX: am5.p50,
+    text: "[fontSize:18px]Total Sites[/]:\n[bold fontSize:30px]{{ total_sites }}[/]"
+  })
+);
+
+var data = [
+{% for key, value in sites_per_project.items %}
+{
+    "project": "{{ key }}",
+    "sites": {{ value }}
+},
+{% endfor %}
+];
+
+console.log(data);
+
+// Set data
+// https://www.amcharts.com/docs/v5/charts/percent-charts/pie-chart/#Setting_data
+//series0.data.setAll(data);
+series1.data.setAll(data);
+
+}); // end am5.ready()
+</script>
+
+<!-- Chart Site NO BASO vs BASO -->
+<script>
+am5.ready(function() {
+
+// Create root element
+// https://www.amcharts.com/docs/v5/getting-started/#Root_element
+var root = am5.Root.new("sites_vs_baso");
+
+// Set themes
+// https://www.amcharts.com/docs/v5/concepts/themes/
+root.setThemes([
+  am5themes_Animated.new(root)
+]);
+
+// Create chart
+// https://www.amcharts.com/docs/v5/charts/percent-charts/pie-chart/
+var chart = root.container.children.push(
+  am5percent.PieChart.new(root, {
+    endAngle: 270
+  })
+);
+
+// Create series
+// https://www.amcharts.com/docs/v5/charts/percent-charts/pie-chart/#Series
+var series = chart.series.push(
+  am5percent.PieSeries.new(root, {
+    valueField: "count",
+    categoryField: "baso",
+    endAngle: 270
+  })
+);
+
+series.ticks.template.set("forceHidden", true);
+series.labels.template.set("forceHidden", true);
+
+series.states.create("hidden", {
+  endAngle: -90
+});
+
+var data = [
+{% for key, value in sites_vs_baso.items %}
+{
+    "baso": "{{ key }}",
+    "count": {{ value }}
+},
+{% endfor %}
+];
+
+// Set data
+// https://www.amcharts.com/docs/v5/charts/percent-charts/pie-chart/#Setting_data
+series.data.setAll(data);
+
+series.appear(1000, 100);
+
+}); // end am5.ready()
+</script>
+
+
+
+<!-- Chart Site Per Status -->
+<script>
+am5.ready(function() {
+
+// Create root element
+// https://www.amcharts.com/docs/v5/getting-started/#Root_element
+var root = am5.Root.new("sites_per_status");
+
+// Set themes
+// https://www.amcharts.com/docs/v5/concepts/themes/
+root.setThemes([
+  am5themes_Animated.new(root)
+]);
+
+// Create chart
+// https://www.amcharts.com/docs/v5/charts/percent-charts/pie-chart/
+var chart = root.container.children.push(
+  am5percent.PieChart.new(root, {
+    endAngle: 270
+  })
+);
+
+// Create series
+// https://www.amcharts.com/docs/v5/charts/percent-charts/pie-chart/#Series
+var series = chart.series.push(
+  am5percent.PieSeries.new(root, {
+    valueField: "count",
+    categoryField: "status",
+    endAngle: 270
+  })
+);
+
+series.ticks.template.set("forceHidden", true);
+series.labels.template.set("forceHidden", true);
+
+series.states.create("hidden", {
+  endAngle: -90
+});
+
+var data = [
+{% for key, value in sites_per_status.items %}
+{
+    "status": "{{ key }}",
+    "count": {{ value }}
+},
+{% endfor %}
+];
+
+// Set data
+// https://www.amcharts.com/docs/v5/charts/percent-charts/pie-chart/#Setting_data
+series.data.setAll(data);
+
+series.appear(1000, 100);
+
+}); // end am5.ready()
+</script>
+
+{% endblock %}
