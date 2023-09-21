@@ -28,10 +28,12 @@ def get_quota_multi(username, password):
                 options=driver_options
             )
         else:
-            options = webdriver.ChromeOptions()
+            #options = webdriver.ChromeOptions()
+            options = webdriver.FirefoxOptions()
             options.headless = False
-            driver = webdriver.Chrome("/usr/local/bin/chromedriver", options=options)
-            #driver = webdriver.Firefox()
+            #driver = webdriver.Chrome("/usr/local/bin/chromedriver", options=options)
+            #driver = webdriver.Firefox("/usr/local/bin/geckodriver", options=options)
+            driver = webdriver.Firefox()
 
         # Delete All Cookies ?
         #driver.delete_all_cookies()
@@ -99,16 +101,16 @@ def get_quota_multi(username, password):
                 try:
                     #next_page = driver.find_element(By.XPATH, "//div[contains(@style, 'transform: rotate(180deg)')]/div[contains(@style, 'background-image: url(\"/static/media/icon-arrow-left-red.svg\")')]/..")
                     #next_page = driver.find_element(By.XPATH, "//div[contains(@style, 'transform: rotate(180deg)')]/div[contains(@style, '/static/media/icon-arrow-left-red.svg')]/..")
-                    next_page = driver.find_element(By.XPATH, "//div[contains(@class, 'css-1dbjc4n')]/div[contains(text(), " + str(page_number + 1) + ")]")
+                    next_page = driver.find_element(By.XPATH, "//div[contains(@class, 'css-1dbjc4n')]/div[contains(@style, 'padding: 4px 8px') and contains(text(), " + str(page_number + 1) + ")]")
                     #next_page = driver.find_element(By.XPATH, "//div[contains(@class, 'css-1dbjc4n')]/div[contains(@style, 'color: rgb(26, 26, 26); font-family: Poppins-Regular; font-size: 16px; padding: 4px 8px;') and contains(., " + str(page_number) + ")]")
 
                 except (NoSuchElementException, TimeoutException):
                     next_page = None
 
-                print(page_number, next_page)
+                print("Current Page:", page_number, "Next Page:", next_page.text)
                 if next_page:
                     page_number += 1
-                    print('Go to Next Page->', page_number)
+                    print('Go to Next Page ->', page_number)
                     next_page.click()
                 else:
                     is_next_page = False
