@@ -95,11 +95,11 @@ def get_quota_multi(username, password):
                     result[msisdn] = [quota] + [until]
                     #print(result[msisdn])
 
-                page_number += 1
+                #page_number += 1
                 try:
                     #next_page = driver.find_element(By.XPATH, "//div[contains(@style, 'transform: rotate(180deg)')]/div[contains(@style, 'background-image: url(\"/static/media/icon-arrow-left-red.svg\")')]/..")
                     #next_page = driver.find_element(By.XPATH, "//div[contains(@style, 'transform: rotate(180deg)')]/div[contains(@style, '/static/media/icon-arrow-left-red.svg')]/..")
-                    next_page = driver.find_element(By.XPATH, "//div[contains(@class, 'css-1dbjc4n')]/div[contains(text(), " + str(page_number) + ")]")
+                    next_page = driver.find_element(By.XPATH, "//div[contains(@class, 'css-1dbjc4n')]/div[contains(text(), " + str(page_number + 1) + ")]")
                     #next_page = driver.find_element(By.XPATH, "//div[contains(@class, 'css-1dbjc4n')]/div[contains(@style, 'color: rgb(26, 26, 26); font-family: Poppins-Regular; font-size: 16px; padding: 4px 8px;') and contains(., " + str(page_number) + ")]")
 
                 except (NoSuchElementException, TimeoutException):
@@ -107,7 +107,8 @@ def get_quota_multi(username, password):
 
                 print(page_number, next_page)
                 if next_page:
-                    print('Go to Next Page')
+                    page_number += 1
+                    print('Go to Next Page->', page_number)
                     next_page.click()
                 else:
                     is_next_page = False
