@@ -70,6 +70,7 @@ def get_quota_multi(username, password):
 
         """ Get Quota Multi Information """
         is_next_page = True
+        page_number = 1
         while is_next_page:
             try:
                 elem = WebDriverWait(driver, delay).until(
@@ -96,11 +97,13 @@ def get_quota_multi(username, password):
 
                 try:
                     #next_page = driver.find_element(By.XPATH, "//div[contains(@style, 'transform: rotate(180deg)')]/div[contains(@style, 'background-image: url(\"/static/media/icon-arrow-left-red.svg\")')]/..")
-                    next_page = driver.find_element(By.XPATH, "//div[contains(@style, 'transform: rotate(180deg)')]/div[contains(@style, '/static/media/icon-arrow-left-red.svg')]/..")
+                    #next_page = driver.find_element(By.XPATH, "//div[contains(@style, 'transform: rotate(180deg)')]/div[contains(@style, '/static/media/icon-arrow-left-red.svg')]/..")
+                    elements = driver.find_element(By.XPATH, "//div[contains(@class, 'css-1dbjc4n')]/div[contains(@style, 'color: rgb(26, 26, 26); font-family: Poppins-Regular; font-size: 16px; padding: 4px 8px;') and contains(., " + page_number + ")]")
 
                 except (NoSuchElementException, TimeoutException):
                     next_page = None
 
+                print(page_number, elements)
                 if next_page:
                     print('Go to Next Page')
                     next_page.click()
