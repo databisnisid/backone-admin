@@ -107,8 +107,9 @@ def get_quota_multi(username, password):
                 except (NoSuchElementException, TimeoutException):
                     next_page = None
 
-                print("Current Page:", page_number, "Next Page:", next_page.text)
+            
                 if next_page:
+                    print("Current Page:", page_number, "Next Page:", next_page.text)
                     page_number += 1
                     print('Go to Next Page ->', page_number)
                     next_page.click()
