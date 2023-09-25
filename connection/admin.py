@@ -10,5 +10,5 @@ class ConnectionStatusAdmin(admin.ModelAdmin):
     fields = ['name']
 
 
-admin.site.register(ConnectionType, ConnectionTypeAdmin)
-admin.site.register(ConnectionStatus, ConnectionStatusAdmin)
+#admin.site.register(ConnectionType, ConnectionTypeAdmin)
+#admin.site.register(ConnectionStatus, ConnectionStatusAdmin)

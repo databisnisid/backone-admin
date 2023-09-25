@@ -12,5 +12,5 @@ class ServiceVendorAdmin(admin.ModelAdmin):
     list_display = ['name', 'cost_installation', 'cost_monthly']
 
 
-admin.site.register(ServiceType, ServiceTypeAdmin)
-admin.site.register(ServiceVendor, ServiceVendorAdmin)
+#admin.site.register(ServiceType, ServiceTypeAdmin)
+#admin.site.register(ServiceVendor, ServiceVendorAdmin)
