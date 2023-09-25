@@ -94,6 +94,6 @@ class PoVendorAdmin(admin.ModelAdmin):
         model = PoVendor
 
 
-admin.site.register(Project, ProjectAdmin)
-admin.site.register(Po, PoAdmin)
-admin.site.register(PoVendor, PoVendorAdmin)
+#admin.site.register(Project, ProjectAdmin)
+#admin.site.register(Po, PoAdmin)
+#admin.site.register(PoVendor, PoVendorAdmin)

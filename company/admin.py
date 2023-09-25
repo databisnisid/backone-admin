@@ -51,5 +51,5 @@ class OtherCompanyAdmin(admin.ModelAdmin):
         model = OtherCompany
 
 
-admin.site.register(MyCompany, MyCompanyAdmin)
-admin.site.register(OtherCompany, OtherCompanyAdmin)
+#admin.site.register(MyCompany, MyCompanyAdmin)
+#admin.site.register(OtherCompany, OtherCompanyAdmin)
