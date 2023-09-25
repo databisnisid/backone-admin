@@ -250,8 +250,9 @@ JAZZMIN_SETTINGS = {
 
     # List of apps (and/or models) to base side menu ordering off of (does not need to contain all apps/models)
     #"order_with_respect_to": ["auth", "dashboard", "dashboard.chart", "data", "data.anggota", "data.keluarga", "data.wilayah"],
-    "order_with_respect_to": ["statistic", "auth", "project", "backone", "company",
-                              "service", "connection",
+    "order_with_respect_to": ["statistic", "auth", "backone", 
+                              #"project", "company",
+                              #"service", "connection",
                               #"service", "baso", "contact", "connection",
                               "orbit",
                               ],
