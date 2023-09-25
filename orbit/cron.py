@@ -4,7 +4,7 @@ from .utils import get_all_quota_orbit, check_quota_orbit_notification_daily, ge
 
 def CRON_get_all_quota_orbit():
     get_all_quota_orbit_multi()
-    sleep(60)
+    sleep(300)
     get_all_quota_orbit()
     #get_all_quota_orbit_multi()
 
