@@ -23,4 +23,4 @@ class ContactAdmin(admin.ModelAdmin):
     list_display = ['name', 'phone']
 
 
-admin.site.register(Contact, ContactAdmin)
+#admin.site.register(Contact, ContactAdmin)

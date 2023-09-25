@@ -25,4 +25,4 @@ class BasoAdmin(admin.ModelAdmin):
         model = Baso
 
 
-admin.site.register(Baso, BasoAdmin)
+#admin.site.register(Baso, BasoAdmin)
