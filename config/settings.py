@@ -336,11 +336,13 @@ JAZZMIN_UI_TWEAKS = {
 }
 
 # DJANGO-CRONTAB
+'''
 CRONJOBS = [
     ('0 6 * * *', 'statistic.cron.CRON_daily_report'),
     ('0 0 * * *', 'config.cron.dbbackup_job'),
     ('5 * * * *', 'backone.utils.update_sites_ping_status'),
 ]
+'''
 
 # MAP
 GOOGLE_MAPS_API_KEY = str(os.getenv(('GOOGLE_MAPS_API_KEY')))
