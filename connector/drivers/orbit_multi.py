@@ -100,16 +100,16 @@ def get_quota_multi(username, password):
                     #quota = element.find_element(By.XPATH, ".//div[contains(text(), 'GB')]").text
                     #print('Found Quota Info: ', quota)
                     try:
-                        quota = element.find_element(By.XPATH, ".//div[contains(text(), ' GB')]").text
+                        quota = element.find_element(By.XPATH, ".//div[contains(text(), 'GB')]").text
                         print('Found Quota Info in GB: ', quota)
 
                     except (NoSuchElementException, TimeoutException) as error:
                         print("Quota INFO is not FOUND! Trying again...")
                         try:
-                            quota = element.find_element(By.XPATH, ".//div[contains(text(), 'GB')]").text
+                            quota = element.find_element(By.XPATH, ".//div[contains(text(), 'B ')]").text
                             print('Found Quota Info in GB: ', quota)
                         except (NoSuchElementException, TimeoutException):
-                            quota = None
+                            quota = '0GB / 0GB'
 
                     try:
                         until = element.find_element(By.XPATH, ".//div[contains(text(), 'Berlaku')]").text.replace('Berlaku hingga ', '')
