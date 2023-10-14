@@ -1,5 +1,6 @@
+import re
 from datetime import datetime, date
-from .models import Orbit, OrbitMulti
+from .models import Orbit, OrbitMulti, OrbitStatQuota
 from connector.drivers import orbit, orbit_multi
 from django.core.exceptions import ObjectDoesNotExist
 from django.utils import timezone
@@ -99,9 +100,27 @@ def get_all_quota_orbit():
             print(timezone.now(), o.msisdn, o.quota_current, o.quota_total, o.quota_day)
 
 
+def string_to_int(s):
+    return int(''.join(c for c in s if c.isdigit()))
+
+
 def split_quota_multi(quota):
     q = quota.split('/')
     return q[0].strip(), q[1].strip()
+
+
+def quota_int(quota):
+    if '/' in quota: 
+        quota, quota_c = split_quota_multi(quota)
+
+    if 'GB' in quota:
+        quota_f = float(quota.replace('GB', ''))
+        quota_f = quota_f * 1024
+
+    if 'MB' in quota:
+        quota_f = float(quota.replace('MB', ''))
+
+    return int(quota_f)
 
 
 def get_all_quota_orbit_multi():
@@ -191,3 +210,23 @@ def check_selenium_working():
     else:
         description = 'Pengecheckan Orbit Multi Aman'
     send_notification_telegram('Pengecheckan Orbit', description)
+
+
+def orbit_stat_worker():
+    ''' Start every midnite'''
+
+    orbits = Orbit.objects.all()
+
+    for orbit in orbits:
+        msisdn = re.sub('^0', '62', quota.msisdn)
+        quota = quota_int(orbit.quota_current)
+        OrbitStatQuota.objects.create(msisdn=msisd, quota=quota)
+
+    orbits = OrbitMulti.objects.all()
+
+    for orbit in orbits:
+        msisdn = re.sub('^0', '62', quota.msisdn)
+        quota = quota_int(orbit.quota_current)
+        OrbitStatQuota.objects.create(msisdn=msisd, quota=quota)
+
+

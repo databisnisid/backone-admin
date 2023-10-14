@@ -94,7 +94,7 @@ def get_quota_multi(username, password):
                 print("FOUND MSISDN!")
                 #print(table_elements)
                 for element in table_elements:
-                    print(element.text)
+                    #print(element.text)
                     msisdn = element.find_element(By.XPATH, ".//div[contains(text(), '628')]").text
                     print('Found MSISDN: ', msisdn)
                     #quota = element.find_element(By.XPATH, ".//div[contains(text(), ' GB')]").text
@@ -103,7 +103,6 @@ def get_quota_multi(username, password):
                     try:
                         quota = element.find_element(By.XPATH, ".//div[contains(text(), 'GB')]").text
                         print('Found Quota Info in GB: ', quota)
-                        print(element.text)
 
                     except (NoSuchElementException, TimeoutException) as error:
                         print("Quota INFO is not FOUND! Trying again...")

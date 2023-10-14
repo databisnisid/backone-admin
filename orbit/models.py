@@ -63,3 +63,18 @@ class OrbitMulti(models.Model):
     def __str__(self):
         return '%s(%s/%s-%s)' % (self.imei, self.quota_current, self.quota_total, self.quota_day)
 
+
+class OrbitStatQuota(models.Model):
+    msisdn = models.CharField(max_length=30, verbose_name='MSISDN')
+    quota = models.IntegerField()
+    created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
+
+    class Meta:
+        managed = True
+        db_table = 'orbit_stat'
+        verbose_name = 'Orbit Statistic'
+        verbose_name_plural = 'Orbit Statistics'
+
+    def __str__(self):
+        return '{}'.format(self.msisdn)
+
