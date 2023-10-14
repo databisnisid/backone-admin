@@ -218,14 +218,14 @@ def orbit_stat_worker():
     orbits = Orbit.objects.all()
 
     for orbit in orbits:
-        msisdn = re.sub('^0', '62', quota.msisdn)
+        msisdn = re.sub('^0', '', quota.msisdn)
         quota = quota_int(orbit.quota_current)
         OrbitStatQuota.objects.create(msisdn=msisd, quota=quota)
 
     orbits = OrbitMulti.objects.all()
 
     for orbit in orbits:
-        msisdn = re.sub('^0', '62', quota.msisdn)
+        msisdn = re.sub('^0', '', quota.msisdn)
         quota = quota_int(orbit.quota_current)
         OrbitStatQuota.objects.create(msisdn=msisd, quota=quota)
 
