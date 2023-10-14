@@ -96,23 +96,20 @@ def get_quota_multi(username, password):
                 for element in table_elements:
                     msisdn = element.find_element(By.XPATH, ".//div[contains(text(), '628')]").text
                     print('Found MSISDN: ', msisdn)
-                    quota = element.find_element(By.XPATH, ".//div[contains(text(), ' GB')]").text
+                    #quota = element.find_element(By.XPATH, ".//div[contains(text(), ' GB')]").text
                     #quota = element.find_element(By.XPATH, ".//div[contains(text(), 'GB')]").text
-                    print('Found Quota Info: ', quota)
-                    '''
+                    #print('Found Quota Info: ', quota)
                     try:
-                        quota = element.find_element(By.XPATH, ".//div[contains(text(), 'GB')]").text
+                        quota = element.find_element(By.XPATH, ".//div[contains(text(), ' GB')]").text
                         print('Found Quota Info in GB: ', quota)
+
+                    except (NoSuchElementException, TimeoutException) as error:
+                        print('Error: ', error)
                         try:
-                            quota = element.find_element(By.XPATH, ".//div[contains(text(), 'MB')]").text
-                            print('Found Quota Info in MB: ', quota)
+                            quota = element.find_element(By.XPATH, ".//div[contains(text(), 'GB')]").text
+                            print('Found Quota Info in GB: ', quota)
                         except (NoSuchElementException, TimeoutException):
                             quota = None
-
-                    except (NoSuchElementException, TimeoutException):
-                        quota = None
-
-                    '''
 
                     try:
                         until = element.find_element(By.XPATH, ".//div[contains(text(), 'Berlaku')]").text.replace('Berlaku hingga ', '')
