@@ -38,9 +38,12 @@ def get_quota_multi(username, password):
         # Delete All Cookies ?
         #driver.delete_all_cookies()
 
-        driver.get("https://www.myorbit.id/login")
+        url_orbit = "https://www.myorbit.id/login"
+        driver.get(url_orbit)
+        #driver.get("https://www.myorbit.id/login")
         delay = 10
 
+        print('Trying to login to ', url_orbit)
         """ Sending Username """
         try:
 #            elem = WebDriverWait(driver, delay).until(
@@ -54,8 +57,10 @@ def get_quota_multi(username, password):
 #            )
             elem.send_keys(username)
             elem.send_keys(Keys.RETURN)
-        except (NoSuchElementException, TimeoutException):
+            print('Sending Username')
+        except (NoSuchElementException, TimeoutException) as error:
             driver.quit()
+            print('Error: ', error)
 
         """ Sending Password """
         try:
@@ -67,12 +72,15 @@ def get_quota_multi(username, password):
             )
             elem.send_keys(password)
             elem.send_keys(Keys.RETURN)
-        except (NoSuchElementException, TimeoutException):
+            print('Sending Password')
+        except (NoSuchElementException, TimeoutException) as error:
             driver.quit()
+            print('Error: ', error)
 
         """ Get Quota Multi Information """
         is_next_page = True
         page_number = 1
+        print('Login Successful. Trying to get information...')
         while is_next_page:
             try:
                 elem = WebDriverWait(driver, delay).until(
