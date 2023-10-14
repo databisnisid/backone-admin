@@ -110,7 +110,7 @@ def get_quota_multi(username, password):
                     print("Next Page is not found!")
 
             
-                if next_page is None:
+                if next_page is not None:
                     print("Current Page:", page_number, "Next Page:", next_page.text)
                     page_number += 1
                     print('Go to Next Page ->', page_number)
