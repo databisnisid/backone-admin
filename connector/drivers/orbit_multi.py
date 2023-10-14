@@ -104,7 +104,7 @@ def get_quota_multi(username, password):
                         print('Found Quota Info in GB: ', quota)
 
                     except (NoSuchElementException, TimeoutException) as error:
-                        print('Error: ', error)
+                        print("Quota INFO is not FOUND! Trying again...")
                         try:
                             quota = element.find_element(By.XPATH, ".//div[contains(text(), 'GB')]").text
                             print('Found Quota Info in GB: ', quota)
