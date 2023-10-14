@@ -88,7 +88,8 @@ def get_quota_multi(username, password):
                 for element in table_elements:
                     msisdn = element.find_element(By.XPATH, ".//div[contains(text(), '628')]").text
                     print('Found MSISDN: ', msisdn)
-                    quota = element.find_element(By.XPATH, ".//div[contains(text(), 'GB')]").text
+                    quota = element.find_element(By.XPATH, ".//div[contains(text(), ' / ')]").text
+                    #quota = element.find_element(By.XPATH, ".//div[contains(text(), 'GB')]").text
                     print('Found Quota Info: ', quota)
                     '''
                     try:
