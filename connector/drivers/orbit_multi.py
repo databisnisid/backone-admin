@@ -108,6 +108,7 @@ def get_quota_multi(username, password):
                 except (NoSuchElementException, TimeoutException):
                     next_page = None
                     print("Next Page is not found!")
+                    is_next_page = False
 
             
                 if next_page is not None:
@@ -117,6 +118,7 @@ def get_quota_multi(username, password):
                     next_page.click()
                 else:
                     is_next_page = False
+                    print('Next Page is not found! Last Page->', page_number)
 
             except (NoSuchElementException, TimeoutException):
                 print("NOT FOUND")
