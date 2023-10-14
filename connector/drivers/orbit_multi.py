@@ -83,7 +83,7 @@ def get_quota_multi(username, password):
 
 
                 table_elements = driver.find_elements(By.XPATH, "//div[contains(text(), '628')]/..")
-                print("FOUND!")
+                print("FOUND MSISDN!")
                 #print(table_elements)
                 for element in table_elements:
                     msisdn = element.find_element(By.XPATH, ".//div[contains(text(), '628')]").text
@@ -102,13 +102,15 @@ def get_quota_multi(username, password):
                     #next_page = driver.find_element(By.XPATH, "//div[contains(@style, 'transform: rotate(180deg)')]/div[contains(@style, 'background-image: url(\"/static/media/icon-arrow-left-red.svg\")')]/..")
                     #next_page = driver.find_element(By.XPATH, "//div[contains(@style, 'transform: rotate(180deg)')]/div[contains(@style, '/static/media/icon-arrow-left-red.svg')]/..")
                     next_page = driver.find_element(By.XPATH, "//div[contains(@class, 'css-1dbjc4n')]/div[contains(@style, 'padding: 4px 8px') and contains(text(), " + str(page_number + 1) + ")]")
+                    print("FOUND Next Page!")
                     #next_page = driver.find_element(By.XPATH, "//div[contains(@class, 'css-1dbjc4n')]/div[contains(@style, 'color: rgb(26, 26, 26); font-family: Poppins-Regular; font-size: 16px; padding: 4px 8px;') and contains(., " + str(page_number) + ")]")
 
                 except (NoSuchElementException, TimeoutException):
                     next_page = None
+                    print("Next Page is not found!")
 
             
-                if next_page:
+                if next_page is None:
                     print("Current Page:", page_number, "Next Page:", next_page.text)
                     page_number += 1
                     print('Go to Next Page ->', page_number)
