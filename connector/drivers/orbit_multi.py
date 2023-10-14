@@ -122,6 +122,7 @@ def get_quota_multi(username, password):
 
             except (NoSuchElementException, TimeoutException):
                 print("NOT FOUND")
+                is_next_page = False
 
         driver.quit()
 
