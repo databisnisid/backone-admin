@@ -87,7 +87,15 @@ def get_quota_multi(username, password):
                 #print(table_elements)
                 for element in table_elements:
                     msisdn = element.find_element(By.XPATH, ".//div[contains(text(), '628')]").text
-                    quota = element.find_element(By.XPATH, ".//div[contains(text(), 'GB')]").text
+                    try:
+                        quota = element.find_element(By.XPATH, ".//div[contains(text(), 'GB')]").text
+                        try:
+                            quota = element.find_element(By.XPATH, ".//div[contains(text(), 'MB')]").text
+                        except (NoSuchElementException, TimeoutException):
+                            quota = None
+
+                    except (NoSuchElementException, TimeoutException):
+                        quota = None
 
                     try:
                         until = element.find_element(By.XPATH, ".//div[contains(text(), 'Berlaku')]").text.replace('Berlaku hingga ', '')
@@ -122,7 +130,7 @@ def get_quota_multi(username, password):
 
             except (NoSuchElementException, TimeoutException):
                 print("NOT FOUND")
-                is_next_page = False
+                #is_next_page = False
 
         driver.quit()
 
