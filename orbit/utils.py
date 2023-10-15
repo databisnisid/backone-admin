@@ -220,7 +220,8 @@ def orbit_stat_worker():
     for orbit in orbits:
         msisdn = re.sub('^0', '', orbit.msisdn)
         quota = quota_int(orbit.quota_current)
-        quota_string = orbit.quota_current
+        #quota_string = orbit.quota_current
+        quota_string = orbit.quota_current + '/' + orbit.quota_total + '/' + orbit.quota_day
         
         OrbitStatQuota.objects.create(
                 msisdn=msisdn, quota=quota, quota_string=quota_string
@@ -231,7 +232,8 @@ def orbit_stat_worker():
     for orbit in orbits:
         msisdn = re.sub('^0', '', orbit.msisdn)
         quota = quota_int(orbit.quota_current)
-        quota_string = orbit.quota_current
+        #quota_string = orbit.quota_current
+        quota_string = orbit.quota_current + '/' + orbit.quota_total + '/' + orbit.quota_day
         
         OrbitStatQuota.objects.create(
                 msisdn=msisdn, quota=quota, quota_string=quota_string
