@@ -221,9 +221,9 @@ def orbit_stat_worker():
         quota_string = ''
         msisdn = re.sub('^0', '', orbit.msisdn)
         quota = quota_int(orbit.quota_current)
-        quota_string += orbit.quota_current if orbit.quota_current
-        quota_string += '/' + orbit.quota_total if orbit.quota_total
-        quota_string += '/' + orbit.quota_day if orbit.quota_day
+        quota_string += orbit.quota_current if orbit.quota_current else ''
+        quota_string += '/' + orbit.quota_total if orbit.quota_total else ''
+        quota_string += '/' + orbit.quota_day if orbit.quota_day else ''
         
         OrbitStatQuota.objects.create(
                 msisdn=msisdn, quota=quota, quota_string=quota_string
@@ -238,9 +238,9 @@ def orbit_stat_worker():
         quota_string = ''
         msisdn = re.sub('^0', '', orbit.msisdn)
         quota = quota_int(orbit.quota_current)
-        quota_string += orbit.quota_current if orbit.quota_current
-        quota_string += '/' + orbit.quota_total if orbit.quota_total
-        quota_string += '/' + orbit.quota_day if orbit.quota_day
+        quota_string += orbit.quota_current if orbit.quota_current else ''
+        quota_string += '/' + orbit.quota_total if orbit.quota_total else ''
+        quota_string += '/' + orbit.quota_day if orbit.quota_day else ''
 
         OrbitStatQuota.objects.create(
                 msisdn=msisdn, quota=quota, quota_string=quota_string
