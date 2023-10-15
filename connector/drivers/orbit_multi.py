@@ -20,8 +20,8 @@ def get_quota_multi(username, password):
 
         print('Use Selenium Server: ', settings.REMOTE_SELENIUM)
         if settings.REMOTE_SELENIUM:
-            driver_options = webdriver.ChromeOptions()
-            #driver_options = webdriver.FirefoxOptions()
+            #driver_options = webdriver.ChromeOptions()
+            driver_options = webdriver.FirefoxOptions()
 
             driver = webdriver.Remote(
                 command_executor=settings.SELENIUM_DOCKER,
