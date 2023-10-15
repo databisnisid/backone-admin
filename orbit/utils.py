@@ -226,6 +226,9 @@ def orbit_stat_worker():
         OrbitStatQuota.objects.create(
                 msisdn=msisdn, quota=quota, quota_string=quota_string
                 )
+        ''' Save Quota Previous Day'''
+        orbit.quota_prev = quota_string
+        orbit.save()
 
     orbits = OrbitMulti.objects.all()
 
@@ -234,9 +237,13 @@ def orbit_stat_worker():
         quota = quota_int(orbit.quota_current)
         #quota_string = orbit.quota_current
         quota_string = orbit.quota_current + '/' + orbit.quota_total + '/' + orbit.quota_day
-        
+
         OrbitStatQuota.objects.create(
                 msisdn=msisdn, quota=quota, quota_string=quota_string
                 )
+
+        ''' Save Quota Previous Day'''
+        orbit.quota_prev = quota_string
+        orbit.save()
 
 

@@ -9,6 +9,7 @@ class Orbit(models.Model):
     quota_total = models.CharField(max_length=20, blank=True, verbose_name='Kuota Total')
     quota_current = models.CharField(max_length=20, blank=True, verbose_name='Kuota Saat Ini')
     quota_day = models.CharField(max_length=20, blank=True, verbose_name='Kuota Hari')
+    quota_prev = models.CharField(max_length=100, blank=True, null=True, verbose_name='Quota Prev')
 
     additional_info = models.TextField(blank=True, null=True, verbose_name='Keterangan')
 
@@ -40,6 +41,7 @@ class OrbitMulti(models.Model):
     quota_total = models.CharField(max_length=20, blank=True, null=True, verbose_name='Kuota Total')
     quota_current = models.CharField(max_length=20, blank=True, null=True, verbose_name='Kuota Saat Ini')
     quota_day = models.CharField(max_length=20, blank=True, null=True, verbose_name='Kuota Hari')
+    quota_prev = models.CharField(max_length=100, blank=True, null=True, verbose_name='Quota Prev')
 
     additional_info = models.TextField(blank=True, null=True, verbose_name='Keterangan')
 
