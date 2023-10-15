@@ -67,6 +67,7 @@ class OrbitMulti(models.Model):
 class OrbitStatQuota(models.Model):
     msisdn = models.CharField(max_length=30, verbose_name='MSISDN')
     quota = models.IntegerField()
+    quota_string = models.CharField(max_length=20, blank=True, null=True)
     created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
 
     class Meta:
