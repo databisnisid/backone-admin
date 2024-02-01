@@ -9,6 +9,9 @@ from django.conf import settings
 from notification.telegram import send_notification_telegram
 
 
+NOTIF_Q_GB = settings.NOTIF_Q_GB
+NOTIF_Q_DAY = settings.NOTIF_Q_DAY
+
 def get_quota_orbit(msisdn):
 
     if msisdn is not None:
@@ -29,8 +32,8 @@ def get_quota_orbit(msisdn):
 def check_quota_orbit(current, day):
     #NOTIF_Q_GB = 5
     #NOTIF_Q_DAY = 5
-    NOTIF_Q_GB = settings.NOTIF_Q_GB
-    NOTIF_Q_DAY = settings.NOTIF_Q_DAY
+    #NOTIF_Q_GB = settings.NOTIF_Q_GB
+    #NOTIF_Q_DAY = settings.NOTIF_Q_DAY
 
     q_split = current.replace("GB", "")
     q_gb = float(q_split)
@@ -80,14 +83,14 @@ def check_quota_orbit_notification_daily():
         description = '\n'.join([msisdn for msisdn in result_gb])
     else:
         description = 'Tidak Ada'
-    send_notification_telegram('Orbit GB kurang dari 5 GB', description)
+    send_notification_telegram('Orbit GB kurang dari ' +  NOTIF_Q_GB + ' GB', description)
 
     if result_day:
         print(result_day)
         description = '\n'.join([msisdn for msisdn in result_day])
     else:
         description = 'Tidak Ada'
-    send_notification_telegram('Orbit DAY kurang dari 5 Hari', description)
+    send_notification_telegram('Orbit DAY kurang dari ' + NOTIF_Q_DAY + ' Hari', description)
 
 
 def get_all_quota_orbit():
@@ -184,14 +187,14 @@ def check_quota_orbit_multi_notification_daily():
         description = '\n'.join([msisdn for msisdn in result_gb])
     else:
         description = 'Tidak Ada'
-    send_notification_telegram('OrbitMulti GB kurang dari 5 GB', description)
+    send_notification_telegram('OrbitMulti GB kurang dari ' + NOTIF_Q_GB + ' GB', description)
 
     if result_day:
         print(result_day)
         description = '\n'.join([msisdn for msisdn in result_day])
     else:
         description = 'Tidak Ada'
-    send_notification_telegram('OrbitMulti DAY kurang dari 5 Hari', description)
+    send_notification_telegram('OrbitMulti DAY kurang dari ' + NOTIF_Q_DAY + ' Hari', description)
 
 
 def check_selenium_working():
