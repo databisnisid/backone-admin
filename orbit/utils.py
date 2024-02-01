@@ -1,9 +1,11 @@
+from os import walk
 import re
 from datetime import datetime, date
 from .models import Orbit, OrbitMulti, OrbitStatQuota
 from connector.drivers import orbit, orbit_multi
 from django.core.exceptions import ObjectDoesNotExist
 from django.utils import timezone
+from django.conf import settings
 from notification.telegram import send_notification_telegram
 
 
@@ -25,8 +27,10 @@ def get_quota_orbit(msisdn):
             print('Object is not found!')
 
 def check_quota_orbit(current, day):
-    NOTIF_Q_GB = 5
-    NOTIF_Q_DAY = 5
+    #NOTIF_Q_GB = 5
+    #NOTIF_Q_DAY = 5
+    NOTIF_Q_GB = settings.NOTIF_Q_GB
+    NOTIF_Q_DAY = settings.NOTIF_Q_DAY
 
     q_split = current.replace("GB", "")
     q_gb = float(q_split)

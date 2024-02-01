@@ -369,3 +369,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 # SSH Paramiko
 SSH_DEFAULT_USER = str(os.getenv('SSH_DEFAULT_USER'))
 SSH_DEFAULT_PASS = str(os.getenv('SSH_DEFAULT_PASS'))
+
+NOTIF_Q_GB = int(os.getenv('NOTIF_Q_GB', 5))
+NOTIF_Q_DAY = int(os.getenv('NOTIF_Q_DAY', 2))
+
