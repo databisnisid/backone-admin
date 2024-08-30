@@ -39,7 +39,7 @@ python-dotenv==0.20.0
 python-telegram-bot==13.12
 pytz==2022.1
 pytz-deprecation-shim==0.1.0.post0
-PyYAML==6.0
+PyYAML==6.0.1
 selenium==4.14.0
 simplejson==3.17.6
 six==1.16.0
