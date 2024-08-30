@@ -1,4 +1,3 @@
-from os import walk
 import poplib
 import email
 from html.parser import HTMLParser
