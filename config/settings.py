@@ -373,3 +373,9 @@ SSH_DEFAULT_PASS = str(os.getenv('SSH_DEFAULT_PASS'))
 NOTIF_Q_GB = int(os.getenv('NOTIF_Q_GB', 5))
 NOTIF_Q_DAY = int(os.getenv('NOTIF_Q_DAY', 2))
 
+# DSC
+DSC_USERNAME = os.getenv('DSC_USERNAME'')
+DSC_EMAIL_ADDRESS = os.getenv('DSC_EMAIL_ADDRESS')
+DSC_EMAIL_PASSWORD = os.getenv('DSC_EMAIL_PASSWORD')
+DSC_EMAIL_HOST = os.getenv('DSC_EMAIL_HOST')
+

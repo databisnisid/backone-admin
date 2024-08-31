@@ -1,6 +1,7 @@
 import poplib
 import email
 from html.parser import HTMLParser
+from django.conf import settings
 
 
 class OtpParser(HTMLParser):
@@ -21,9 +22,9 @@ class OtpParser(HTMLParser):
 
 
 def get_otp_code() -> str:
-    pop_connect = poplib.POP3_SSL('isp.proit.id')
-    pop_connect.user('dpi@semestaterpadu.com')
-    pop_connect.pass_('K0l0r4n2024*')
+    pop_connect = poplib.POP3_SSL(settings.DSC_EMAIL_HOST)
+    pop_connect.user(settings.DSC_EMAIL_ADDRESS)
+    pop_connect.pass_(settings.DSC_EMAIL_PASSWORD)
 
     num_messages = len(pop_connect.list()[1])
 
