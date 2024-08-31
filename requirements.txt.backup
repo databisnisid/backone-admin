@@ -1,5 +1,5 @@
 APScheduler==3.6.3
-asgiref==3.8.1
+asgiref==3.5.2
 async-generator==1.10
 attrs==21.4.0
 Babel==2.10.1
@@ -10,13 +10,13 @@ cffi==1.15.0
 cryptography==37.0.2
 defusedxml==0.7.1
 diff-match-patch==20200713
-Django==4.2.15
+Django==4.0.4
 django-crispy-forms==1.14.0
 django-crontab==0.7.1
 django-dbbackup==4.0.0b0
 django-google-maps==0.13.0
 django-import-export==2.8.0
-django-jazzmin==3.0.0
+django-jazzmin==2.5.0
 django-money==2.1.1
 django-slick-reporting==0.6.3
 django-telegrambot==1.0.1
@@ -50,7 +50,6 @@ tablib==3.2.1
 tornado==6.1
 trio==0.20.0
 trio-websocket==0.9.2
-typing_extensions==4.12.2
 tzdata==2022.1
 tzlocal==4.2
 urllib3==1.26.9

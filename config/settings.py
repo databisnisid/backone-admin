@@ -297,6 +297,8 @@ JAZZMIN_SETTINGS = {
         "orbit.orbitmulti": "fas fa-mobile",
         "statistic": "fas fa-chart-pie",
         "statistic.chart": "fas fa-chart-line",
+        "dsc": "fas fa-wave-square",
+        "dsc.dscdpi": "fas fa-mobile"
     },
     # Icons that are used when one is not manually specified
     "default_icon_parents": "fas fa-chevron-circle-right",

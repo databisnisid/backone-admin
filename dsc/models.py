@@ -29,6 +29,7 @@ class DscDpi(models.Model):
     class Meta:
         managed = True
         db_table = 'dscdpi'
+        verbose_name = 'DPI'
         verbose_name_plural = 'Daftar DPI'
 
     def __str__(self):
