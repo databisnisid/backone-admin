@@ -4,7 +4,7 @@ from backone.models import BackOne
 
 class DscDpi(models.Model):
     msisdn = models.CharField(max_length=30, verbose_name='MSISDN')
-    imei = models.CharField(max_length=30, verbose_name='IMEI')
+    imei = models.CharField(max_length=30, verbose_name='IMEI', blank=True)
     quota_total = models.CharField(max_length=20, blank=True, verbose_name='Kuota Total')
     quota_current = models.CharField(max_length=20, blank=True, verbose_name='Kuota Saat Ini')
     quota_day = models.CharField(max_length=20, blank=True, verbose_name='Kuota Hari')
