@@ -9,7 +9,7 @@ from connector.drivers import pop3
 from time import sleep
 
 
-def get_quota(username: str = settings.DSC_USERNAME, password: str):
+def get_quota(username: str = settings.DSC_USERNAME, password: str = ''):
 
     quota_current = ''
     quota_total = ''
