@@ -32,7 +32,7 @@ class DscDpi(models.Model):
         verbose_name_plural = 'Daftar DPI'
 
     def __str__(self):
-        return '%s(%s/%s-%s)' % (self.msisdn, self.quota_current, self.quota_total, self.quota_day)
+        return '%s(%s/%s)' % (self.msisdn, self.quota_current, self.quota_until)
 
 
 class DscDpiStatQuota(models.Model):

@@ -154,7 +154,10 @@ def search_by_msisdn(driver: webdriver.Firefox, msisdns: list = []) -> dict:
     return result
 
 
-def login_to_dsc(username: str = settings.DSC_USERNAME, password: str = settings.DSC_PASSWORD) -> dict:
+def login_to_dsc(msisdns: list = [], username: str = settings.DSC_USERNAME, password: str = settings.DSC_PASSWORD) -> dict:
+
+    if not len(msisdns):
+        return {}
 
     if username is not None and password is not None:
 
@@ -246,7 +249,7 @@ def login_to_dsc(username: str = settings.DSC_USERNAME, password: str = settings
             elem.click()
             print("Click Check Member")
 
-        msisdns = ['6281117064193', '62811170668622', '6281117064195']
+        #msisdns = ['6281117064193', '62811170668622', '6281117064195']
         result = search_by_msisdn(driver, msisdns)
 
         print('So Farrr...Quit')

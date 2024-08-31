@@ -13,12 +13,14 @@ class DscDpiAdminForm(forms.ModelForm):
         validators=[phone_regex],
         max_length=17
     )
+    """
     imei = forms.CharField(
         label='IMEI',
         widget=forms.TextInput(attrs={
                 'size': 30,
             }),
     )
+    """
 
     class Meta:
         model = DscDpi
@@ -55,7 +57,7 @@ class DscDpiAdmin(admin.ModelAdmin):
     )
     readonly_fields = ['quota_current', 'quota_until',
                        'created_at', 'updated_at']
-    list_display = ['imei', 'msisdn', 'site', 'quota_current', 'quota_until', 'updated_at', 'additional_info', 'error_msg']
+    list_display = ['msisdn', 'site', 'quota_current', 'quota_until', 'updated_at', 'additional_info', 'error_msg']
     search_fields = ('msisdn', 'additional_info')
     #actions = [check_quota]
 
