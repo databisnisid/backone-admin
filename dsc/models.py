@@ -1,7 +1,7 @@
 from django.db import models
 from backone.models import BackOne
 from django.utils.translation import gettext_lazy as _
-
+from datetime import datetime
 
 class DscDpi(models.Model):
     msisdn = models.CharField(max_length=30, verbose_name='MSISDN')
@@ -9,6 +9,8 @@ class DscDpi(models.Model):
     quota_total = models.CharField(max_length=20, blank=True, verbose_name='Kuota Total')
     quota_current = models.CharField(max_length=20, blank=True, verbose_name='Kuota Saat Ini')
     quota_until = models.CharField(max_length=20, blank=True, verbose_name='Kuota Masa Berlaku ')
+    quota_date = models.DateField(_('Berlaku Sampai'), blank=True, null=True)
+    quota_day =models.CharField(_('Kuota Hari'), max_length=20, blank=True, null=True)
     quota_prev = models.CharField(max_length=100, blank=True, null=True, verbose_name='Quota Prev')
 
     additional_info = models.TextField(blank=True, null=True, verbose_name='Keterangan')
@@ -34,6 +36,20 @@ class DscDpi(models.Model):
 
     def __str__(self):
         return '%s(%s/%s)' % (self.msisdn, self.quota_current, self.quota_until)
+
+    def save(self):
+        if self.quota_until != "":
+            date_format = '%d/%m/%Y'
+            try:
+                self.quota_date = datetime.strptime(self.quota_until, date_format)
+
+                delta = self.quota_date - datetime.now()
+                self.quota_day = str(delta.days) + ' Hari'
+
+            except ValueError:
+                pass
+
+        return super(DscDpi, self).save()
 
 
 class DscDpiStatQuota(models.Model):

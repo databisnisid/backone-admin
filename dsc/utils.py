@@ -14,6 +14,7 @@ def get_quota():
     if result:
         for msisdn in msisdns:
             member = members.get(msisdn=msisdn)
+            member.quota_total = '5 GB'
             quota_current = result[msisdn]['quota_value']
             if quota_current != "":
                 member.quota_prev = member.quota_current

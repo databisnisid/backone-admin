@@ -206,7 +206,7 @@ def login_to_dsc(msisdns: list = [], username: str = settings.DSC_USERNAME, pass
         Function to get Code from email
         Use poplib 
         """
-        for i in range(1,10):
+        for i in range(1,25):
             print("Trying get code #" + str(i))
             otp_code = pop3.get_otp_code()
             if otp_code != "":

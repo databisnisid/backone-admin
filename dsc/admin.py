@@ -47,7 +47,7 @@ class DscDpiAdmin(admin.ModelAdmin):
         ('MSISDN', {
             'classes': ('collapse',),
             'fields': ('msisdn',
-                       ('quota_current', 'quota_until', 'updated_at')
+                       ('quota_current', 'quota_day', 'quota_date', 'updated_at')
                        )
         }),
         ('Site dan Keterangan', {
@@ -55,9 +55,9 @@ class DscDpiAdmin(admin.ModelAdmin):
             'fields': ('site', 'additional_info', 'error_msg')
         }),
     )
-    readonly_fields = ['quota_current', 'quota_until',
+    readonly_fields = ['quota_current', 'quota_until', 'quota_date', 'quota_day',
                        'created_at', 'updated_at']
-    list_display = ['msisdn', 'site', 'quota_current', 'quota_until', 'updated_at', 'additional_info', 'error_msg']
+    list_display = ['msisdn', 'site', 'quota_current', 'quota_day', 'updated_at', 'additional_info', 'error_msg']
     search_fields = ('msisdn', 'additional_info')
     #actions = [check_quota]
 
