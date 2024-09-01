@@ -3,6 +3,7 @@ from django.http import JsonResponse
 from django.core.serializers import serialize
 from django.core.exceptions import ObjectDoesNotExist
 from .models import Orbit, OrbitMulti
+from dsc.models import DscDpi
 
 
 def get_quota_all_orbit(request):
@@ -25,6 +26,11 @@ def get_quota(request, msisdn):
 
     if not qs:
         qs = OrbitMulti.objects.filter(msisdn__contains=msisdn).values(
+                'id', 'msisdn', 'quota_total', 'quota_current', 'quota_day', 'quota_prev', 'updated_at'
+                )
+
+    if not qs:
+        qs = DscDpi.objects.filter(msisdn__contains=msisdn).values(
                 'id', 'msisdn', 'quota_total', 'quota_current', 'quota_day', 'quota_prev', 'updated_at'
                 )
 
