@@ -26,9 +26,9 @@ def get_quota():
                 member.quota_until = quota_until[1]
 
             member.error_msg = result[msisdn]['error_msg']
-            if quota_current != "" and quota_date != "":
-                member.save()
-                print("Save:", msisdn)
+            #if quota_current != "" and quota_date != "":
+            member.save()
+            #print("Save:", msisdn)
 
 
 

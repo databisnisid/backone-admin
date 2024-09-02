@@ -13,7 +13,7 @@ from time import sleep
 def check_for_error(driver: webdriver.Firefox) -> str:
 
     delay = 1
-    error_msg  = ""
+    error_msg = ""
 
     # First Pop Up - Oops!
     try:
@@ -109,7 +109,7 @@ def search_by_msisdn(driver: webdriver.Firefox, msisdns: list = []) -> dict:
         return {}
 
     delay: int = 30
-    error_msg: str = None
+    error_msg: str = ""
 
     result = {}
 
