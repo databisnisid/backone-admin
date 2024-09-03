@@ -160,6 +160,7 @@ def login_to_dsc(msisdns: list = [], username: str = settings.DSC_USERNAME, pass
         return {}
 
     # Ensure no email
+    print("Delete All Email...")
     pop3.delete_all_email()
 
     if username is not None and password is not None:
