@@ -21,6 +21,16 @@ class OtpParser(HTMLParser):
             self.is_otp = False
 
 
+def delete_all_email() -> None:
+    pop_connect = poplib.POP3_SSL(settings.DSC_EMAIL_HOST)
+    pop_connect.user(settings.DSC_EMAIL_ADDRESS)
+    pop_connect.pass_(settings.DSC_EMAIL_PASSWORD)
+
+    num_messages = len(pop_connect.list()[1])
+    for i in range(num_messages):
+        pop_connect.dele(i+1)
+
+
 def get_otp_code() -> str:
     pop_connect = poplib.POP3_SSL(settings.DSC_EMAIL_HOST)
     pop_connect.user(settings.DSC_EMAIL_ADDRESS)

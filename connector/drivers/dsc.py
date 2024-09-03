@@ -159,6 +159,9 @@ def login_to_dsc(msisdns: list = [], username: str = settings.DSC_USERNAME, pass
     if not len(msisdns):
         return {}
 
+    # Ensure no email
+    pop3.delete_all_email()
+
     if username is not None and password is not None:
 
         print('Use Selenium Server: ', settings.REMOTE_SELENIUM)
