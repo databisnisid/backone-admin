@@ -5,8 +5,9 @@ from datetime import datetime
 
 class Starlink(models.Model):
     service_line_number = models.CharField(max_length=50, verbose_name=_('Service Line Number'))
-    quota_total = models.CharField(max_length=20, blank=True, verbose_name='Kuota Total')
+    quota_total = models.CharField(max_length=20, blank=True, verbose_name='Kuota Total', default='40 GB')
     quota_current = models.CharField(max_length=20, blank=True, verbose_name='Kuota Saat Ini')
+    quota_usage = models.CharField(max_length=20, blank=True, verbose_name='Kuota Usage')
     quota_until = models.CharField(max_length=20, blank=True, verbose_name='Kuota Masa Berlaku ')
     quota_date = models.DateField(_('Berlaku Sampai'), blank=True, null=True)
     quota_day =models.CharField(_('Kuota Hari'), max_length=20, blank=True, null=True)

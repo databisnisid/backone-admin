@@ -31,7 +31,7 @@ class StarlinkAdmin(admin.ModelAdmin):
         ('MSISDN', {
             'classes': ('collapse',),
             'fields': ('service_line_number',
-                       ('quota_current', 'quota_day', 'quota_date', 'updated_at')
+                       ('quota_usage', 'quota_day', 'quota_date', 'updated_at')
                        )
         }),
         ('Site dan Keterangan', {
@@ -40,8 +40,8 @@ class StarlinkAdmin(admin.ModelAdmin):
         }),
     )
     readonly_fields = ['quota_current', 'quota_until', 'quota_date', 'quota_day',
-                       'created_at', 'updated_at']
-    list_display = ['service_line_number', 'site', 'quota_current', 'quota_day', 'updated_at', 'additional_info']
+                       'quota_usage', 'created_at', 'updated_at']
+    list_display = ['service_line_number', 'site', 'quota_usage', 'quota_day', 'updated_at', 'additional_info']
     search_fields = ('service_line_number', 'additional_info')
     #actions = [check_quota]
 

@@ -36,7 +36,7 @@ SELENIUM_DOCKER = str(os.getenv('SELENIUM_DOCKER'))
 PRODUCTION = os.getenv('PRODUCTION', 'False').lower() in ('true', '1', 't')
 DEBUG = os.getenv('DEBUG', 'False').lower() in ('true', '1', 't')
 
-ALLOWED_HOSTS = [str(os.getenv('ALLOWED_HOSTS'))]
+ALLOWED_HOSTS = [str(os.getenv('ALLOWED_HOSTS', '*'))]
 
 
 # Application definition
@@ -299,7 +299,9 @@ JAZZMIN_SETTINGS = {
         "statistic": "fas fa-chart-pie",
         "statistic.chart": "fas fa-chart-line",
         "dsc": "fas fa-wave-square",
-        "dsc.dscdpi": "fas fa-mobile"
+        "dsc.dscdpi": "fas fa-mobile",
+        "telkomsat": "fas fa-satellite-dish",
+        "telkomsat.starlink": "fas fa-satellite"
     },
     # Icons that are used when one is not manually specified
     "default_icon_parents": "fas fa-chevron-circle-right",
