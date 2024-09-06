@@ -27,7 +27,10 @@ def delete_all_email() -> None:
     pop_connect.pass_(settings.DSC_EMAIL_PASSWORD)
 
     num_messages = len(pop_connect.list()[1])
+    print("Found number of email:", num_messages)
+
     for i in range(num_messages):
+        print("Delete email number: ", i)
         pop_connect.dele(i+1)
 
 
