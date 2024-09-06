@@ -382,4 +382,9 @@ DSC_PASSWORD = os.getenv('DSC_PASSWORD')
 DSC_EMAIL_ADDRESS = os.getenv('DSC_EMAIL_ADDRESS')
 DSC_EMAIL_PASSWORD = os.getenv('DSC_EMAIL_PASSWORD')
 DSC_EMAIL_HOST = os.getenv('DSC_EMAIL_HOST')
+DSC_URL = os.getenv('DSC_URL', 'https://dsc.telkomsel.com')
 
+# TELKOMSAT
+TELKOMSAT_USERNAME = os.getenv('TELKOMSAT_USERNAME')
+TELKOMSAT_PASSWORD = os.getenv('TELKOMSAT_PASSWORD')
+TELKOMSAT_URL = os.getenv('TELKOMSAT_URL', 'https://starmon1.telkomsat.co.id')
