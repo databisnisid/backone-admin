@@ -1,10 +1,13 @@
+from enum import unique
 from django.db import models
 from backone.models import BackOne
 from django.utils.translation import gettext_lazy as _
 from datetime import datetime
 
 class Starlink(models.Model):
-    service_line_number = models.CharField(max_length=50, verbose_name=_('Service Line Number'))
+    service_line_number = models.CharField(max_length=50, unique=True, verbose_name=_('Service Line Number'))
+    kit_serialnumber = models.CharField(max_length=50, blank=True, verbose_name=_('KIT Serial Number'))
+    quota_total = models.CharField(max_length=20, blank=True, verbose_name='Kuota Total', default='40 GB')
     quota_total = models.CharField(max_length=20, blank=True, verbose_name='Kuota Total', default='40 GB')
     quota_current = models.CharField(max_length=20, blank=True, verbose_name='Kuota Saat Ini')
     quota_usage = models.CharField(max_length=20, blank=True, verbose_name='Kuota Usage')
