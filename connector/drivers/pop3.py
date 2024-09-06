@@ -33,6 +33,8 @@ def delete_all_email() -> None:
         print("Delete email number: ", i)
         pop_connect.dele(i+1)
 
+    pop_connect.quit()
+
 
 def get_otp_code() -> str:
     pop_connect = poplib.POP3_SSL(settings.DSC_EMAIL_HOST)
