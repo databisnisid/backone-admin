@@ -27,7 +27,7 @@ def get_quota():
             for data in result['data']:
                 quota_usage_float += float(data['dataUsage'])
 
-            starlink.quota_usage = str(quota_usage_float) + ' GB'
+            starlink.quota_usage = str(round(quota_usage_float, 2)) + ' GB'
             starlink.save()
 
         print(quota_usage_float)
