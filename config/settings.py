@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'backone',
     'orbit',
     'dsc',
+    'telkomsat',
     'connector',
     'connection',
     'service',
