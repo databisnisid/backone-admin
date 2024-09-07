@@ -15,7 +15,7 @@ class ConnectionType(models.Model):
         return '%s' % self.name
 
     def save(self, *args, **kwargs):
-        self.name = self.name.upper()
+        self.name = str(self.name).upper()
         return super(ConnectionType, self).save(*args, **kwargs)
 
 
@@ -33,5 +33,5 @@ class ConnectionStatus(models.Model):
         return '%s' % self.name
 
     def save(self, *args, **kwargs):
-        self.name = self.name.upper()
+        self.name = str(self.name).upper()
         return super(ConnectionStatus, self).save(*args, **kwargs)
