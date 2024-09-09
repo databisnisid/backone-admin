@@ -3,6 +3,7 @@ from django.db import models
 from backone.models import BackOne
 from django.utils.translation import gettext_lazy as _
 from datetime import datetime
+from django.utils.timezone import now
 
 class Starlink(models.Model):
     service_line_number = models.CharField(max_length=50, unique=True, verbose_name=_('Service Line Number'))
@@ -15,6 +16,7 @@ class Starlink(models.Model):
     quota_date = models.DateField(_('Berlaku Sampai'), blank=True, null=True)
     quota_day =models.CharField(_('Kuota Hari'), max_length=20, blank=True, null=True)
     quota_prev = models.CharField(max_length=100, blank=True, null=True, verbose_name='Quota Prev')
+    activation_date = models.DateField(verbose_name=_('Tanggal Aktivasi'), blank=True, default=now())
 
     additional_info = models.TextField(blank=True, null=True, verbose_name='Keterangan')
 
