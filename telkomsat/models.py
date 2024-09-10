@@ -53,4 +53,14 @@ class Starlink(models.Model):
         delta = self.quota_date - now
         self.quota_day = str(delta.days) + ' Hari'
 
+        if self.quota_usage:
+            quota_split = self.quota_usage.split(' ')
+            quota_usage = float(quota_split[0])
+
+            quota_split = self.quota_total.split(' ')
+            quota_total = float(quota_split[0])
+            quota_current = round(quota_total - quota_usage, 2)
+            self.quota_current = str(quota_current) + ' GB'
+
+
         return super(Starlink, self).save()
