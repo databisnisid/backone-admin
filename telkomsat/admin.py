@@ -30,7 +30,7 @@ class StarlinkAdmin(admin.ModelAdmin):
     fieldsets = (
         ('MSISDN', {
             'classes': ('collapse',),
-            'fields': ('service_line_number', 'kit_serialnumber', 'activation_date',
+            'fields': ('msisdn', 'kit_serialnumber', 'activation_date',
                        ('quota_usage', 'quota_date', 'updated_at')
                        )
         }),
@@ -41,7 +41,7 @@ class StarlinkAdmin(admin.ModelAdmin):
     )
     readonly_fields = ['quota_current', 'quota_until', 'quota_date', 'quota_day',
                        'quota_usage', 'created_at', 'updated_at']
-    list_display = ['service_line_number', 'kit_serialnumber', 'site', 'quota_usage', 'activation_date', 'updated_at', 'additional_info']
+    list_display = ['msisdn', 'kit_serialnumber', 'site', 'quota_usage', 'activation_date', 'updated_at', 'additional_info']
     search_fields = ('service_line_number', 'additional_info')
     #actions = [check_quota]
 

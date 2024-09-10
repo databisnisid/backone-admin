@@ -6,7 +6,8 @@ from datetime import datetime
 from django.utils.timezone import now
 
 class Starlink(models.Model):
-    service_line_number = models.CharField(max_length=50, unique=True, verbose_name=_('Service Line Number'))
+    #service_line_number = models.CharField(max_length=50, unique=True, verbose_name=_('Service Line Number'))
+    msisdn = models.CharField(max_length=50, unique=True, verbose_name=_('Service Line Number'))
     kit_serialnumber = models.CharField(max_length=50, blank=True, verbose_name=_('KIT Serial Number'))
     quota_total = models.CharField(max_length=20, blank=True, verbose_name='Kuota Total', default='40 GB')
     quota_total = models.CharField(max_length=20, blank=True, verbose_name='Kuota Total', default='40 GB')
@@ -39,6 +40,6 @@ class Starlink(models.Model):
         verbose_name_plural = 'Starlinks'
 
     def __str__(self):
-        return '%s(%s/%s)' % (self.service_line_number, self.quota_current, self.quota_until)
+        return '%s(%s/%s)' % (self.msisdn, self.quota_current, self.quota_until)
 
 
