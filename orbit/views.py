@@ -4,6 +4,7 @@ from django.core.serializers import serialize
 from django.core.exceptions import ObjectDoesNotExist
 from .models import Orbit, OrbitMulti
 from dsc.models import DscDpi
+from telkomsat.models import Starlink
 
 
 def get_quota_all_orbit(request):
@@ -34,6 +35,10 @@ def get_quota(request, msisdn):
                 'id', 'msisdn', 'quota_total', 'quota_current', 'quota_day', 'quota_prev', 'updated_at', 'quota_type'
                 )
 
+    if not qs:
+        qs = Starlink.objects.filter(msisdn__contains=msisdn).values(
+                'id', 'msisdn', 'quota_total', 'quota_current', 'quota_day', 'quota_prev', 'updated_at', 'quota_type'
+                )
     print(msisdn, qs)
     return JsonResponse(list(qs), safe=False)
 
