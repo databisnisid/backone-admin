@@ -6,7 +6,7 @@ from datetime import datetime
 class DscDpi(models.Model):
     msisdn = models.CharField(max_length=30, verbose_name='MSISDN')
     imei = models.CharField(max_length=30, verbose_name='IMEI', blank=True)
-    quota_total = models.CharField(max_length=20, blank=True, verbose_name='Kuota Total')
+    quota_total = models.CharField(max_length=20, blank=True, verbose_name='Kuota Total', default='5 GB')
     quota_current = models.CharField(max_length=20, blank=True, verbose_name='Kuota Saat Ini')
     quota_until = models.CharField(max_length=20, blank=True, verbose_name='Kuota Masa Berlaku ')
     quota_date = models.DateField(_('Berlaku Sampai'), blank=True, null=True)
@@ -15,6 +15,7 @@ class DscDpi(models.Model):
 
     additional_info = models.TextField(blank=True, null=True, verbose_name='Keterangan')
     error_msg = models.CharField(_('Error Message'), max_length=100, blank=True, null=True)
+    quota_type = models.CharField(max_length=20, default='dpi', verbose_name='Quota Type')
 
 
     site = models.OneToOneField(

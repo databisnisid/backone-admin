@@ -10,7 +10,6 @@ class Starlink(models.Model):
     msisdn = models.CharField(max_length=50, unique=True, verbose_name=_('Service Line Number'))
     kit_serialnumber = models.CharField(max_length=50, blank=True, verbose_name=_('KIT Serial Number'))
     quota_total = models.CharField(max_length=20, blank=True, verbose_name='Kuota Total', default='40 GB')
-    quota_total = models.CharField(max_length=20, blank=True, verbose_name='Kuota Total', default='40 GB')
     quota_current = models.CharField(max_length=20, blank=True, verbose_name='Kuota Saat Ini')
     quota_usage = models.CharField(max_length=20, blank=True, verbose_name='Kuota Usage')
     quota_until = models.CharField(max_length=20, blank=True, verbose_name='Kuota Masa Berlaku ')
@@ -20,6 +19,7 @@ class Starlink(models.Model):
     activation_date = models.DateField(verbose_name=_('Tanggal Aktivasi'), blank=True, default=now())
 
     additional_info = models.TextField(blank=True, null=True, verbose_name='Keterangan')
+    quota_type = models.CharField(max_length=20, default='starlink', verbose_name='Quota Type')
 
 
     site = models.OneToOneField(
@@ -41,5 +41,4 @@ class Starlink(models.Model):
 
     def __str__(self):
         return '%s(%s/%s)' % (self.msisdn, self.quota_current, self.quota_until)
-
 
