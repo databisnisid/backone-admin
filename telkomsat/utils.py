@@ -17,7 +17,7 @@ def get_quota():
         ft_epoch = int(first_time.timestamp() * 1000)
 
         
-        result = get_data_usage(starlink.service_line_number, ft_epoch, ct_epoch)
+        result = get_data_usage(starlink.msisdn, ft_epoch, ct_epoch)
 
         print(result)
 
