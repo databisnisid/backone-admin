@@ -74,7 +74,7 @@ def check_for_error(driver: webdriver.Firefox, delay: int = 5) -> str:
     return error_msg
 
 
-def wait_for_loader(driver: webdriver.Firefox, delay: int = 60):
+def wait_for_loader(driver: webdriver.Firefox, delay: int = 300):
 
     try:
         WebDriverWait(driver, delay).until(
@@ -86,7 +86,7 @@ def wait_for_loader(driver: webdriver.Firefox, delay: int = 60):
         driver.quit()
 
 
-def get_quota_value(driver: webdriver.Firefox, delay: int = 60) -> str:
+def get_quota_value(driver: webdriver.Firefox, delay: int = 300) -> str:
 
     elem = find_element_presence(
         driver,
@@ -103,7 +103,7 @@ def get_quota_value(driver: webdriver.Firefox, delay: int = 60) -> str:
     return quota_value
 
 
-def get_quota_date(driver: webdriver.Firefox, delay: int = 60) -> str:
+def get_quota_date(driver: webdriver.Firefox, delay: int = 300) -> str:
 
     elem = find_element_presence(
         driver,
@@ -174,6 +174,7 @@ def login_to_dsc(
     msisdns: list = [],
     username: str = settings.DSC_USERNAME,
     password: str = settings.DSC_PASSWORD,
+    delay: int = 300,
 ) -> dict:
 
     if not len(msisdns):
@@ -196,7 +197,6 @@ def login_to_dsc(
             driver = webdriver.Firefox()
 
         driver.get("https://dsc.telkomsel.com")
-        delay = 60
 
         """ Sending Username """
         elem = find_element_presence(
