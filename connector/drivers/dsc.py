@@ -223,7 +223,7 @@ def login_to_dsc(
         Function to get Code from email
         Use poplib 
         """
-        for i in range(1, 25):
+        for i in range(1, 120):
             print("Trying get code #" + str(i))
             otp_code = pop3.get_otp_code()
             if otp_code != "":
