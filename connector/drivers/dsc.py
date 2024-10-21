@@ -174,6 +174,8 @@ def login_to_dsc(
     msisdns: list = [],
     username: str = settings.DSC_USERNAME,
     password: str = settings.DSC_PASSWORD,
+    email_address: str = settings.DSC_EMAIL_ADDRESS,
+    email_password: str = settings.DSC_EMAIL_PASSWORD,
     delay: int = 300,
 ) -> dict:
 
@@ -182,9 +184,10 @@ def login_to_dsc(
 
     # Ensure no email
     print("Delete All Email...")
-    pop3.delete_all_email()
+    pop3.delete_all_email(email_address, email_password)
 
-    if username is not None and password is not None:
+    # if username is not None and password is not None:
+    if username is not None:
 
         print("Use Selenium Server: ", settings.REMOTE_SELENIUM)
         if settings.REMOTE_SELENIUM:
@@ -225,7 +228,7 @@ def login_to_dsc(
         """
         for i in range(1, 120):
             print("Trying get code #" + str(i))
-            otp_code = pop3.get_otp_code()
+            otp_code = pop3.get_otp_code(email_address, email_password)
             if otp_code != "":
                 print("OTP Code:", otp_code)
                 break

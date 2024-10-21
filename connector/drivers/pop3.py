@@ -12,7 +12,7 @@ class OtpParser(HTMLParser):
 
     def handle_starttag(self, tag, attrs):
         attrs = dict(attrs)
-        if tag == 'div' and attrs.get('class') == 'otp':
+        if tag == "div" and attrs.get("class") == "otp":
             self.is_otp = True
 
     def handle_data(self, data):
@@ -21,40 +21,50 @@ class OtpParser(HTMLParser):
             self.is_otp = False
 
 
-def delete_all_email() -> None:
+def delete_all_email(
+    email_address: str = settings.DSC_EMAIL_ADDRESS,
+    email_password: str = settings.DSC_EMAIL_PASSWORD,
+) -> None:
     pop_connect = poplib.POP3_SSL(settings.DSC_EMAIL_HOST)
-    pop_connect.user(settings.DSC_EMAIL_ADDRESS)
-    pop_connect.pass_(settings.DSC_EMAIL_PASSWORD)
+    # pop_connect.user(settings.DSC_EMAIL_ADDRESS)
+    # pop_connect.pass_(settings.DSC_EMAIL_PASSWORD)
+    pop_connect.user(email_address)
+    pop_connect.pass_(email_password)
 
     num_messages = len(pop_connect.list()[1])
     print("Found number of email:", num_messages)
 
     for i in range(num_messages):
         print("Delete email number: ", i)
-        pop_connect.dele(i+1)
+        pop_connect.dele(i + 1)
 
     pop_connect.quit()
 
 
-def get_otp_code() -> str:
+def get_otp_code(
+    email_address: str = settings.DSC_EMAIL_ADDRESS,
+    email_password: str = settings.DSC_EMAIL_PASSWORD,
+) -> str:
     pop_connect = poplib.POP3_SSL(settings.DSC_EMAIL_HOST)
-    pop_connect.user(settings.DSC_EMAIL_ADDRESS)
-    pop_connect.pass_(settings.DSC_EMAIL_PASSWORD)
+    # pop_connect.user(settings.DSC_EMAIL_ADDRESS)
+    # pop_connect.pass_(settings.DSC_EMAIL_PASSWORD)
+    pop_connect.user(email_address)
+    pop_connect.pass_(email_password)
 
     num_messages = len(pop_connect.list()[1])
 
     otp_code = ""
 
     for i in range(num_messages):
-        raw_email  = b"\n".join(pop_connect.retr(i+1)[1])
+        raw_email = b"\n".join(pop_connect.retr(i + 1)[1])
         parsed_email = email.message_from_bytes(raw_email)
-        #print(parsed_email.keys())
+        # print(parsed_email.keys())
 
         # Delete email
-        pop_connect.dele(i+1)
+        pop_connect.dele(i + 1)
 
-        if parsed_email['Subject'] == 'Code Verification':
-            print('Get Email:', parsed_email['Subject'])
+        if parsed_email["Subject"] == "Code Verification":
+            print("Get Email:", parsed_email["Subject"])
             for part in parsed_email.walk():
                 if part.get_content_type():
                     body = part.get_payload(decode=True)
@@ -65,4 +75,3 @@ def get_otp_code() -> str:
     pop_connect.quit()
 
     return otp_code
-

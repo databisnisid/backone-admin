@@ -1,18 +1,17 @@
 from django.contrib import admin
 from django import forms
-from .models import DscDpi
+from .models import DscDpi, DscDpiProit
 from django.core.validators import RegexValidator
-#from .utils import get_all_quota_orbit_multi, get_quota_orbit
+
+# from .utils import get_all_quota_orbit_multi, get_quota_orbit
 
 
 class DscDpiAdminForm(forms.ModelForm):
-    phone_regex = RegexValidator(regex=r'628([1-9])\d{7,14}',
-                                 message="Nomor harus dalam format: '62899999999'. Minimal 10 dan maximal 16 digits.")
-    msisdn = forms.CharField(
-        label='MSISDN',
-        validators=[phone_regex],
-        max_length=17
+    phone_regex = RegexValidator(
+        regex=r"628([1-9])\d{7,14}",
+        message="Nomor harus dalam format: '62899999999'. Minimal 10 dan maximal 16 digits.",
     )
+    msisdn = forms.CharField(label="MSISDN", validators=[phone_regex], max_length=17)
     """
     imei = forms.CharField(
         label='IMEI',
@@ -24,7 +23,28 @@ class DscDpiAdminForm(forms.ModelForm):
 
     class Meta:
         model = DscDpi
-        fields = '__all__'
+        fields = "__all__"
+
+
+class DscDpiProitAdminForm(forms.ModelForm):
+    phone_regex = RegexValidator(
+        regex=r"628([1-9])\d{7,14}",
+        message="Nomor harus dalam format: '62899999999'. Minimal 10 dan maximal 16 digits.",
+    )
+    msisdn = forms.CharField(label="MSISDN", validators=[phone_regex], max_length=17)
+    """
+    imei = forms.CharField(
+        label='IMEI',
+        widget=forms.TextInput(attrs={
+                'size': 30,
+            }),
+    )
+    """
+
+    class Meta:
+        model = DscDpiProit
+        fields = "__all__"
+
 
 """
 @admin.action(description='Check Quota Orbit ke myorbit.id')
@@ -40,27 +60,93 @@ def check_quota_multi(modeladmin, request, queryset):
 
 class DscDpiAdmin(admin.ModelAdmin):
     form = DscDpiAdminForm
-    #fields = ['username', 'password', 'msisdn', 'imei',
+    # fields = ['username', 'password', 'msisdn', 'imei',
     #          'quota_total', 'quota_current', 'quota_day',]
     #          #'created_at', 'updated_at']
     fieldsets = (
-        ('MSISDN', {
-            'classes': ('collapse',),
-            'fields': ('msisdn',
-                       ('quota_current', 'quota_day', 'quota_date', 'updated_at')
-                       )
-        }),
-        ('Site dan Keterangan', {
-            'classes': ('collapse',),
-            'fields': ('site', 'additional_info', 'error_msg')
-        }),
+        (
+            "MSISDN",
+            {
+                "classes": ("collapse",),
+                "fields": (
+                    "msisdn",
+                    ("quota_current", "quota_day", "quota_date", "updated_at"),
+                ),
+            },
+        ),
+        (
+            "Site dan Keterangan",
+            {
+                "classes": ("collapse",),
+                "fields": ("site", "additional_info", "error_msg"),
+            },
+        ),
     )
-    readonly_fields = ['quota_current', 'quota_until', 'quota_date', 'quota_day',
-                       'created_at', 'updated_at']
-    list_display = ['msisdn', 'site', 'quota_current', 'quota_day', 'updated_at', 'additional_info', 'error_msg']
-    search_fields = ('msisdn', 'additional_info')
-    #actions = [check_quota]
+    readonly_fields = [
+        "quota_current",
+        "quota_until",
+        "quota_date",
+        "quota_day",
+        "created_at",
+        "updated_at",
+    ]
+    list_display = [
+        "msisdn",
+        "site",
+        "quota_current",
+        "quota_day",
+        "updated_at",
+        "additional_info",
+        "error_msg",
+    ]
+    search_fields = ("msisdn", "additional_info")
+    # actions = [check_quota]
+
+
+class DscDpiProitAdmin(admin.ModelAdmin):
+    form = DscDpiProitAdminForm
+    # fields = ['username', 'password', 'msisdn', 'imei',
+    #          'quota_total', 'quota_current', 'quota_day',]
+    #          #'created_at', 'updated_at']
+    fieldsets = (
+        (
+            "MSISDN",
+            {
+                "classes": ("collapse",),
+                "fields": (
+                    "msisdn",
+                    ("quota_current", "quota_day", "quota_date", "updated_at"),
+                ),
+            },
+        ),
+        (
+            "Site dan Keterangan",
+            {
+                "classes": ("collapse",),
+                "fields": ("site", "additional_info", "error_msg"),
+            },
+        ),
+    )
+    readonly_fields = [
+        "quota_current",
+        "quota_until",
+        "quota_date",
+        "quota_day",
+        "created_at",
+        "updated_at",
+    ]
+    list_display = [
+        "msisdn",
+        "site",
+        "quota_current",
+        "quota_day",
+        "updated_at",
+        "additional_info",
+        "error_msg",
+    ]
+    search_fields = ("msisdn", "additional_info")
+    # actions = [check_quota]
 
 
 admin.site.register(DscDpi, DscDpiAdmin)
-
+admin.site.register(DscDpiProit, DscDpiProitAdmin)

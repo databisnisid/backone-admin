@@ -1,3 +1,4 @@
+from warnings import warn
 from django.db import models
 from backone.models import BackOne
 from django.utils.translation import gettext_lazy as _
@@ -59,6 +60,17 @@ class DscDpi(models.Model):
                 pass
 
         return super(DscDpi, self).save()
+
+
+class DscDpiProit(DscDpi):
+    class Meta:
+        managed = True
+        db_table = "dscdpi_proit"
+        verbose_name = "DPI Proit"
+        verbose_name_plural = "Daftar DPI Proit"
+
+    def __str__(self):
+        return "%s(%s/%s)" % (self.msisdn, self.quota_current, self.quota_until)
 
 
 class DscDpiStatQuota(models.Model):
