@@ -62,7 +62,6 @@ class DscDpi(models.Model):
         return super(DscDpi, self).save()
 
 
-"""
 class DscDpiProit(models.Model):
     msisdn = models.CharField(max_length=30, verbose_name="MSISDN", unique=True)
     imei = models.CharField(max_length=30, verbose_name="IMEI", blank=True)
@@ -104,7 +103,6 @@ class DscDpiProit(models.Model):
 
     def __str__(self):
         return "%s(%s/%s)" % (self.msisdn, self.quota_current, self.quota_until)
-"""
 
 
 class DscDpiStatQuota(models.Model):

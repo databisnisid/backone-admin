@@ -1,4 +1,4 @@
-from .models import DscDpi  # , DscDpiProit
+from .models import DscDpi, DscDpiProit
 from connector.drivers.dsc import login_to_dsc
 from django.conf import settings
 
@@ -32,7 +32,6 @@ def get_quota():
             # print("Save:", msisdn)
 
 
-"""
 def get_quota_proit():
 
     members = DscDpiProit.objects.all()
@@ -66,4 +65,3 @@ def get_quota_proit():
             # if quota_current != "" and quota_date != "":
             member.save()
             # print("Save:", msisdn)
-"""
