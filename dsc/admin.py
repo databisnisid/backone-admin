@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django import forms
-from .models import DscDpi, DscDpiProit
+from .models import DscDpi  # , DscDpiProit
 from django.core.validators import RegexValidator
 
 # from .utils import get_all_quota_orbit_multi, get_quota_orbit
@@ -26,24 +26,18 @@ class DscDpiAdminForm(forms.ModelForm):
         fields = "__all__"
 
 
+"""
 class DscDpiProitAdminForm(forms.ModelForm):
     phone_regex = RegexValidator(
         regex=r"628([1-9])\d{7,14}",
         message="Nomor harus dalam format: '62899999999'. Minimal 10 dan maximal 16 digits.",
     )
     msisdn = forms.CharField(label="MSISDN", validators=[phone_regex], max_length=17)
-    """
-    imei = forms.CharField(
-        label='IMEI',
-        widget=forms.TextInput(attrs={
-                'size': 30,
-            }),
-    )
-    """
 
     class Meta:
         model = DscDpiProit
         fields = "__all__"
+"""
 
 
 """
@@ -103,6 +97,7 @@ class DscDpiAdmin(admin.ModelAdmin):
     # actions = [check_quota]
 
 
+"""
 class DscDpiProitAdmin(admin.ModelAdmin):
     form = DscDpiProitAdminForm
     # fields = ['username', 'password', 'msisdn', 'imei',
@@ -146,7 +141,8 @@ class DscDpiProitAdmin(admin.ModelAdmin):
     ]
     search_fields = ("msisdn", "additional_info")
     # actions = [check_quota]
+"""
 
 
 admin.site.register(DscDpi, DscDpiAdmin)
-admin.site.register(DscDpiProit, DscDpiProitAdmin)
+# admin.site.register(DscDpiProit, DscDpiProitAdmin)
