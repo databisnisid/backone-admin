@@ -18,15 +18,22 @@ def dbbackup_job():
         pass
 
 
-def get_all_quota():
-    # Telkomsat
-    starlink_gq()
-    sleep(300)
+def get_all_quota_dsc():
     # DSC
     dsc_gq()
     sleep(300)
-    # DSC Proit
     dscproit_gq()
-    sleep(300)
+
+
+def get_all_quota():
+    # Telkomsat
+    starlink_gq()
+    # sleep(300)
+    # DSC
+    # dsc_gq()
+    # sleep(300)
+    # DSC Proit
+    # dscproit_gq()
+    # sleep(300)
     # Orbit
     CRON_get_all_quota_orbit()
