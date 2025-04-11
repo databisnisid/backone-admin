@@ -11,6 +11,14 @@ from connector.drivers.selenium_utils import (
     find_element_clickable,
 )
 from time import sleep
+import logging
+
+# Basic configuration
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(levelname)s - %(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S",
+)
 
 
 def check_for_error(driver: webdriver.Firefox, delay: int = 5) -> str:
@@ -25,7 +33,8 @@ def check_for_error(driver: webdriver.Firefox, delay: int = 5) -> str:
             )
         )
 
-        print("Found Oops!")
+        # print("Found Oops!")
+        logging.info("Found Oops!")
 
         # Get OK Button
         elem = WebDriverWait(driver, delay).until(
@@ -34,7 +43,8 @@ def check_for_error(driver: webdriver.Firefox, delay: int = 5) -> str:
             )
         )
 
-        print("Click OK for Oops!")
+        # print("Click OK for Oops!")
+        logging.info("Click OK for Oops!")
         elem.click()
 
     except:
@@ -56,7 +66,8 @@ def check_for_error(driver: webdriver.Firefox, delay: int = 5) -> str:
 
         elem = driver.find_elements(By.XPATH, "//span")
 
-        print("Error:", elem[1].text)
+        # print("Error:", elem[1].text)
+        logging.info(f"Error: {elem[1].text}")
         error_msg = elem[1].text
 
         # Get OK Button
@@ -65,7 +76,8 @@ def check_for_error(driver: webdriver.Firefox, delay: int = 5) -> str:
                 (By.XPATH, "//button/span[contains(text(), 'OK')]")
             )
         )
-        print("Click OK")
+        # print("Click OK")
+        logging.info("Click OK")
         elem.click()
 
     except:
@@ -75,6 +87,8 @@ def check_for_error(driver: webdriver.Firefox, delay: int = 5) -> str:
 
 
 def wait_for_loader(driver: webdriver.Firefox, delay: int = 300):
+
+    logging.info("Waiting for loader...")
 
     try:
         WebDriverWait(driver, delay).until(
@@ -116,7 +130,8 @@ def get_quota_date(driver: webdriver.Firefox, delay: int = 300) -> str:
     quota_date = ""
     if elem:
         quota_date = elem.text
-        print("Quota Date:", quota_date)
+        # print("Quota Date:", quota_date)
+        logging.info(f"Quota Date: {quota_date}")
 
     return quota_date
 
@@ -141,7 +156,8 @@ def search_by_msisdn(driver: webdriver.Firefox, msisdns: list = []) -> dict:
             elem.clear()
             elem.send_keys(msisdn)
             elem.send_keys(Keys.RETURN)
-            print("Input MSISDN:", msisdn)
+            # print("Input MSISDN:", msisdn)
+            logging.info(f"Input MSISDN: {msisdn}")
 
         wait_for_loader(driver)
         error_msg = check_for_error(driver)
@@ -166,7 +182,8 @@ def search_by_msisdn(driver: webdriver.Firefox, msisdns: list = []) -> dict:
         }
         result.update(msisdn_result)
 
-    print("Search By MSISDN is done")
+    # print("Search By MSISDN is done")
+    logging.info("Search By MSISDN is done")
     return result
 
 
@@ -183,13 +200,15 @@ def login_to_dsc(
         return {}
 
     # Ensure no email
-    print("Delete All Email...")
+    # print("Delete All Email...")
+    logging.info("Delete All Email...")
     pop3.delete_all_email(email_address, email_password)
 
     # if username is not None and password is not None:
     if username is not None:
 
-        print("Use Selenium Server: ", settings.REMOTE_SELENIUM)
+        # print("Use Selenium Server: ", settings.REMOTE_SELENIUM)
+        logging.info(f"Use Selenium Server: {settings.REMOTE_SELENIUM}")
         if settings.REMOTE_SELENIUM:
             driver_options = webdriver.FirefoxOptions()
 
@@ -227,10 +246,12 @@ def login_to_dsc(
         Use poplib 
         """
         for i in range(1, 120):
-            print("Trying get code #" + str(i))
+            # print("Trying get code #" + str(i))
+            logging.info(f"Trying get code #{str(i)}")
             otp_code = pop3.get_otp_code(email_address, email_password)
             if otp_code != "":
-                print("OTP Code:", otp_code)
+                # print("OTP Code:", otp_code)
+                logging.info(f"OTP Code: {otp_code}")
                 break
             sleep(3)
 
@@ -251,7 +272,8 @@ def login_to_dsc(
         if elem:
             wait_for_loader(driver)
             elem.click()
-            print("Click myServices")
+            # print("Click myServices")
+            logging.info("Click myServices")
 
         """ checkmember """
         elem = find_element_clickable(
@@ -260,12 +282,14 @@ def login_to_dsc(
         if elem:
             wait_for_loader(driver)
             elem.click()
-            print("Click Check Member")
+            # print("Click Check Member")
+            logging.info("Click Check Member")
 
         # msisdns = ['6281117064193', '62811170668622', '6281117064195']
         result = search_by_msisdn(driver, msisdns)
 
-        print("So Farrr...Quit")
+        # print("So Farrr...Quit")
+        logging.info("So Farrr...Quit")
 
         driver.quit()
 
