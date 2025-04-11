@@ -1,5 +1,5 @@
 APScheduler==3.6.3
-asgiref==3.5.2
+asgiref==3.8.1
 async-generator==1.10
 attrs==21.4.0
 Babel==2.10.1
@@ -7,16 +7,17 @@ bcrypt==3.2.2
 cachetools==4.2.2
 certifi==2022.5.18
 cffi==1.15.0
+charset-normalizer==3.3.2
 cryptography==37.0.2
 defusedxml==0.7.1
 diff-match-patch==20200713
-Django==4.0.4
+Django==4.2.15
 django-crispy-forms==1.14.0
 django-crontab==0.7.1
 django-dbbackup==4.0.0b0
 django-google-maps==0.13.0
 django-import-export==2.8.0
-django-jazzmin==2.5.0
+django-jazzmin==3.0.0
 django-money==2.1.1
 django-slick-reporting==0.6.3
 django-telegrambot==1.0.1
@@ -40,7 +41,9 @@ python-telegram-bot==13.12
 pytz==2022.1
 pytz-deprecation-shim==0.1.0.post0
 PyYAML==6.0.1
+requests==2.32.3
 selenium==4.14.0
+setuptools==74.0.0
 simplejson==3.17.6
 six==1.16.0
 sniffio==1.2.0
