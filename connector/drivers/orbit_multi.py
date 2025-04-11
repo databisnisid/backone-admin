@@ -51,8 +51,8 @@ def get_quota_multi(username, password):
         # driver.get("https://www.myorbit.id/login")
         delay = 10
 
-        #print("Trying to login to ", url_orbit)
-        logging.info(f"Trying to login to " {url_orbit}")
+        # print("Trying to login to ", url_orbit)
+        logging.info(f"Trying to login to {url_orbit}")
         """ Sending Username """
         try:
             #            elem = WebDriverWait(driver, delay).until(
@@ -66,11 +66,11 @@ def get_quota_multi(username, password):
             #            )
             elem.send_keys(username)
             elem.send_keys(Keys.RETURN)
-            #print("Sending Username")
+            # print("Sending Username")
             logging.info("Sending Username")
         except (NoSuchElementException, TimeoutException) as error:
             driver.quit()
-            #print("Error: ", error)
+            # print("Error: ", error)
             logging.info(f"Error: {error}")
 
         """ Sending Password """
@@ -83,7 +83,7 @@ def get_quota_multi(username, password):
             )
             elem.send_keys(password)
             elem.send_keys(Keys.RETURN)
-            #print("Sending Password")
+            # print("Sending Password")
             logging.info("Sending Password")
         except (NoSuchElementException, TimeoutException) as error:
             driver.quit()
@@ -92,7 +92,7 @@ def get_quota_multi(username, password):
         """ Get Quota Multi Information """
         is_next_page = True
         page_number = 1
-        #print("Login Successful. Trying to get information...")
+        # print("Login Successful. Trying to get information...")
         logging.info("Login Successful. Trying to get information...")
         while is_next_page:
             try:
@@ -107,7 +107,7 @@ def get_quota_multi(username, password):
                 table_elements = driver.find_elements(
                     By.XPATH, "//div[contains(text(), '628')]/.."
                 )
-                #print("FOUND MSISDN!")
+                # print("FOUND MSISDN!")
                 logging.info("FOUND MSISDN!")
                 # print(table_elements)
                 for element in table_elements:
@@ -115,7 +115,7 @@ def get_quota_multi(username, password):
                     msisdn = element.find_element(
                         By.XPATH, ".//div[contains(text(), '628')]"
                     ).text
-                    #print("Found MSISDN: ", msisdn)
+                    # print("Found MSISDN: ", msisdn)
                     logging.info(f"Found MSISDN: {msisdn}")
                     # quota = element.find_element(By.XPATH, ".//div[contains(text(), ' GB')]").text
                     # quota = element.find_element(By.XPATH, ".//div[contains(text(), 'GB')]").text
@@ -124,28 +124,28 @@ def get_quota_multi(username, password):
                         quota = element.find_element(
                             By.XPATH, ".//div[contains(text(), 'GB')]"
                         ).text
-                        #print("Found Quota Info in GB: ", quota)
+                        # print("Found Quota Info in GB: ", quota)
                         logging.info(f"Found Quota Info in GB: {quota}")
 
                     except (NoSuchElementException, TimeoutException) as error:
-                        #print("Quota INFO is not FOUND! Trying again...")
+                        # print("Quota INFO is not FOUND! Trying again...")
                         logginginfo("Quota INFO is not FOUND! Trying again...")
                         try:
                             quota = element.find_element(
                                 By.XPATH, ".//div[contains(text(), 'MB')]"
                             ).text
-                            #print("Found Quota Info in GB: ", quota)
+                            # print("Found Quota Info in GB: ", quota)
                             logging.info(f"Found Quota Info in GB: {quota}")
                         except (NoSuchElementException, TimeoutException):
                             quota = "0GB / 0GB"
-                            #print("Quota INFO is NOT FOUND! Set Empty: ", quota)
+                            # print("Quota INFO is NOT FOUND! Set Empty: ", quota)
                             logging.info(f"Quota INFO is NOT FOUND! Set Empty: {quota}")
 
                     try:
                         until = element.find_element(
                             By.XPATH, ".//div[contains(text(), 'Berlaku')]"
                         ).text.replace("Berlaku hingga ", "")
-                        #print("Found Masa Belaku Info: ", until)
+                        # print("Found Masa Belaku Info: ", until)
                         logging.info(f"Found Masa Belaku Info: {until}")
                     except (NoSuchElementException, TimeoutException):
                         until = None
@@ -163,34 +163,36 @@ def get_quota_multi(username, password):
                         + str(page_number + 1)
                         + ")]",
                     )
-                    #print("FOUND Next Page!")
+                    # print("FOUND Next Page!")
                     logging.info("FOUND Next Page!")
                     # next_page = driver.find_element(By.XPATH, "//div[contains(@class, 'css-1dbjc4n')]/div[contains(@style, 'color: rgb(26, 26, 26); font-family: Poppins-Regular; font-size: 16px; padding: 4px 8px;') and contains(., " + str(page_number) + ")]")
 
                 except (NoSuchElementException, TimeoutException):
                     next_page = None
-                    #print("Next Page is not found!")
+                    # print("Next Page is not found!")
                     logging.info("Next Page is not found!")
                     is_next_page = False
 
                 if next_page is not None:
-                    #print("Current Page:", page_number, "Next Page:", next_page.text)
-                    logging.info(f"Current Page: {page_number} Next Page: {next_page.text}")
+                    # print("Current Page:", page_number, "Next Page:", next_page.text)
+                    logging.info(
+                        f"Current Page: {page_number} Next Page: {next_page.text}"
+                    )
                     page_number += 1
-                    #print("Go to Next Page ->", page_number)
+                    # print("Go to Next Page ->", page_number)
                     logging.inf(f"Go to Next Page -> {page_number}")
                     next_page.click()
                 else:
                     is_next_page = False
-                    #print("Next Page is not found! Last Page->", page_number)
+                    # print("Next Page is not found! Last Page->", page_number)
                     logging.info(f"Next Page is not found! Last Page->{page_number}")
 
             except (NoSuchElementException, TimeoutException):
-                #print("NOT FOUND")
+                # print("NOT FOUND")
                 logging.info("NOT FOUND")
                 # is_next_page = False
 
         driver.quit()
 
-    #print(result)
+    # print(result)
     return result
