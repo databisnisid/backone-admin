@@ -36,12 +36,9 @@ def get_quota_multi(username, password):
                 command_executor=settings.SELENIUM_DOCKER, options=driver_options
             )
         else:
-            # options = webdriver.ChromeOptions()
-            options = webdriver.FirefoxOptions()
-            options.headless = False
-            # driver = webdriver.Chrome("/usr/local/bin/chromedriver", options=options)
-            # driver = webdriver.Firefox("/usr/local/bin/geckodriver", options=options)
             driver = webdriver.Firefox()
+            # Use this for local SELENIUM
+            # driver = webdriver.Chrome()
 
         # Delete All Cookies ?
         # driver.delete_all_cookies()
@@ -99,21 +96,29 @@ def get_quota_multi(username, password):
                 elem = WebDriverWait(driver, delay).until(
                     # EC.presence_of_element_located((By.XPATH, "//div[@class='css-1dbjc4n']//div[contains(@class, 'css-1dbjc4n') and contains(@class, 'r-18u37iz')]"))
                     EC.presence_of_element_located(
-                        (By.XPATH, "//div[contains(text(), '628')]")
+                        # (By.XPATH, "//div[contains(text(), '628')]")
+                        (By.XPATH, "//p[contains(text(), '628')]")
                     )
                 )
+                # logging.info(elem.text)
+                logging.info(f"FOUND TOP MSISDN! {elem.text}")
                 time.sleep(delay)
 
+                logging.info("Getting table of MSISDNs")
                 table_elements = driver.find_elements(
-                    By.XPATH, "//div[contains(text(), '628')]/.."
+                    # By.XPATH, "//div[contains(text(), '628')]/.."
+                    By.XPATH,
+                    "//p[contains(text(), '628')]/..",
                 )
+                # logging.info(table_elements)
                 # print("FOUND MSISDN!")
-                logging.info("FOUND MSISDN!")
                 # print(table_elements)
                 for element in table_elements:
                     # print(element.text)
                     msisdn = element.find_element(
-                        By.XPATH, ".//div[contains(text(), '628')]"
+                        # By.XPATH, ".//div[contains(text(), '628')]"
+                        By.XPATH,
+                        ".//p[contains(text(), '628')]",
                     ).text
                     # print("Found MSISDN: ", msisdn)
                     logging.info(f"Found MSISDN: {msisdn}")
@@ -122,17 +127,21 @@ def get_quota_multi(username, password):
                     # print('Found Quota Info: ', quota)
                     try:
                         quota = element.find_element(
-                            By.XPATH, ".//div[contains(text(), 'GB')]"
+                            # By.XPATH, ".//div[contains(text(), 'GB')]"
+                            By.XPATH,
+                            ".//p[contains(text(), 'GB')]",
                         ).text
                         # print("Found Quota Info in GB: ", quota)
                         logging.info(f"Found Quota Info in GB: {quota}")
 
                     except (NoSuchElementException, TimeoutException) as error:
                         # print("Quota INFO is not FOUND! Trying again...")
-                        logginginfo("Quota INFO is not FOUND! Trying again...")
+                        logging.info("Quota INFO is not FOUND! Trying again...")
                         try:
                             quota = element.find_element(
-                                By.XPATH, ".//div[contains(text(), 'MB')]"
+                                # By.XPATH, ".//div[contains(text(), 'MB')]"
+                                By.XPATH,
+                                ".//p[contains(text(), 'MB')]",
                             ).text
                             # print("Found Quota Info in GB: ", quota)
                             logging.info(f"Found Quota Info in GB: {quota}")
@@ -143,7 +152,9 @@ def get_quota_multi(username, password):
 
                     try:
                         until = element.find_element(
-                            By.XPATH, ".//div[contains(text(), 'Berlaku')]"
+                            # By.XPATH, ".//div[contains(text(), 'Berlaku')]"
+                            By.XPATH,
+                            ".//p[contains(text(), 'Berlaku')]",
                         ).text.replace("Berlaku hingga ", "")
                         # print("Found Masa Belaku Info: ", until)
                         logging.info(f"Found Masa Belaku Info: {until}")
@@ -159,7 +170,8 @@ def get_quota_multi(username, password):
                     # next_page = driver.find_element(By.XPATH, "//div[contains(@style, 'transform: rotate(180deg)')]/div[contains(@style, '/static/media/icon-arrow-left-red.svg')]/..")
                     next_page = driver.find_element(
                         By.XPATH,
-                        "//div[contains(@class, 'css-1dbjc4n')]/div[contains(@style, 'padding: 4px 8px') and contains(text(), "
+                        # "//div[contains(@class, 'css-1dbjc4n')]/div[contains(@style, 'padding: 4px 8px') and contains(text(), "
+                        "//div[contains(@style, 'padding: 0px; margin: 0px')]/p[contains(@style, 'padding: 4px 8px') and contains(text(), "
                         + str(page_number + 1)
                         + ")]",
                     )
@@ -180,7 +192,7 @@ def get_quota_multi(username, password):
                     )
                     page_number += 1
                     # print("Go to Next Page ->", page_number)
-                    logging.inf(f"Go to Next Page -> {page_number}")
+                    logging.info(f"Go to Next Page -> {page_number}")
                     next_page.click()
                 else:
                     is_next_page = False
