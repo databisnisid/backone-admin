@@ -168,7 +168,7 @@ def get_quota(username, password, driver):
 
         if elem:
             logging.info(f"{elem.text}")
-            quota_total = elem.text.replace("/ ", "")
+            quota_total = elem.text.replace("/", "").replace(" ", "")
 
         logging.info(f"{quota_current}/{quota_total} {quota_day}")
 
