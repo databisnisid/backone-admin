@@ -91,11 +91,14 @@ def get_quota(username, password):
             quota_total = elem.find_element(By.XPATH, "./div[2]/div[2]/div[3]").text
             elem = driver.find_element(By.XPATH, "//div[text()='Internet Orbit']")
             quota_day = elem.find_element(By.XPATH, "./span").text
+
+            logging.info(f"Get information {quota_current}, {quota_total}, {quota_day}")
+
         except (NoSuchElementException, TimeoutException):
             pass
 
         driver.quit()
 
-        logging.info(f"Get information {quota_current}, {quota_total}, {quota_day}")
+        # logging.info(f"Get information {quota_current}, {quota_total}, {quota_day}")
 
     return quota_current, quota_total, quota_day
