@@ -220,7 +220,7 @@ def login_to_dsc(
             # driver_options = webdriver.FirefoxOptions()
 
             options = Options()
-            options.add_argument("--headless")
+            # options.add_argument("--headless")
             options.add_argument(f"--proxy-server={settings.PROXY_SERVER}")
 
             driver = webdriver.Remote(
