@@ -119,7 +119,8 @@ def get_quota(username, password, driver):
 
         """ Check for pop up """
 
-        elem = sutils.find_element_clickable(
+        # elem = sutils.find_element_clickable(
+        elem = sutils.find_element_presence(
             driver, "/html/body/div[1]/div[2]/div[5]/div/div[2]/div/div", delay, False
         )
 
