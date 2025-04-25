@@ -85,7 +85,8 @@ def check_for_error(driver, delay: int = 5) -> str:
     except:
         pass
 
-    return error_msg
+    # return error_msg
+    return error_msg[:200]
 
 
 # def wait_for_loader(driver: webdriver.Firefox, delay: int = 300):
