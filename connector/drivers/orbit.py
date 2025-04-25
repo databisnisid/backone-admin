@@ -26,7 +26,7 @@ def driver_start():
         # driver_options = webdriver.ChromeOptions()
         # driver_options = webdriver.FirefoxOptions()
         options = Options()
-        options.add_argument("--headless")
+        # options.add_argument("--headless")
         options.add_argument(f"--proxy-server={settings.PROXY_SERVER}")
 
         driver = webdriver.Remote(
