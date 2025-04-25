@@ -30,7 +30,7 @@ def driver_start():
         # driver_options = webdriver.ChromeOptions()
         # driver_options = webdriver.FirefoxOptions()
         options = Options()
-        # options.add_argument("--headless")
+        options.add_argument("--headless")
         options.add_argument(f"--proxy-server={settings.PROXY_SERVER}")
 
         driver = webdriver.Remote(
@@ -131,6 +131,7 @@ def get_quota(username, password, driver):
         """ Ensure go to dasboard """
 
         sleep(delay / 2)
+        logging.info("Go to Dashboard")
         driver.get("https://www.myorbit.id/dashboard")
 
         """
@@ -213,7 +214,19 @@ def get_quota(username, password, driver):
 
         """ Click Button Profil"""
 
-        logging.info("Click Button Profile")
+        elem = sutils.find_element_clickable(
+            driver, "//*[@id='btn-profile']", delay, False
+        )
+
+        if elem:
+            logging.info("Click Button Profile")
+
+            try:
+                elem.click()
+            except WebDriverException:
+                pass
+
+        """
         try:
             elem = WebDriverWait(driver, delay).until(
                 EC.presence_of_element_located((By.ID, "btn-profile"))
@@ -223,16 +236,27 @@ def get_quota(username, password, driver):
 
         except (NoSuchElementException, TimeoutException):
             pass
+        """
+
+        sleep(3)
 
         """ Try to logout here """
-        logging.info("Logout!")
 
         elem = sutils.find_element_clickable(
-            driver, "//div/div/p[contains(text(), 'Keluar')]", delay, False
+            # driver, "//div/div/p[contains(text(), 'Keluar')]", delay, False
+            driver,
+            "/html/body/div[1]/div[2]/div[1]/div/div/div[2]/div[3]/div[2]/div[9]",
+            delay,
+            False,
         )
 
         if elem:
-            elem.click()
+            logging.info("Logout!")
+
+            try:
+                elem.click()
+            except WebDriverException:
+                pass
 
         """
         try:
@@ -249,8 +273,8 @@ def get_quota(username, password, driver):
 
         """
         # driver.quit()
-        logging.info(f"Sleeping {delay/2} seconds")
-        sleep(delay / 2)
+        logging.info(f"Sleeping {delay} seconds")
+        sleep(delay)
 
         # logging.info(f"Get information {quota_current}, {quota_total}, {quota_day}")
 
