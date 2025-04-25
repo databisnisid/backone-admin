@@ -112,6 +112,16 @@ def get_quota(username, password, driver):
         logging.info("Sending password succeed")
 
         """ Check for pop up """
+
+        elem = sutils.find_element_clickable(
+            driver, "/html/body/div[1]/div[2]/div[5]/div/div[2]/div/div", delay, False
+        )
+
+        if elem:
+            logging.info("Ada pop up Error!")
+            elem.click()
+
+        """
         try:
             elem = WebDriverWait(driver, delay).until(
                 EC.presence_of_element_located(
@@ -124,6 +134,7 @@ def get_quota(username, password, driver):
 
         except (NoSuchElementException, TimeoutException):
             pass
+        """
 
         """ Get Quota Information """
 
