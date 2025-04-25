@@ -143,6 +143,7 @@ def get_quota(username, password, driver):
         )
 
         if elem:
+            logging.info(f"{elem.text}")
             quota_day = elem.text
 
         """ Find Quota Current """
@@ -154,6 +155,7 @@ def get_quota(username, password, driver):
         )
 
         if elem:
+            logging.info(f"{elem.text}")
             quota_current = elem.text
 
         """ Find Quota Total """
@@ -165,7 +167,8 @@ def get_quota(username, password, driver):
         )
 
         if elem:
-            quota_total = elem.text
+            logging.info(f"{elem.text}")
+            quota_total = elem.text.replace("/ ", "")
 
         logging.info(f"{quota_current}/{quota_total} {quota_day}")
 
