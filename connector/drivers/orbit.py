@@ -3,6 +3,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.common.exceptions import (
     NoSuchElementException,
+    StaleElementReferenceException,
     TimeoutException,
     WebDriverException,
 )
@@ -125,7 +126,7 @@ def get_quota(username, password, driver):
             # logging.info("Ada pop up Error!")
             try:
                 elem.click()
-            except WebDriverException:
+            except WebDriverException or StaleElementReferenceException:
                 pass
 
         """ Ensure go to dasboard """
@@ -223,7 +224,7 @@ def get_quota(username, password, driver):
 
             try:
                 elem.click()
-            except WebDriverException:
+            except WebDriverException or StaleElementReferenceException:
                 pass
 
         """
@@ -255,7 +256,7 @@ def get_quota(username, password, driver):
 
             try:
                 elem.click()
-            except WebDriverException:
+            except WebDriverException or StaleElementReferenceException:
                 pass
 
         """
