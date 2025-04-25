@@ -130,7 +130,8 @@ def get_all_quota_orbit():
             o.quota_total = q_total if len(q_total) != 0 else o.quota_total
             o.quota_day = q_day if len(q_day) != 0 else o.quota_day
             o.save()
-            print(timezone.now(), o.msisdn, o.quota_current, o.quota_total, o.quota_day)
+            # print(timezone.now(), o.msisdn, o.quota_current, o.quota_total, o.quota_day)
+            logging.info(f"{o.msisdn} {o.quota_current} {o.quota_total} {o.quota_day}")
 
     orbit.driver_quit(driver)
 
