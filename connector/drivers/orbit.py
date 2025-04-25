@@ -134,8 +134,41 @@ def get_quota(username, password, driver):
             False,
         )
 
+        """ Find valid until """
+        elem = sutils.find_element_presence(
+            driver,
+            "/html/body/div[1]/div[2]/div[2]/div/div[2]/div/div/div/div[1]/div/div[1]/div[1]/p[2]",
+            delay,
+            False,
+        )
+
         if elem:
-            logging.info(elem)
+            quota_day = elem.text
+
+        """ Find Quota Current """
+        elem = sutils.find_element_presence(
+            driver,
+            "/html/body/div[1]/div[2]/div[2]/div/div[2]/div/div/div/div[1]/div/div[1]/div[2]/p[1]",
+            delay,
+            False,
+        )
+
+        if elem:
+            quota_current = elem.text
+
+        """ Find Quota Total """
+        elem = sutils.find_element_presence(
+            driver,
+            "/html/body/div[1]/div[2]/div[2]/div/div[2]/div/div/div/div[1]/div/div[1]/div[2]/p[2]",
+            delay,
+            False,
+        )
+
+        if elem:
+            quota_total = elem.text
+
+        logging.info(f"{quota_current}/{quota_total} {quota_day}")
+
         """
         try:
             elem = WebDriverWait(driver, delay).until(
