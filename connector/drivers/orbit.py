@@ -7,6 +7,8 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
 from django.conf import settings
 import logging
+from time import sleep
+import .selenium_utils as sutils
 
 
 # Basic configuration
@@ -110,7 +112,6 @@ def get_quota(username, password, driver):
         logging.info("Sending password succeed")
 
         """ Check for pop up """
-        logging.info("Checking for pop up Mengerti!")
         try:
             elem = WebDriverWait(driver, delay).until(
                 EC.presence_of_element_located(
@@ -118,12 +119,19 @@ def get_quota(username, password, driver):
                 )
             )
 
+            logging.info("Ada pop up Mengerti!")
             elem.click()
 
         except (NoSuchElementException, TimeoutException):
             pass
 
         """ Get Quota Information """
+
+        elem = sutils.find_element_presence(driver, "/html/body/div[1]/div[2]/div[2]/div/div[2]/div/div/div/div[1]/div/div[1]", delay, False)
+
+        if elem:
+            logging.info(elem)
+        """
         try:
             elem = WebDriverWait(driver, delay).until(
                 EC.presence_of_element_located((By.ID, "package-meter-chart"))
@@ -137,6 +145,7 @@ def get_quota(username, password, driver):
 
         except (NoSuchElementException, TimeoutException):
             pass
+        """
 
         """ Click Button Profil"""
 
@@ -153,6 +162,13 @@ def get_quota(username, password, driver):
 
         """ Try to logout here """
         logging.info("Logout!")
+
+        elem = sutils.find_element_clickable(driver, "//div/div/p[contains(text(), 'Keluar')]", delay, False)
+
+        if elem:
+            elem.click()
+
+        """
         try:
             elem = WebDriverWait(driver, delay).until(
                 EC.presence_of_element_located(
@@ -165,7 +181,10 @@ def get_quota(username, password, driver):
         except (NoSuchElementException, TimeoutException):
             pass
 
+        """
         # driver.quit()
+        logging.info(f"Sleeping {delay} seconds")
+        sleep(delay)
 
         # logging.info(f"Get information {quota_current}, {quota_total}, {quota_day}")
 
