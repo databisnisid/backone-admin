@@ -80,6 +80,7 @@ def get_quota(username, password, driver):
         # Delete All Cookies ?
         # driver.delete_all_cookies()
 
+        logging.info("Go to login page")
         driver.get("https://www.myorbit.id/login")
         delay = 10
 
