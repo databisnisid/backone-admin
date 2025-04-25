@@ -1,7 +1,11 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.common.exceptions import NoSuchElementException, TimeoutException
+from selenium.common.exceptions import (
+    NoSuchElementException,
+    TimeoutException,
+    WebDriverException,
+)
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
@@ -118,8 +122,11 @@ def get_quota(username, password, driver):
         )
 
         if elem:
-            logging.info("Ada pop up Error!")
-            elem.click()
+            # logging.info("Ada pop up Error!")
+            try:
+                elem.click()
+            except WebDriverException:
+                pass
 
         """ Ensure go to dasboard """
 
