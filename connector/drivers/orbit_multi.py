@@ -5,6 +5,9 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.keys import Keys
+
+# from selenium.webdriver.firefox.options import Options
+from selenium.webdriver.chrome.options import Options
 from django.conf import settings
 import logging
 
@@ -30,10 +33,14 @@ def get_quota_multi(username, password):
         logging.info(f"Use Selenium Server: {settings.REMOTE_SELENIUM}")
         if settings.REMOTE_SELENIUM:
             # driver_options = webdriver.ChromeOptions()
-            driver_options = webdriver.FirefoxOptions()
+            # driver_options = webdriver.FirefoxOptions()
 
+            options = Options()
+            options.add_argument(f"--proxy-server={settings.PROXY_SERVER}")
             driver = webdriver.Remote(
-                command_executor=settings.SELENIUM_DOCKER, options=driver_options
+                # command_executor=settings.SELENIUM_DOCKER, options=driver_options
+                command_executor=settings.SELENIUM_DOCKER,
+                options=options,
             )
         else:
             driver = webdriver.Firefox()

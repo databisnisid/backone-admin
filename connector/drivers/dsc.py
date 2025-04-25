@@ -4,6 +4,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.chrome.options import Options
 from django.conf import settings
 from connector.drivers import pop3
 from connector.drivers.selenium_utils import (
@@ -21,7 +22,8 @@ logging.basicConfig(
 )
 
 
-def check_for_error(driver: webdriver.Firefox, delay: int = 5) -> str:
+# def check_for_error(driver: webdriver.Firefox, delay: int = 5) -> str:
+def check_for_error(driver, delay: int = 5) -> str:
 
     error_msg = ""
 
@@ -86,7 +88,8 @@ def check_for_error(driver: webdriver.Firefox, delay: int = 5) -> str:
     return error_msg
 
 
-def wait_for_loader(driver: webdriver.Firefox, delay: int = 300):
+# def wait_for_loader(driver: webdriver.Firefox, delay: int = 300):
+def wait_for_loader(driver, delay: int = 300):
 
     logging.info("Waiting for loader...")
 
@@ -100,7 +103,8 @@ def wait_for_loader(driver: webdriver.Firefox, delay: int = 300):
         driver.quit()
 
 
-def get_quota_value(driver: webdriver.Firefox, delay: int = 300) -> str:
+# def get_quota_value(driver: webdriver.Firefox, delay: int = 300) -> str:
+def get_quota_value(driver, delay: int = 300) -> str:
 
     elem = find_element_presence(
         driver,
@@ -117,7 +121,8 @@ def get_quota_value(driver: webdriver.Firefox, delay: int = 300) -> str:
     return quota_value
 
 
-def get_quota_date(driver: webdriver.Firefox, delay: int = 300) -> str:
+# def get_quota_date(driver: webdriver.Firefox, delay: int = 300) -> str:
+def get_quota_date(driver, delay: int = 300) -> str:
 
     elem = find_element_presence(
         driver,
@@ -136,7 +141,8 @@ def get_quota_date(driver: webdriver.Firefox, delay: int = 300) -> str:
     return quota_date
 
 
-def search_by_msisdn(driver: webdriver.Firefox, msisdns: list = []) -> dict:
+# def search_by_msisdn(driver: webdriver.Firefox, msisdns: list = []) -> dict:
+def search_by_msisdn(driver, msisdns: list = []) -> dict:
 
     if not len(msisdns):
         return {}
@@ -210,10 +216,15 @@ def login_to_dsc(
         # print("Use Selenium Server: ", settings.REMOTE_SELENIUM)
         logging.info(f"Use Selenium Server: {settings.REMOTE_SELENIUM}")
         if settings.REMOTE_SELENIUM:
-            driver_options = webdriver.FirefoxOptions()
+            # driver_options = webdriver.FirefoxOptions()
+
+            options = Options()
+            options.add_argument(f"--proxy-server={settings.PROXY_SERVER}")
 
             driver = webdriver.Remote(
-                command_executor=settings.SELENIUM_DOCKER, options=driver_options
+                # command_executor=settings.SELENIUM_DOCKER, options=driver_options
+                command_executor=settings.SELENIUM_DOCKER,
+                options=options,
             )
         else:
             driver = webdriver.Firefox()

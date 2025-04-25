@@ -14,7 +14,11 @@ logging.basicConfig(
 
 
 def find_element_presence(
-    driver: webdriver.Firefox, xpath: str, delay: int = 30, is_quit: bool = False
+    # driver: webdriver.Firefox, xpath: str, delay: int = 30, is_quit: bool = False
+    driver,
+    xpath: str,
+    delay: int = 30,
+    is_quit: bool = False,
 ):
 
     elem = None
@@ -35,7 +39,11 @@ def find_element_presence(
 
 
 def find_element_clickable(
-    driver: webdriver.Firefox, xpath: str, delay: int = 30, is_quit: bool = False
+    # driver: webdriver.Firefox, xpath: str, delay: int = 30, is_quit: bool = False
+    driver,
+    xpath: str,
+    delay: int = 30,
+    is_quit: bool = False,
 ):
 
     elem = None
