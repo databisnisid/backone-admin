@@ -380,3 +380,6 @@ TELKOMSAT_USERNAME = os.getenv("TELKOMSAT_USERNAME")
 TELKOMSAT_PASSWORD = os.getenv("TELKOMSAT_PASSWORD")
 TELKOMSAT_TOKEN = os.getenv("TELKOMSAT_TOKEN")
 TELKOMSAT_URL = os.getenv("TELKOMSAT_URL", "https://starmon1.telkomsat.co.id")
+
+# PROXY
+PROXY_SERVER = os.getenv("PROXY_SERVER", "http://proxy-server.ingress-mvnet.svc:8888")
