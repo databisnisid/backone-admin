@@ -17,8 +17,33 @@ logging.basicConfig(
 )
 
 
+def driver_start():
+    # print('Use Selenium Server: ', settings.REMOTE_SELENIUM)
+    logging.info(f"Use Selenium Server: {settings.REMOTE_SELENIUM}")
+    if settings.REMOTE_SELENIUM:
+        # driver_options = webdriver.ChromeOptions()
+        # driver_options = webdriver.FirefoxOptions()
+        options = Options()
+        options.add_argument("--headless")
+        options.add_argument(f"--proxy-server={settings.PROXY_SERVER}")
+
+        driver = webdriver.Remote(
+            # command_executor=settings.SELENIUM_DOCKER, options=driver_options
+            command_executor=settings.SELENIUM_DOCKER,
+            options=options,
+        )
+    else:
+        driver = webdriver.Chrome()
+
+    return driver
+
+
+def driver_quit(driver):
+    driver.quit()
+
+
 # def get_quota(username='budithegreat09@gmail.com', password='Failover6!'):
-def get_quota(username, password):
+def get_quota(username, password, driver):
 
     quota_current = ""
     quota_total = ""
@@ -27,6 +52,7 @@ def get_quota(username, password):
     if username is not None and password is not None:
 
         # print('Use Selenium Server: ', settings.REMOTE_SELENIUM)
+        """
         logging.info(f"Use Selenium Server: {settings.REMOTE_SELENIUM}")
         if settings.REMOTE_SELENIUM:
             # driver_options = webdriver.ChromeOptions()
@@ -42,6 +68,7 @@ def get_quota(username, password):
             )
         else:
             driver = webdriver.Firefox()
+        """
 
         # Delete All Cookies ?
         # driver.delete_all_cookies()
@@ -82,6 +109,20 @@ def get_quota(username, password):
 
         logging.info("Sending password succeed")
 
+        """ Check for pop up """
+        logging.info("Checking for pop up Mengerti!")
+        try:
+            elem = WebDriverWait(driver, delay).until(
+                EC.presence_of_element_located(
+                    (By.XPATH, "//div/p[contains(text(), 'Mengerti')]")
+                )
+            )
+
+            elem.click()
+
+        except (NoSuchElementException, TimeoutException):
+            pass
+
         """ Get Quota Information """
         try:
             elem = WebDriverWait(driver, delay).until(
@@ -97,7 +138,34 @@ def get_quota(username, password):
         except (NoSuchElementException, TimeoutException):
             pass
 
-        driver.quit()
+        """ Click Button Profil"""
+
+        logging.info("Click Button Profile")
+        try:
+            elem = WebDriverWait(driver, delay).until(
+                EC.presence_of_element_located((By.ID, "btn-profile"))
+            )
+
+            elem.click()
+
+        except (NoSuchElementException, TimeoutException):
+            pass
+
+        """ Try to logout here """
+        logging.info("Logout!")
+        try:
+            elem = WebDriverWait(driver, delay).until(
+                EC.presence_of_element_located(
+                    (By.XPATH, "//div/div/p[contains(text(), 'Keluar')]")
+                )
+            )
+
+            elem.click()
+
+        except (NoSuchElementException, TimeoutException):
+            pass
+
+        # driver.quit()
 
         # logging.info(f"Get information {quota_current}, {quota_total}, {quota_day}")
 

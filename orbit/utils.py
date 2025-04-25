@@ -23,12 +23,17 @@ NOTIF_Q_DAY = settings.NOTIF_Q_DAY
 
 def get_quota_orbit(msisdn):
 
+    driver = orbit.driver_start()
+
     if msisdn is not None:
         try:
             o = Orbit.objects.get(msisdn=msisdn)
 
             if o.username != "nopass@backone.cloud" or o.password != "nopassword":
-                q_current, q_total, q_day = orbit.get_quota(o.username, o.password)
+                # q_current, q_total, q_day = orbit.get_quota(o.username, o.password)
+                q_current, q_total, q_day = orbit.get_quota(
+                    o.username, o.password, driver
+                )
                 o.quota_current = q_current if len(q_current) != 0 else o.quota_current
                 o.quota_total = q_total if len(q_total) != 0 else o.quota_total
                 o.quota_day = q_day if len(q_day) != 0 else o.quota_day
@@ -40,6 +45,8 @@ def get_quota_orbit(msisdn):
 
         except ObjectDoesNotExist:
             logging.info("Object is not found!")
+
+    orbit.driver_quit(driver)
 
 
 def check_quota_orbit(current, day):
