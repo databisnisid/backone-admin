@@ -8,7 +8,7 @@ from selenium.webdriver.chrome.options import Options
 from django.conf import settings
 import logging
 from time import sleep
-import .selenium_utils as sutils
+import connector.drivers.selenium_utils as sutils
 
 
 # Basic configuration
@@ -127,7 +127,12 @@ def get_quota(username, password, driver):
 
         """ Get Quota Information """
 
-        elem = sutils.find_element_presence(driver, "/html/body/div[1]/div[2]/div[2]/div/div[2]/div/div/div/div[1]/div/div[1]", delay, False)
+        elem = sutils.find_element_presence(
+            driver,
+            "/html/body/div[1]/div[2]/div[2]/div/div[2]/div/div/div/div[1]/div/div[1]",
+            delay,
+            False,
+        )
 
         if elem:
             logging.info(elem)
@@ -163,7 +168,9 @@ def get_quota(username, password, driver):
         """ Try to logout here """
         logging.info("Logout!")
 
-        elem = sutils.find_element_clickable(driver, "//div/div/p[contains(text(), 'Keluar')]", delay, False)
+        elem = sutils.find_element_clickable(
+            driver, "//div/div/p[contains(text(), 'Keluar')]", delay, False
+        )
 
         if elem:
             elem.click()
