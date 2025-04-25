@@ -121,6 +121,11 @@ def get_quota(username, password, driver):
             logging.info("Ada pop up Error!")
             elem.click()
 
+        """ Ensure go to dasboard """
+
+        sleep(delay / 2)
+        driver.get("https://www.myorbit.id/dashboard")
+
         """
         try:
             elem = WebDriverWait(driver, delay).until(
@@ -237,8 +242,8 @@ def get_quota(username, password, driver):
 
         """
         # driver.quit()
-        logging.info(f"Sleeping {delay} seconds")
-        sleep(delay)
+        logging.info(f"Sleeping {delay/2} seconds")
+        sleep(delay / 2)
 
         # logging.info(f"Get information {quota_current}, {quota_total}, {quota_day}")
 
