@@ -156,7 +156,7 @@ def get_all_quota_orbit():
             # o.quota_day = q_day if len(q_day) != 0 else o.quota_day
             o.quota_current = q_current if len(q_current) != 0 else None
             o.quota_total = q_total if len(q_total) != 0 else None
-            o.quota_day = q_day if len(q_day) != 0 else None
+            o.quota_day = quota_day_normalize(q_day) if len(q_day) != 0 else None
 
             """ Only save when there is data from Orbit website """
             if o.quota_current and o.quota_total and o.quota_day:
