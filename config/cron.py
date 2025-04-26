@@ -3,6 +3,7 @@ from orbit.cron import (
     CRON_get_all_quota_orbit,
     CRON_check_quota_orbit_notification_daily,
 )
+from orbit.utils import get_all_quota_orbit, get_all_quota_orbit_multi
 from dsc.utils import get_quota as dsc_gq
 
 from dsc.utils import get_quota_proit as dscproit_gq
@@ -25,10 +26,15 @@ def get_all_quota_dsc():
     dscproit_gq()
 
 
+def get_all_quota_orbit_single():
+    get_all_quota_orbit()
+
+
 def get_all_quota():
     # Telkomsat
     starlink_gq()
-    # sleep(60)
+    sleep(60)
+    get_all_quota_orbit_multi()
     # DSC
     # dsc_gq()
     # sleep(60)
