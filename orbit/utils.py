@@ -144,13 +144,15 @@ def get_all_quota_orbit():
     orbits = Orbit.objects.filter().order_by("updated_at")
 
     """ Start Webdriver """
-    driver = orbit.driver_start()
+    # driver = orbit.driver_start()
 
     for o in orbits:
         print(o.username, o.password)
         if o.username != "nopass@backone.cloud" or o.password != "nopassword":
             # q_current, q_total, q_day = orbit.get_quota(o.username, o.password)
+            driver = orbit.driver_start()
             q_current, q_total, q_day = orbit.get_quota(o.username, o.password, driver)
+            orbit.driver_quit(driver)
             # o.quota_current = q_current if len(q_current) != 0 else o.quota_current
             # o.quota_total = q_total if len(q_total) != 0 else o.quota_total
             # o.quota_day = q_day if len(q_day) != 0 else o.quota_day
@@ -165,7 +167,7 @@ def get_all_quota_orbit():
             logging.info(f"{o.msisdn} {o.quota_current} {o.quota_total} {o.quota_day}")
 
     """ Quit Webdriver """
-    orbit.driver_quit(driver)
+    # orbit.driver_quit(driver)
 
 
 def string_to_int(s):
