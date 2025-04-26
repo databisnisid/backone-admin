@@ -99,6 +99,7 @@ class OrbitAdmin(admin.ModelAdmin):
         "quota_day",
         "updated_at",
         "additional_info",
+        "error_msg",
     ]
     search_fields = ("msisdn", "imei", "additional_info")
     # actions = [check_quota]

@@ -48,7 +48,7 @@ def get_quota_orbit(msisdn):
 
             if o.username != "nopass@backone.cloud" or o.password != "nopassword":
                 # q_current, q_total, q_day = orbit.get_quota(o.username, o.password)
-                q_current, q_total, q_day = orbit.get_quota(
+                q_current, q_total, q_day, error_msg = orbit.get_quota(
                     o.username, o.password, driver
                 )
                 # o.quota_current = q_current if len(q_current) != 0 else o.quota_current
@@ -151,7 +151,9 @@ def get_all_quota_orbit():
         if o.username != "nopass@backone.cloud" or o.password != "nopassword":
             # q_current, q_total, q_day = orbit.get_quota(o.username, o.password)
             driver = orbit.driver_start()
-            q_current, q_total, q_day = orbit.get_quota(o.username, o.password, driver)
+            q_current, q_total, q_day, error_msg = orbit.get_quota(
+                o.username, o.password, driver
+            )
             orbit.driver_quit(driver)
             # o.quota_current = q_current if len(q_current) != 0 else o.quota_current
             # o.quota_total = q_total if len(q_total) != 0 else o.quota_total
@@ -159,12 +161,15 @@ def get_all_quota_orbit():
             o.quota_current = q_current if len(q_current) != 0 else None
             o.quota_total = q_total if len(q_total) != 0 else None
             o.quota_day = quota_day_normalize(q_day) if len(q_day) != 0 else None
+            o.error_msg = error_msg
 
             """ Only save when there is data from Orbit website """
             if o.quota_current and o.quota_total and o.quota_day:
                 o.save()
             # print(timezone.now(), o.msisdn, o.quota_current, o.quota_total, o.quota_day)
-            logging.info(f"{o.msisdn} {o.quota_current} {o.quota_total} {o.quota_day}")
+            logging.info(
+                f"{o.msisdn} {o.quota_current} {o.quota_total} {o.quota_day} {error_msg}"
+            )
 
     """ Quit Webdriver """
     # orbit.driver_quit(driver)

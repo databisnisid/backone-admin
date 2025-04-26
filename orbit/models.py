@@ -20,6 +20,9 @@ class Orbit(models.Model):
     quota_type = models.CharField(
         max_length=20, default="orbit", verbose_name="Quota Type"
     )
+    error_msg = models.CharField(
+        max_length=200, blank=True, null=True, verbose_name="Error Message"
+    )
 
     additional_info = models.TextField(blank=True, null=True, verbose_name="Keterangan")
 

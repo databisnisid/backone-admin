@@ -266,4 +266,4 @@ def get_quota(username, password, driver):
 
         # logging.info(f"Get information {quota_current}, {quota_total}, {quota_day}")
 
-    return quota_current, quota_total, quota_day
+    return quota_current, quota_total, quota_day, error_msg
