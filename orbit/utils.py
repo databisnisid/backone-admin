@@ -211,18 +211,19 @@ def get_all_quota_orbit_multi():
 
         print(msisdn, q_current, q_total, q_day)
 
-        try:
-            om = OrbitMulti.objects.get(msisdn=msisdn)
-        except ObjectDoesNotExist:
-            om = OrbitMulti()
+        if val[1]:
+            try:
+                om = OrbitMulti.objects.get(msisdn=msisdn)
+            except ObjectDoesNotExist:
+                om = OrbitMulti()
 
-        om.username = username
-        om.password = password
-        om.msisdn = msisdn
-        om.quota_current = q_current
-        om.quota_total = q_total
-        om.quota_day = q_day
-        om.save()
+            om.username = username
+            om.password = password
+            om.msisdn = msisdn
+            om.quota_current = q_current
+            om.quota_total = q_total
+            om.quota_day = q_day
+            om.save()
 
 
 def check_quota_orbit_multi_notification_daily():
