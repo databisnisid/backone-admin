@@ -166,6 +166,7 @@ def get_all_quota_orbit():
             """ Only save when there is data from Orbit website """
             if o.quota_current and o.quota_total and o.quota_day:
                 o.save()
+
             # print(timezone.now(), o.msisdn, o.quota_current, o.quota_total, o.quota_day)
             logging.info(
                 f"{o.msisdn} {o.quota_current} {o.quota_total} {o.quota_day} {error_msg}"
