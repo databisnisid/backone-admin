@@ -28,7 +28,7 @@ def quota_day_normalize(text: str) -> str:
     if this_y in text or next_y in text:
         text_split = text.split()
         date_string = f"{text_split[-3]} {text_split[-2]} {text_split[-1]}"
-        d_object = datetime.strptime(date_string, "%d %B %Y")
+        d_object = datetime.strptime(date_string, "%d %b %Y")
         d_curr = datetime.today()
         d_delta = d_object - d_curr
         q_day = str(d_delta.days) + " Hari"
