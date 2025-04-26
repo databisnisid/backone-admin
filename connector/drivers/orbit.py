@@ -183,7 +183,7 @@ def get_quota(username, password, driver):
 
         if elem:
             logging.info(f"{elem.text}")
-            quota_current = elem.text
+            quota_current = elem.text.replace(" ", "")
 
         """ Find Quota Total """
         elem = sutils.find_element_presence(
