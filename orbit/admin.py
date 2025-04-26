@@ -156,7 +156,7 @@ class OrbitMultiAdmin(admin.ModelAdmin):
         "additional_info",
     ]
     search_fields = ("msisdn", "additional_info")
-    actions = [check_quota_multi]
+    # actions = [check_quota_multi]
 
 
 admin.site.register(Orbit, OrbitAdmin)
