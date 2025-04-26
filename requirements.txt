@@ -11,13 +11,13 @@ charset-normalizer==3.3.2
 cryptography==37.0.2
 defusedxml==0.7.1
 diff-match-patch==20200713
-Django==4.2.15
+Django==4.2.20
 django-crispy-forms==1.14.0
 django-crontab==0.7.1
 django-dbbackup==4.0.0b0
 django-google-maps==0.13.0
 django-import-export==2.8.0
-django-jazzmin==3.0.0
+django-jazzmin==3.0.1
 django-money==2.1.1
 django-slick-reporting==0.6.3
 django-telegrambot==1.0.1
