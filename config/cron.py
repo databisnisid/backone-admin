@@ -33,7 +33,7 @@ def get_all_quota_orbit_single():
 def get_all_quota():
     # Telkomsat
     starlink_gq()
-    sleep(60)
+    sleep(30)
     get_all_quota_orbit_multi()
     # DSC
     # dsc_gq()
@@ -42,4 +42,4 @@ def get_all_quota():
     # dscproit_gq()
     # sleep(60)
     # Orbit
-    CRON_get_all_quota_orbit()
+    # CRON_get_all_quota_orbit()
