@@ -3,8 +3,6 @@ from django import forms
 from .models import DscDpi, DscDpiProit
 from django.core.validators import RegexValidator
 
-# from .utils import get_all_quota_orbit_multi, get_quota_orbit
-
 
 class DscDpiAdminForm(forms.ModelForm):
     phone_regex = RegexValidator(
@@ -28,18 +26,6 @@ class DscDpiProitAdminForm(forms.ModelForm):
     class Meta:
         model = DscDpiProit
         fields = "__all__"
-
-
-"""
-@admin.action(description='Check Quota Orbit ke myorbit.id')
-def check_quota(modeladmin, request, queryset):
-    for obj in queryset:
-        get_quota_orbit(obj.msisdn)
-
-@admin.action(description='Check Quota Orbit Multi ke myorbit.id')
-def check_quota_multi(modeladmin, request, queryset):
-    get_all_quota_orbit_multi()
-"""
 
 
 class DscDpiAdmin(admin.ModelAdmin):
