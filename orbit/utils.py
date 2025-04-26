@@ -21,6 +21,17 @@ NOTIF_Q_GB = settings.NOTIF_Q_GB
 NOTIF_Q_DAY = settings.NOTIF_Q_DAY
 
 
+def quota_day_normalize(text: str) -> str:
+    text_split = text.split()
+    date_string = f"{text_split[-3]} {text_split[-2]} {text_split[-1]}"
+    d_object = datetime.strptime(date_string, "%d %B %Y")
+    d_curr = datetime.today()
+    d_delta = d_object - d_curr
+    q_day = str(d_delta.days) + " Hari"
+
+    return q_day
+
+
 def get_quota_orbit(msisdn):
 
     driver = orbit.driver_start()
@@ -39,7 +50,7 @@ def get_quota_orbit(msisdn):
                 # o.quota_day = q_day if len(q_day) != 0 else o.quota_day
                 o.quota_current = q_current if len(q_current) != 0 else None
                 o.quota_total = q_total if len(q_total) != 0 else None
-                o.quota_day = q_day if len(q_day) != 0 else None
+                o.quota_day = quota_day_normalize(q_day) if len(q_day) != 0 else None
 
                 """ Only save when there is data from Orbit website """
                 if o.quota_current and o.quota_total and o.quota_day:
@@ -184,7 +195,7 @@ def get_all_quota_orbit_multi():
         q_current, q_total = split_quota_multi(val[0])
         q_day = None
         if val[1]:
-            from datetime import datetime, date
+            # from datetime import datetime, date
 
             date_split = val[1].split("-")
             d_next = date(int(date_split[2]), int(date_split[1]), int(date_split[0]))
