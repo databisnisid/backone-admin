@@ -101,7 +101,7 @@ class OrbitAdmin(admin.ModelAdmin):
         "additional_info",
     ]
     search_fields = ("msisdn", "imei", "additional_info")
-    actions = [check_quota]
+    # actions = [check_quota]
 
 
 class OrbitMultiAdmin(admin.ModelAdmin):
