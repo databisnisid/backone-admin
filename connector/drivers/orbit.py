@@ -156,48 +156,58 @@ def get_quota(username, password, driver):
 
         elem = sutils.find_element_presence(
             driver,
-            "/html/body/div[1]/div[2]/div[2]/div/div[2]/div/div/div/div[1]/div/div[1]",
+            # "/html/body/div[1]/div[2]/div[2]/div/div[2]/div/div/div/div[1]/div/div[1]",
+            "//*[@id='root']/div[2]/div[2]/div/div[2]/div/div/div/div",
             delay,
             False,
         )
 
-        """ Find valid until """
-        elem = sutils.find_element_presence(
-            driver,
-            "/html/body/div[1]/div[2]/div[2]/div/div[2]/div/div/div/div[1]/div/div[1]/div[1]/p[2]",
-            delay,
-            False,
-        )
-
+        is_packet_active = False
         if elem:
             logging.info(f"{elem.text}")
-            quota_day = elem.text
+            if "aktif s.d" in elem.text:
+                logging.info("MSISDN is OK -> Continue")
+                is_packet_active = True
 
-        """ Find Quota Current """
-        elem = sutils.find_element_presence(
-            driver,
-            "/html/body/div[1]/div[2]/div[2]/div/div[2]/div/div/div/div[1]/div/div[1]/div[2]/p[1]",
-            delay,
-            False,
-        )
+        if is_packet_active:
 
-        if elem:
-            logging.info(f"{elem.text}")
-            quota_current = elem.text.replace(" ", "")
+            """Find valid until"""
+            elem = sutils.find_element_presence(
+                driver,
+                "/html/body/div[1]/div[2]/div[2]/div/div[2]/div/div/div/div[1]/div/div[1]/div[1]/p[2]",
+                delay,
+                False,
+            )
 
-        """ Find Quota Total """
-        elem = sutils.find_element_presence(
-            driver,
-            "/html/body/div[1]/div[2]/div[2]/div/div[2]/div/div/div/div[1]/div/div[1]/div[2]/p[2]",
-            delay,
-            False,
-        )
+            if elem:
+                logging.info(f"{elem.text}")
+                quota_day = elem.text
 
-        if elem:
-            logging.info(f"{elem.text}")
-            quota_total = elem.text.replace("/", "").replace(" ", "")
+            """ Find Quota Current """
+            elem = sutils.find_element_presence(
+                driver,
+                "/html/body/div[1]/div[2]/div[2]/div/div[2]/div/div/div/div[1]/div/div[1]/div[2]/p[1]",
+                delay,
+                False,
+            )
 
-        logging.info(f"{quota_current}/{quota_total} {quota_day}")
+            if elem:
+                logging.info(f"{elem.text}")
+                quota_current = elem.text.replace(" ", "")
+
+            """ Find Quota Total """
+            elem = sutils.find_element_presence(
+                driver,
+                "/html/body/div[1]/div[2]/div[2]/div/div[2]/div/div/div/div[1]/div/div[1]/div[2]/p[2]",
+                delay,
+                False,
+            )
+
+            if elem:
+                logging.info(f"{elem.text}")
+                quota_total = elem.text.replace("/", "").replace(" ", "")
+
+            logging.info(f"{quota_current}/{quota_total} {quota_day}")
 
         """
         try:
