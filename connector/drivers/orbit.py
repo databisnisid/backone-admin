@@ -276,8 +276,8 @@ def get_quota(username, password, driver):
 
         """
         # driver.quit()
-        logging.info(f"Sleeping {delay} seconds")
-        sleep(delay)
+        # logging.info(f"Sleeping {delay} seconds")
+        # sleep(delay)
 
         # logging.info(f"Get information {quota_current}, {quota_total}, {quota_day}")
 
