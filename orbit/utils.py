@@ -209,9 +209,6 @@ def get_all_quota_orbit_multi():
             d_delta = d_next - d_curr
             q_day = str(d_delta.days) + " Hari"
 
-        print(msisdn, q_current, q_total, q_day)
-
-        if val[1]:
             try:
                 om = OrbitMulti.objects.get(msisdn=msisdn)
             except ObjectDoesNotExist:
@@ -224,6 +221,10 @@ def get_all_quota_orbit_multi():
             om.quota_total = q_total
             om.quota_day = q_day
             om.save()
+
+            logging.info(f"{msisdn} {q_current} {q_total} {q_day} -> Saved!")
+        else:
+            logging.info(f"{msisdn} {q_current} {q_total} {q_day} -> NOT Saved!")
 
 
 def check_quota_orbit_multi_notification_daily():
