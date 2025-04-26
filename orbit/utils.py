@@ -22,12 +22,18 @@ NOTIF_Q_DAY = settings.NOTIF_Q_DAY
 
 
 def quota_day_normalize(text: str) -> str:
-    text_split = text.split()
-    date_string = f"{text_split[-3]} {text_split[-2]} {text_split[-1]}"
-    d_object = datetime.strptime(date_string, "%d %B %Y")
     d_curr = datetime.today()
-    d_delta = d_object - d_curr
-    q_day = str(d_delta.days) + " Hari"
+    this_y = str(d_curr.year)
+    next_y = str(d_curr.year + 1)
+    if this_y in text or next_y in text:
+        text_split = text.split()
+        date_string = f"{text_split[-3]} {text_split[-2]} {text_split[-1]}"
+        d_object = datetime.strptime(date_string, "%d %B %Y")
+        d_curr = datetime.today()
+        d_delta = d_object - d_curr
+        q_day = str(d_delta.days) + " Hari"
+    else:
+        q_day = ""
 
     return q_day
 
