@@ -31,7 +31,7 @@ def driver_start():
         # driver_options = webdriver.ChromeOptions()
         # driver_options = webdriver.FirefoxOptions()
         options = Options()
-        # options.add_argument("--headless")
+        options.add_argument("--headless")
         options.add_argument(f"--proxy-server={settings.PROXY_SERVER}")
 
         driver = webdriver.Remote(
@@ -55,6 +55,7 @@ def get_quota(username, password, driver):
     quota_current = ""
     quota_total = ""
     quota_day = ""
+    error_msg = ""
 
     if username is not None and password is not None:
 
@@ -154,37 +155,21 @@ def get_quota(username, password, driver):
 
         """ Get Quota Information """
 
+        """ Find aktif s.d """
         elem = sutils.find_element_presence(
             driver,
-            "/html/body/div[1]/div[2]/div[2]/div/div[2]/div/div/div/div",
-            # "/html/body/div[1]/div[2]/div[2]/div/div[2]/div/div/div/div[1]/div/div[1]",
-            # "//*[@id='root']/div[2]/div[2]/div/div[2]/div/div/div/div",
+            "/html/body/div[1]/div[2]/div[2]/div/div[2]/div/div/div/div[1]/div/div[1]/div[1]/p[contains(text(), 'aktif s.d')]",
             delay,
             False,
         )
 
-        is_packet_active = False
         if elem:
             logging.info(f"{elem.text}")
-            if "aktif s.d" in elem.text:
-                logging.info("MSISDN is OK -> Continue")
-                is_packet_active = True
+            quota_day = elem.text
 
-        if is_packet_active:
+            logging.info("MSISDN is OK -> Continue")
 
-            """Find valid until"""
-            elem = sutils.find_element_presence(
-                driver,
-                "/html/body/div[1]/div[2]/div[2]/div/div[2]/div/div/div/div[1]/div/div[1]/div[1]/p[2]",
-                delay,
-                False,
-            )
-
-            if elem:
-                logging.info(f"{elem.text}")
-                quota_day = elem.text
-
-            """ Find Quota Current """
+            """ START - Find Quota Current """
             elem = sutils.find_element_presence(
                 driver,
                 "/html/body/div[1]/div[2]/div[2]/div/div[2]/div/div/div/div[1]/div/div[1]/div[2]/p[1]",
@@ -195,8 +180,9 @@ def get_quota(username, password, driver):
             if elem:
                 logging.info(f"{elem.text}")
                 quota_current = elem.text.replace(" ", "")
+            """ END - Find Quota Current """
 
-            """ Find Quota Total """
+            """ START - Find Quota Total """
             elem = sutils.find_element_presence(
                 driver,
                 "/html/body/div[1]/div[2]/div[2]/div/div[2]/div/div/div/div[1]/div/div[1]/div[2]/p[2]",
@@ -207,27 +193,26 @@ def get_quota(username, password, driver):
             if elem:
                 logging.info(f"{elem.text}")
                 quota_total = elem.text.replace("/", "").replace(" ", "")
+            """ END - Find Quota Total """
 
             logging.info(f"{quota_current}/{quota_total} {quota_day}")
 
-        """
-        try:
-            elem = WebDriverWait(driver, delay).until(
-                EC.presence_of_element_located((By.ID, "package-meter-chart"))
+        else:
+            """Get Error Message"""
+            elem = sutils.find_element_presence(
+                driver,
+                "/html/body/div[1]/div[2]/div[2]/div/div[2]/div/div/div/div/p",
+                delay,
+                False,
             )
-            quota_current = elem.find_element(By.XPATH, "./div[2]/div[2]/div[1]").text
-            quota_total = elem.find_element(By.XPATH, "./div[2]/div[2]/div[3]").text
-            elem = driver.find_element(By.XPATH, "//div[text()='Internet Orbit']")
-            quota_day = elem.find_element(By.XPATH, "./span").text
 
-            logging.info(f"Get information {quota_current}, {quota_total}, {quota_day}")
-
-        except (NoSuchElementException, TimeoutException):
-            pass
-        """
+            if elem:
+                error_msg = elem.text
+                logging.info(error_msg)
 
         """ Click Button Profil"""
 
+        """
         elem = sutils.find_element_clickable(
             driver, "//*[@id='btn-profile']", delay, False
         )
@@ -240,22 +225,12 @@ def get_quota(username, password, driver):
             except WebDriverException or StaleElementReferenceException:
                 pass
 
-        """
-        try:
-            elem = WebDriverWait(driver, delay).until(
-                EC.presence_of_element_located((By.ID, "btn-profile"))
-            )
-
-            elem.click()
-
-        except (NoSuchElementException, TimeoutException):
-            pass
-        """
-
         sleep(3)
+        """
 
         """ Try to logout here """
 
+        """
         elem = sutils.find_element_clickable(
             # driver, "//div/div/p[contains(text(), 'Keluar')]", delay, False
             driver,
@@ -272,7 +247,6 @@ def get_quota(username, password, driver):
             except WebDriverException or StaleElementReferenceException:
                 pass
 
-        """
         try:
             elem = WebDriverWait(driver, delay).until(
                 EC.presence_of_element_located(
