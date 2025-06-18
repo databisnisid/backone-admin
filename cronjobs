@@ -1,0 +1,5 @@
+HOME=/home/backone/server/backone-admin
+0 */4 * * * backone $HOME/venv/bin/python $HOME/manage.py shell --command "from config.cron import get_all_quota_dsc; get_all_quota_dsc()" > $HOME/logs/get_all_quota_dsc.log
+0 */4 * * * backone $HOME/venv/bin/python $HOME/manage.py shell --command "from config.cron import get_all_quota_orbit_single; get_all_quota_orbit_single()" > $HOME/logs/get_all_quota_orbit_single.log
+0 */4 * * * backone $HOME/venv/bin/python $HOME/manage.py shell --command "from config.cron import get_all_quota; get_all_quota()" > $HOME/logs/get_all_quota_orbit_multi.log
+0 * * * * backone $HOME/venv/bin/python $HOME/manage.py shell --command "from config.cron import get_telkomsat_quota; get_telkomsat_quota()" > $HOME/logs/get_telkomsat_quota.log
