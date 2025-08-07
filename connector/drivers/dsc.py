@@ -262,9 +262,8 @@ def login_to_dsc(
             # print("Trying get code #" + str(i))
             logging.info(f"Trying get code #{str(i)}")
             otp_code = pop3.get_otp_code(email_address, email_password)
-            print("OTP Code: ", otp_code)
             if otp_code != "":
-                # print("OTP Code:", otp_code)
+                print("OTP Code:", otp_code)
                 logging.info(f"OTP Code: {otp_code}")
                 break
             sleep(3)
