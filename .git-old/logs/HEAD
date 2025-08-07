@@ -1,0 +1,95 @@
+0000000000000000000000000000000000000000 6623cce9ddcfdaef40460df20332c0944390a63f Dedy Sutanto <dsutanto@workspace.(none)> 1724992008 +0700	clone: from https://github.com/databisnisid/backone-admin
+6623cce9ddcfdaef40460df20332c0944390a63f 7446b24ef955f58e32e39719e4a5c980ff247b1e proitlab <dedy.sutanto@proit.co.id> 1724992774 +0700	commit: Update PyYAML==6.0.1
+7446b24ef955f58e32e39719e4a5c980ff247b1e fd695254f0e3589e7835da2e3516b808d8f90864 proitlab <dedy.sutanto@proit.co.id> 1724992958 +0700	commit: Default DB to sqlite3
+fd695254f0e3589e7835da2e3516b808d8f90864 2fa2fdf7eaa9f0d26a8713924ebc77115f1a0b7c proitlab <dedy.sutanto@proit.co.id> 1724995261 +0700	commit: Create dcs.py
+2fa2fdf7eaa9f0d26a8713924ebc77115f1a0b7c 99d56844554224841d04938ad8bc3010aa558620 proitlab <dedy.sutanto@proit.co.id> 1724995570 +0700	commit: dcs -> dsc.py
+99d56844554224841d04938ad8bc3010aa558620 ba5e2647a2d61b9a5bc1746f405ef6aba72f9385 proitlab <dedy.sutanto@proit.co.id> 1725003977 +0700	commit: Working POC to login to DSC Telkomsel
+ba5e2647a2d61b9a5bc1746f405ef6aba72f9385 f525c4b12754aa6ea28238210c5fc8a4f642be94 proitlab <dedy.sutanto@proit.co.id> 1725004046 +0700	commit: Done for today
+f525c4b12754aa6ea28238210c5fc8a4f642be94 191b3abf2e2e007f18a2e92adea05f5af5139998 proitlab <dedy.sutanto@proit.co.id> 1725207055 +0700	pull: Fast-forward
+191b3abf2e2e007f18a2e92adea05f5af5139998 0194252a298ff2f0b79f8dd4c098a3c04545ae36 proitlab <dedy.sutanto@proit.co.id> 1725260607 +0700	commit: Fix DSC error_msg not saved
+0194252a298ff2f0b79f8dd4c098a3c04545ae36 9a26bcd2dfbe09109c940c4e4f93bbc3b53d0821 proitlab <dedy.sutanto@proit.co.id> 1725334782 +0700	commit: Delete All Email pop3
+9a26bcd2dfbe09109c940c4e4f93bbc3b53d0821 fbadabbc866fb3cd68820b829771413a8e25c2ac proitlab <dedy.sutanto@proit.co.id> 1725334886 +0700	commit: Delete All Email pop3 1
+fbadabbc866fb3cd68820b829771413a8e25c2ac 7a24cf2e1056ae12b1adffdf2acda36d180e168b proitlab <dedy.sutanto@proit.co.id> 1725589880 +0700	commit: delete all email fix
+7a24cf2e1056ae12b1adffdf2acda36d180e168b 8e4ca233f7066649a7192ff8e5fa29e9532491c6 proitlab <dedy.sutanto@proit.co.id> 1725589962 +0700	commit: delete all email fix -> quit
+8e4ca233f7066649a7192ff8e5fa29e9532491c6 1d7894622f1854691f05e6caa050d160dafa7a97 proitlab <dedy.sutanto@proit.co.id> 1725601890 +0700	commit: Telkomsat
+1d7894622f1854691f05e6caa050d160dafa7a97 21dac257b41932b3bfaa37ea7df74d1e99516dbe proitlab <dedy.sutanto@proit.co.id> 1725602834 +0700	commit: Telkomsat Token
+21dac257b41932b3bfaa37ea7df74d1e99516dbe 6c41165b68736cb51384f52cd850b5f4654de9bb proitlab <dedy.sutanto@proit.co.id> 1725607543 +0700	commit: Finalize Telkomsat
+6c41165b68736cb51384f52cd850b5f4654de9bb 8f317b2af366cc409fb8b73792f483110abc9a88 proitlab <dedy.sutanto@proit.co.id> 1725607590 +0700	commit: Telkomsat makemigrations
+8f317b2af366cc409fb8b73792f483110abc9a88 1b99838c21569b59312f622fba98f334b2dd20ea proitlab <dedy.sutanto@proit.co.id> 1725609115 +0700	commit: Finalize Telkomsat with utils
+1b99838c21569b59312f622fba98f334b2dd20ea a0356724fe84d66d3e614d64e0c381e10b722deb proitlab <dedy.sutanto@proit.co.id> 1725609386 +0700	commit: Telkomsat get_quota in cron
+a0356724fe84d66d3e614d64e0c381e10b722deb 53237bdbc7686a3a2db43ca2548fc2dfe05a07d1 proitlab <dedy.sutanto@proit.co.id> 1725609663 +0700	commit: Update requirements
+53237bdbc7686a3a2db43ca2548fc2dfe05a07d1 9c9b52b7090925accb9d64551af6671146a43353 proitlab <dedy.sutanto@proit.co.id> 1725610031 +0700	commit: round
+9c9b52b7090925accb9d64551af6671146a43353 34bc24ab6b715b1a3f903ea1798a5981dca9cc51 proitlab <dedy.sutanto@proit.co.id> 1725713190 +0700	commit: Upper is for string
+34bc24ab6b715b1a3f903ea1798a5981dca9cc51 2c2c4770a37a4b0c86268e2e939010ec11aa773b proitlab <dedy.sutanto@proit.co.id> 1725713243 +0700	pull (start): checkout 2c2c4770a37a4b0c86268e2e939010ec11aa773b
+2c2c4770a37a4b0c86268e2e939010ec11aa773b 9aa8dfa706cf716c882a1982db9d556fead9b752 proitlab <dedy.sutanto@proit.co.id> 1725713243 +0700	pull (pick): Upper is for string
+9aa8dfa706cf716c882a1982db9d556fead9b752 9aa8dfa706cf716c882a1982db9d556fead9b752 proitlab <dedy.sutanto@proit.co.id> 1725713243 +0700	pull (finish): returning to refs/heads/main
+9aa8dfa706cf716c882a1982db9d556fead9b752 c48abf5e04591696e3ea6beb890bde301607de08 proitlab <dedy.sutanto@proit.co.id> 1725869386 +0700	commit: Fix get_quota as
+c48abf5e04591696e3ea6beb890bde301607de08 f1fc0a83695244fa030a5771b452475b241eb1b3 proitlab <dedy.sutanto@proit.co.id> 1725870503 +0700	commit: Activation Date
+f1fc0a83695244fa030a5771b452475b241eb1b3 8070dd744635f325ef4d70a1c0fe237c612ad1dc proitlab <dedy.sutanto@proit.co.id> 1726239337 +0700	pull: Fast-forward
+8070dd744635f325ef4d70a1c0fe237c612ad1dc 30faba6d08f923bcecf3171c6cf3680a9b8e7b4c proitlab <dedy.sutanto@proit.co.id> 1727760148 +0700	commit: Add delay = 60
+30faba6d08f923bcecf3171c6cf3680a9b8e7b4c 8f94b03e84d33fb4f300fb10321feb7d673de9be proitlab <dedy.sutanto@proit.co.id> 1727760272 +0700	commit: DSC the last to get
+8f94b03e84d33fb4f300fb10321feb7d673de9be db1eb533c0ec01a2680d5b1bcc2aa460e4c1f8d8 proitlab <dedy.sutanto@proit.co.id> 1727771520 +0700	commit: Extend check email
+db1eb533c0ec01a2680d5b1bcc2aa460e4c1f8d8 6f122b22d11fbedca18786ef0406ead4d9e1446b proitlab <dedy.sutanto@proit.co.id> 1727772281 +0700	commit: increase delay to 5 minutes
+6f122b22d11fbedca18786ef0406ead4d9e1446b 6b7c2bea1c6006c47e6ba87d1f52853bf7ec3443 proitlab <dedy.sutanto@proit.co.id> 1728962086 +0700	commit: DPI MSDISN unik
+6b7c2bea1c6006c47e6ba87d1f52853bf7ec3443 bdda9ab5711572459fcee52390466fd50a9ebbf8 proitlab <dedy.sutanto@proit.co.id> 1729571007 +0700	pull: Fast-forward
+bdda9ab5711572459fcee52390466fd50a9ebbf8 e1694442559c960d55f25f3fa3ce7c227fa0ebd3 proitlab <dedy.sutanto@proit.co.id> 1729571383 +0700	commit: Delete DscDpiProit
+e1694442559c960d55f25f3fa3ce7c227fa0ebd3 cce5d442c9725f642f6574664df5aa4537f7dc84 proitlab <dedy.sutanto@proit.co.id> 1729571640 +0700	commit: Add DscDpiProit
+cce5d442c9725f642f6574664df5aa4537f7dc84 37a42c4f55c3ca35b11839ceda915f02ba36933c proitlab <dedy.sutanto@proit.co.id> 1729571726 +0700	commit: Add DscDpiProit in api call
+37a42c4f55c3ca35b11839ceda915f02ba36933c b1dd17e83cba191ba90fc38bb4297f0607a6beca proitlab <dedy.sutanto@proit.co.id> 1740789810 +0700	pull: Fast-forward
+b1dd17e83cba191ba90fc38bb4297f0607a6beca 5ada8579d17c86c0fa4f668bb98b3549aa4478f0 proitlab <dedy.sutanto@proit.co.id> 1740789847 +0700	commit: Change to localhost
+5ada8579d17c86c0fa4f668bb98b3549aa4478f0 484bfc7f76a674b5ea6968ad9c5335cfb9773c87 proitlab <dedy.sutanto@proit.co.id> 1744072365 +0700	commit: Seperate cron for DSC Tsel
+484bfc7f76a674b5ea6968ad9c5335cfb9773c87 f8c1d79a18604ee72d32d0496c126f4b78ca5dbb proitlab <dedy.sutanto@proit.co.id> 1744339184 +0700	commit: Improve with logging (before use print)
+f8c1d79a18604ee72d32d0496c126f4b78ca5dbb c0d8be014899f8cd4cb77f663cb467e671973036 proitlab <dedy.sutanto@proit.co.id> 1744339440 +0700	commit: Bug
+c0d8be014899f8cd4cb77f663cb467e671973036 04a8fbc32803f025a6dd639c350f234683c8eee1 proitlab <dedy.sutanto@proit.co.id> 1744339688 +0700	commit: Another Bug
+04a8fbc32803f025a6dd639c350f234683c8eee1 e9146bbe9a61d6ee9fa026f141bb07b38dd8c57d proitlab <dedy.sutanto@proit.co.id> 1744343411 +0700	commit: Fir Orbit Multi
+e9146bbe9a61d6ee9fa026f141bb07b38dd8c57d 86832a7dcc44cda2f9aa2236a1e9442e57dde4d6 proitlab <dedy.sutanto@proit.co.id> 1744343840 +0700	commit: Upgrade selenium module
+86832a7dcc44cda2f9aa2236a1e9442e57dde4d6 50b9d71a9cc28f430cf9be9b7ba30bededb4522e proitlab <dedy.sutanto@proit.co.id> 1744351739 +0700	commit: Done for today
+50b9d71a9cc28f430cf9be9b7ba30bededb4522e b22d6002b9b29355c50c25fe5b5c562a05be57ec proitlab <dedy.sutanto@proit.co.id> 1745550650 +0700	commit: define PROXY_SERVER
+b22d6002b9b29355c50c25fe5b5c562a05be57ec 81e6d07ae5f17252e5de2b69db6e15eb87096986 proitlab <dedy.sutanto@proit.co.id> 1745550672 +0700	commit: Use Chrome with autoscale and proxy
+81e6d07ae5f17252e5de2b69db6e15eb87096986 112f1963857cdf010a43dc974d1d3eb3de23df4b proitlab <dedy.sutanto@proit.co.id> 1745551778 +0700	commit: Limit error_msg to 200 Chars
+112f1963857cdf010a43dc974d1d3eb3de23df4b bbbdde2745652039b17bdfa2bef5a400a82979e7 proitlab <dedy.sutanto@proit.co.id> 1745552030 +0700	commit: Trying with headless
+bbbdde2745652039b17bdfa2bef5a400a82979e7 e5884fadda1009244d2c2c30a0919ecfe042d585 proitlab <dedy.sutanto@proit.co.id> 1745554395 +0700	commit: Comat camit
+e5884fadda1009244d2c2c30a0919ecfe042d585 608b362d8268ad6d9f94027de968f1b98b6d310c proitlab <dedy.sutanto@proit.co.id> 1745557032 +0700	commit: Try to use same session for Orbit
+608b362d8268ad6d9f94027de968f1b98b6d310c 02363065715b464d2f16be720027beaa43cf7ff8 proitlab <dedy.sutanto@proit.co.id> 1745557166 +0700	commit: Fix new get_quota with driver
+02363065715b464d2f16be720027beaa43cf7ff8 fab9a61ac86126b6555b8d5af578c920ac01d161 proitlab <dedy.sutanto@proit.co.id> 1745558741 +0700	commit: Optimizing orbit
+fab9a61ac86126b6555b8d5af578c920ac01d161 10b951eca62bc971597ba1331722980da8e8c282 proitlab <dedy.sutanto@proit.co.id> 1745558806 +0700	commit: Fix
+10b951eca62bc971597ba1331722980da8e8c282 c485327e3ef8cd1ad786e96c1df2abe8fb59ef91 proitlab <dedy.sutanto@proit.co.id> 1745559546 +0700	commit: Trying
+c485327e3ef8cd1ad786e96c1df2abe8fb59ef91 7d8a8ebd7cdff3e7f78fac5cbe76b4f125c001d2 proitlab <dedy.sutanto@proit.co.id> 1745559888 +0700	commit: quota_day length 200
+7d8a8ebd7cdff3e7f78fac5cbe76b4f125c001d2 928d0d80e4341eb979d19b5ff13162670f57a6f5 proitlab <dedy.sutanto@proit.co.id> 1745559900 +0700	commit: Orbit
+928d0d80e4341eb979d19b5ff13162670f57a6f5 b8d4125546771c86bed7f27335792178b4fb9c78 proitlab <dedy.sutanto@proit.co.id> 1745560271 +0700	commit: Remove whitespace
+b8d4125546771c86bed7f27335792178b4fb9c78 d43f9b8527eceee70f5e91ca3a60eb5774e11802 proitlab <dedy.sutanto@proit.co.id> 1745561463 +0700	commit: logging info
+d43f9b8527eceee70f5e91ca3a60eb5774e11802 aff57d4c77cd3bdc1bd926666345b0dfb43903f2 proitlab <dedy.sutanto@proit.co.id> 1745562263 +0700	commit: Fix Button profile find
+aff57d4c77cd3bdc1bd926666345b0dfb43903f2 e771b78eab7f2310d49b323e8f390c67930d7701 proitlab <dedy.sutanto@proit.co.id> 1745562363 +0700	commit: remove headless
+e771b78eab7f2310d49b323e8f390c67930d7701 b82c8512803a362484e54bd00c109be143b264cd proitlab <dedy.sutanto@proit.co.id> 1745562900 +0700	commit: Test goes to dashboard
+b82c8512803a362484e54bd00c109be143b264cd f058a56f012865f25e48db0ba229e3bf29d0cec9 proitlab <dedy.sutanto@proit.co.id> 1745563273 +0700	commit: Check clickable
+f058a56f012865f25e48db0ba229e3bf29d0cec9 7dd554922a1efb4009b77f2dbbc2399c083d6106 proitlab <dedy.sutanto@proit.co.id> 1745564175 +0700	commit: Sesek
+7dd554922a1efb4009b77f2dbbc2399c083d6106 8ed59da3e49f7f0fd02670ba90283c24361867c6 proitlab <dedy.sutanto@proit.co.id> 1745564820 +0700	commit: StaleElementReferenceException exception
+8ed59da3e49f7f0fd02670ba90283c24361867c6 7bd73712c08843ab13188936a3dd07403440b6cb proitlab <dedy.sutanto@proit.co.id> 1745564987 +0700	commit: Login Page
+7bd73712c08843ab13188936a3dd07403440b6cb cc797c6649cf33b2b17b748bc782d306857e9af8 proitlab <dedy.sutanto@proit.co.id> 1745565598 +0700	commit: Remove headless
+cc797c6649cf33b2b17b748bc782d306857e9af8 1adb623adf26ab0a2a71dce8ee809c9b6e210ecf proitlab <dedy.sutanto@proit.co.id> 1745566162 +0700	commit: Comit comat
+1adb623adf26ab0a2a71dce8ee809c9b6e210ecf 2f2b8876344c85c717ebc44e486d1aacbf5c1396 proitlab <dedy.sutanto@proit.co.id> 1745566575 +0700	commit: remove headless
+2f2b8876344c85c717ebc44e486d1aacbf5c1396 27d9d9045c98a00be1e280e3ab84b51d3776e244 proitlab <dedy.sutanto@proit.co.id> 1745643915 +0700	commit: Update django -> 4.2.20 and jazzmin -> 3.0.1
+27d9d9045c98a00be1e280e3ab84b51d3776e244 1f43eea0ae1cab556b52805e15f1e9dd1a1b9539 proitlab <dedy.sutanto@proit.co.id> 1745645076 +0700	commit: Remove white space
+1f43eea0ae1cab556b52805e15f1e9dd1a1b9539 99cd02710509ef7a6f4b157c99e76deafaf04705 proitlab <dedy.sutanto@proit.co.id> 1745645085 +0700	commit: Clean Up
+99cd02710509ef7a6f4b157c99e76deafaf04705 5544855ab4d6e9b19edd8223f31ce947353b4149 proitlab <dedy.sutanto@proit.co.id> 1745645093 +0700	commit: Clean Up
+5544855ab4d6e9b19edd8223f31ce947353b4149 0b5d94e0fc52ab7f8ebdd7a94018f0889a69cfe7 proitlab <dedy.sutanto@proit.co.id> 1745645200 +0700	commit: Remove Action
+0b5d94e0fc52ab7f8ebdd7a94018f0889a69cfe7 03236a5a4362af1708cf050fda190fa06a6ce4d7 proitlab <dedy.sutanto@proit.co.id> 1745645266 +0700	commit: remove action
+03236a5a4362af1708cf050fda190fa06a6ce4d7 3b1d6c54d7ac4d99df550892d5c81efb5e6cbf48 proitlab <dedy.sutanto@proit.co.id> 1745646267 +0700	commit: Quota Day Normalize
+3b1d6c54d7ac4d99df550892d5c81efb5e6cbf48 efcbab5157cb924be8ec1d97623e6d266583e7ad proitlab <dedy.sutanto@proit.co.id> 1745650884 +0700	commit: Check if there is a year
+efcbab5157cb924be8ec1d97623e6d266583e7ad 92cc415a48b8a310213e724eba034cbd014d9ceb proitlab <dedy.sutanto@proit.co.id> 1745651895 +0700	commit: Dut
+92cc415a48b8a310213e724eba034cbd014d9ceb 260694dfd1cb4ddb78090c3e8075aef4cf515267 proitlab <dedy.sutanto@proit.co.id> 1745652662 +0700	commit: Fix month 3 char = %b
+260694dfd1cb4ddb78090c3e8075aef4cf515267 e07e731a0db5226dc7cc95365d9da35b457ead12 proitlab <dedy.sutanto@proit.co.id> 1745653674 +0700	commit: Separate Orbit multi and single
+e07e731a0db5226dc7cc95365d9da35b457ead12 4e2d1214432974ac6b0641f81e9fb7aeee29e147 proitlab <dedy.sutanto@proit.co.id> 1745654541 +0700	commit: Indomie
+4e2d1214432974ac6b0641f81e9fb7aeee29e147 f9897a8a95451192f69a1f48d54d56575cca7f11 proitlab <dedy.sutanto@proit.co.id> 1745655540 +0700	commit: Not save if info not complete in Orbit Mlti
+f9897a8a95451192f69a1f48d54d56575cca7f11 6bd98854849f9c619b813bfd3bc1ae4aa67a6bb9 proitlab <dedy.sutanto@proit.co.id> 1745655862 +0700	commit: Improve logging
+6bd98854849f9c619b813bfd3bc1ae4aa67a6bb9 20276f70a92892b4518ac48d122ed54957ad8236 proitlab <dedy.sutanto@proit.co.id> 1745656143 +0700	commit: Sepearate process
+20276f70a92892b4518ac48d122ed54957ad8236 24b3f21820412fca96b6c1f5e74f7f5706758c5a proitlab <dedy.sutanto@proit.co.id> 1745670906 +0700	commit: Using single session selenium for Orbit Single
+24b3f21820412fca96b6c1f5e74f7f5706758c5a 736a5ff9b2cf6b63a9f0835be6f85c05165a4ab7 proitlab <dedy.sutanto@proit.co.id> 1745671008 +0700	commit: Remove delay
+736a5ff9b2cf6b63a9f0835be6f85c05165a4ab7 0df03e754752f11874f943ab078c131b76cf2185 proitlab <dedy.sutanto@proit.co.id> 1745672130 +0700	commit: Optimize query
+0df03e754752f11874f943ab078c131b76cf2185 2449c5208ac40a0376c87afd50b206dab4af6bf2 proitlab <dedy.sutanto@proit.co.id> 1745672379 +0700	commit: Change XPATH for Quota Information
+2449c5208ac40a0376c87afd50b206dab4af6bf2 3b579f69441828572f241c1875646f5d2e33430d proitlab <dedy.sutanto@proit.co.id> 1745673414 +0700	commit: Optimize more
+3b579f69441828572f241c1875646f5d2e33430d 8cf773df5c28efc7f929d57d95a63bcad36b5c89 proitlab <dedy.sutanto@proit.co.id> 1745674133 +0700	commit: Get Error Messages
+8cf773df5c28efc7f929d57d95a63bcad36b5c89 da5b03a2a67e4b75994dc1d833afa3ddaa23a314 proitlab <dedy.sutanto@proit.co.id> 1745675122 +0700	commit: DOne for today
+da5b03a2a67e4b75994dc1d833afa3ddaa23a314 ed168fa2c3eaccfbec2e10b5e7c83849de5d98c2 proitlab <dedy.sutanto@proit.co.id> 1745675790 +0700	commit: remove error_msg from modeladmin
+ed168fa2c3eaccfbec2e10b5e7c83849de5d98c2 860751abb3833104230133dee26b78f970cddd5a proitlab <dedy.sutanto@proit.co.id> 1750226697 +0700	commit: Backup Cronjobs
+860751abb3833104230133dee26b78f970cddd5a 9ba28eeb0e572048a5ac1ab5ee7a45e896323656 proitlab <dedy.sutanto@proit.co.id> 1754554922 +0700	commit: Work with PROXY_SERVER

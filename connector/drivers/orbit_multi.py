@@ -37,7 +37,8 @@ def get_quota_multi(username, password):
 
             options = Options()
             # options.add_argument("--headless")
-            options.add_argument(f"--proxy-server={settings.PROXY_SERVER}")
+            if settings.PROXY_SERVER:
+                options.add_argument(f"--proxy-server={settings.PROXY_SERVER}")
             driver = webdriver.Remote(
                 # command_executor=settings.SELENIUM_DOCKER, options=driver_options
                 command_executor=settings.SELENIUM_DOCKER,
