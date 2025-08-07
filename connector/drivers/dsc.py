@@ -117,7 +117,8 @@ def get_quota_value(driver, delay: int = 300) -> str:
     quota_value = ""
     if elem:
         quota_value = elem.text
-        print("Quota Value: ", quota_value)
+        # print("Quota Value: ", quota_value)
+        logging.info(f"Quota Value: {quota_value}")
 
     return quota_value
 
