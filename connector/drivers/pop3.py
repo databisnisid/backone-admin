@@ -12,7 +12,8 @@ class OtpParser(HTMLParser):
 
     def handle_starttag(self, tag, attrs):
         attrs = dict(attrs)
-        if tag == "div" and attrs.get("class") == "otp":
+        # if tag == "div" and attrs.get("class") == "otp":
+        if tag == "p" and attrs.get("class") == "token":
             self.is_otp = True
 
     def handle_data(self, data):
