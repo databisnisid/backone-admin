@@ -45,7 +45,8 @@ def get_quota_multi(username, password):
                 options=options,
             )
         else:
-            driver = webdriver.Firefox()
+            # driver = webdriver.Firefox()
+            driver = webdriver.Chrome()
             # Use this for local SELENIUM
             # driver = webdriver.Chrome()
 
@@ -180,7 +181,8 @@ def get_quota_multi(username, password):
                     next_page = driver.find_element(
                         By.XPATH,
                         # "//div[contains(@class, 'css-1dbjc4n')]/div[contains(@style, 'padding: 4px 8px') and contains(text(), "
-                        "//div[contains(@style, 'padding: 0px; margin: 0px')]/p[contains(@style, 'padding: 4px 8px') and contains(text(), "
+                        # "//div[contains(@style, 'padding: 0px; margin: 0px')]/p[contains(@style, 'padding: 4px 8px') and contains(text(), "
+                        "//div[contains(@style, 'opacity: 1;')]/p[contains(@style, 'padding: 4px 8px') and contains(text(), "
                         + str(page_number + 1)
                         + ")]",
                     )
@@ -193,6 +195,10 @@ def get_quota_multi(username, password):
                     # print("Next Page is not found!")
                     logging.info("Next Page is not found!")
                     is_next_page = False
+
+                    # Darurat
+                    # while True:
+                    #    pass
 
                 if next_page is not None:
                     # print("Current Page:", page_number, "Next Page:", next_page.text)
