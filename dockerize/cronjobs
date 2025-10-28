@@ -1,0 +1,4 @@
+0 */6 * * * python /app/manage.py shell --command "from config.cron import get_all_quota_dsc; get_all_quota_dsc()"
+0 */4 * * * python /app/manage.py shell --command "from config.cron import get_all_quota_orbit_single; get_all_quota_orbit_single()"
+0 */5 * * * python /app/manage.py shell --command "from config.cron import get_all_quota; get_all_quota()"
+0 * * * * python /app/manage.py shell --command "from config.cron import get_telkomsat_quota; get_telkomsat_quota()"
