@@ -10,6 +10,11 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
 from django.conf import settings
 import logging
+from connector.drivers.selenium_utils import (
+    find_element_presence,
+    find_element_clickable,
+)
+from connector.drivers import pop3
 
 # Basic configuration
 logging.basicConfig(
@@ -20,7 +25,9 @@ logging.basicConfig(
 
 
 # def get_quota(username='budithegreat09@gmail.com', password='Failover6!'):
-def get_quota_multi(username, password):
+def get_quota_multi(
+    username=settings.ORBIT_MULTI_USERNAME, password=settings.ORBIT_MULTI_PASSWORD
+):
 
     quota_current = ""
     quota_total = ""
@@ -58,9 +65,65 @@ def get_quota_multi(username, password):
         # driver.get("https://www.myorbit.id/login")
         delay = 10
 
+        # Check Cookies
+
+        elem = find_element_clickable(
+            driver,
+            "//*[@id='cookies1']/div/div/div[2]/div[1]/div/p[contains(text(), 'Setuju')]",
+        )
+
+        if elem:
+            logging.info("Found Cookies Accept")
+            elem.click()
+
         # print("Trying to login to ", url_orbit)
         logging.info(f"Trying to login to {url_orbit}")
         """ Sending Username """
+
+        elem = find_element_presence(driver, "//input[@value='']")
+        if elem:
+            elem.send_keys(username)
+            elem.send_keys(Keys.RETURN)
+
+        time.sleep(3)
+
+        otp_code = ""
+        for i in range(1, 120):
+            logging.info(f"Trying get code #{str(i)}")
+            otp_code = pop3.get_otp_code_orbit_multi(
+                settings.ORBIT_MULTI_EMAIL_ADDRESS, settings.ORBIT_MULTI_EMAIL_PASSWORD
+            )
+            if otp_code != "":
+                print("OTP Code:", otp_code)
+                logging.info(f"OTP Code: {otp_code}")
+                break
+            time.sleep(3)
+
+        time.sleep(3)
+
+        """ Find Input OTP """
+        elem = find_element_presence(
+            driver, "//*[@id='root']/div[5]/div[2]/div/div[2]/div[2]/div/input[1]"
+        )
+
+        if elem:
+            logging.info("Found OTP Input")
+            elem.send_keys(otp_code)
+        # time.sleep(300)
+
+        """ Find button Lanjutkan """
+        elem = find_element_presence(
+            driver,
+            "//*[@id='root']/div[5]/div[2]/div/div[2]/div[4]",
+            30,
+            True,
+        )
+
+        if elem:
+            logging.info("Found Button Lanjutkan")
+            elem.click()
+
+        """
         try:
             #            elem = WebDriverWait(driver, delay).until(
             #                EC.presence_of_element_located((By.XPATH, "//input[contains(@label,'Alamat Email/No. HP')]"))
@@ -80,7 +143,9 @@ def get_quota_multi(username, password):
             # print("Error: ", error)
             logging.info(f"Error: {error}")
 
+        """
         """ Sending Password """
+        """
         try:
             #            elem = WebDriverWait(driver, delay).until(
             #                EC.presence_of_element_located((By.XPATH, "//input[contains(@label,'Password')]"))
@@ -96,10 +161,14 @@ def get_quota_multi(username, password):
             driver.quit()
             logging.info(f"Error: {error}")
 
+        """
+        time.sleep(60)
+
         """ Get Quota Multi Information """
         is_next_page = True
         page_number = 1
         # print("Login Successful. Trying to get information...")
+
         logging.info("Login Successful. Trying to get information...")
         while is_next_page:
             try:
