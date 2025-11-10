@@ -43,8 +43,9 @@ class OtpParser(HTMLParser):
 def delete_all_email(
     email_address: str = settings.DSC_EMAIL_ADDRESS,
     email_password: str = settings.DSC_EMAIL_PASSWORD,
+    email_host: str = settings.DSC_EMAIL_HOST,
 ) -> None:
-    pop_connect = poplib.POP3_SSL(settings.DSC_EMAIL_HOST)
+    pop_connect = poplib.POP3_SSL(email_host)
     # pop_connect.user(settings.DSC_EMAIL_ADDRESS)
     # pop_connect.pass_(settings.DSC_EMAIL_PASSWORD)
     pop_connect.user(email_address)

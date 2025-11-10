@@ -14,7 +14,11 @@ from django.conf import settings
 import logging
 from time import sleep
 import connector.drivers.selenium_utils as sutils
-
+from connector.drivers import pop3
+from connector.drivers.selenium_utils import (
+    find_element_clickable,
+    find_element_presence,
+)
 
 # Basic configuration
 logging.basicConfig(
@@ -58,6 +62,9 @@ def get_quota(username, password, driver):
     quota_day = ""
     error_msg = ""
 
+    logging.info("Delete All Email...")
+    pop3.delete_all_email(settings.ORBIT_EMAIL_ADDRESS, settings.ORBIT_EMAIL_PASSWORD)
+
     if username is not None and password is not None:
 
         # print('Use Selenium Server: ', settings.REMOTE_SELENIUM)
@@ -86,7 +93,64 @@ def get_quota(username, password, driver):
         driver.get("https://www.myorbit.id/login")
         delay = 10
 
+        elem = find_element_clickable(
+            driver,
+            "//*[@id='cookies1']/div/div/div[2]/div[1]/div/p[contains(text(), 'Setuju')]",
+        )
+
+        if elem:
+            logging.info("Found Cookies Accept")
+            elem.click()
+
+        sleep(3)
+        # print("Trying to login to ", url_orbit)
+
         """ Sending Username """
+        elem = find_element_presence(driver, "//input[@value='']")
+        if elem:
+            elem.send_keys(username)
+            sleep(2)
+            elem.send_keys(Keys.RETURN)
+
+        sleep(5)
+
+        otp_code = ""
+        for i in range(1, 120):
+            logging.info(f"Trying get code #{str(i)}")
+            otp_code = pop3.get_otp_code_orbit_multi(
+                settings.ORBIT_EMAIL_ADDRESS, settings.ORBIT_EMAIL_PASSWORD
+            )
+            if otp_code != "":
+                print("OTP Code:", otp_code)
+                logging.info(f"OTP Code: {otp_code}")
+                break
+            sleep(3)
+
+        sleep(3)
+
+        """ Find Input OTP """
+        elem = find_element_presence(
+            driver, "//*[@id='root']/div[5]/div[2]/div/div[2]/div[2]/div/input[1]"
+        )
+
+        if elem:
+            logging.info("Found OTP Input")
+            elem.send_keys(otp_code)
+        # time.sleep(300)
+
+        """ Find button Lanjutkan """
+        elem = find_element_presence(
+            driver,
+            "//*[@id='root']/div[5]/div[2]/div/div[2]/div[4]",
+            30,
+            True,
+        )
+
+        if elem:
+            logging.info("Found Button Lanjutkan")
+            elem.click()
+
+        """
         try:
             #            elem = WebDriverWait(driver, delay).until(
             #                EC.presence_of_element_located((By.XPATH, "//input[contains(@label,'Alamat Email/No. HP')]"))
@@ -103,8 +167,9 @@ def get_quota(username, password, driver):
             driver.quit()
 
         logging.info("Sending username succeed")
-
+        """
         """ Sending Password """
+        """
         try:
             #            elem = WebDriverWait(driver, delay).until(
             #                EC.presence_of_element_located((By.XPATH, "//input[contains(@label,'Password')]"))
@@ -118,6 +183,8 @@ def get_quota(username, password, driver):
             driver.quit()
 
         logging.info("Sending password succeed")
+
+        """
 
         """ Check for pop up """
 

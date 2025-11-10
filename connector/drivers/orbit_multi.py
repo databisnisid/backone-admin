@@ -33,7 +33,12 @@ def get_quota_multi(
     quota_total = ""
     quota_day = ""
 
+    logging.info("Delete All Email...")
+    pop3.delete_all_email(
+        settings.ORBIT_MULTI_EMAIL_ADDRESS, settings.ORBIT_MULTI_EMAIL_PASSWORD
+    )
     result = {}
+
     if username is not None and password is not None:
 
         # print('Use Selenium Server: ', settings.REMOTE_SELENIUM)
@@ -76,6 +81,8 @@ def get_quota_multi(
             logging.info("Found Cookies Accept")
             elem.click()
 
+        sleep(3)
+
         # print("Trying to login to ", url_orbit)
         logging.info(f"Trying to login to {url_orbit}")
         """ Sending Username """
@@ -83,6 +90,7 @@ def get_quota_multi(
         elem = find_element_presence(driver, "//input[@value='']")
         if elem:
             elem.send_keys(username)
+            time.sleep(2)
             elem.send_keys(Keys.RETURN)
 
         time.sleep(3)
